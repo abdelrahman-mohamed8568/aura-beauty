@@ -1,0 +1,59 @@
+.footerMain {
+  width: 100%;
+  height: 80vh;
+  background-color: var(--dc);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.footerBox {
+  width: 95%;
+  height: 70vh;
+  border-bottom: 1px solid var(--wc);
+  display: flex;
+  justify-content: space-between;
+}
+.footerBox .logo {
+  align-self: flex-end;
+}
+.socialBox {
+  text-transform: uppercase;
+  color: var(--wc);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3vh;
+}
+.socialBox h3 {
+  font-weight: 300;
+  color: var(--gc);
+}
+.socialIcons {
+  display: flex;
+  justify-content: space-between;
+  width: 30vh;
+  align-items: center;
+}
+.socialIcons .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.socialIcons .icon svg {
+  fill: var(--wc);
+  cursor: pointer;
+  height: 25px;
+  transition: all 0.45s;
+}
+.socialIcons .icon svg:hover {
+  fill: var(--yc);
+}
+.footerMain p {
+  width: 70%;
+  color: var(--wc);
+  text-align: center;
+  display: flex;
+  padding-top: 1vh;
+}

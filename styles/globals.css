@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  outline: none;
+  list-style: none;
+}
+
+body {
+  background-color: var(--wc);
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  transition: 1s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+:root {
+  --wc: #ffffff;
+  --oc: #dce5e5e6;
+  --gc: #707070;
+  --yc: #d5ab42;
+  --bc: #1d1b19;
+  --dc: #14120f;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.mainContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 9;
+}
