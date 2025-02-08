@@ -105,7 +105,7 @@ li {
 .categoriesLink {
   text-decoration: none;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--dc);
   transition: 0.5s ease;
   display: flex;
@@ -152,6 +152,7 @@ li {
   display: flex;
   position: absolute;
   overflow: hidden;
+  color: var(--gc);
 }
 
 .categoriesLink .span-mother2 span {

@@ -217,7 +217,7 @@
   width: 500px;
   height: 400px;
   border-radius: 40px;
-  background-color: var(--oc);
+  background-color: #70707070;
 }
 
 .right,
@@ -239,7 +239,7 @@
   animation-range: entry -100% entry 100%;
 }
 .left .infoBox {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
   animation: leftBox linear;
   animation-timeline: view();
   animation-range: entry -100% entry 100%;
@@ -402,7 +402,7 @@
 @keyframes rightBox {
   from {
     rotate: 100deg;
-    transform: translateY(50%) translateX(200%);
+    transform: translateY(50%) translateX(400%);
     opacity: 0;
   }
   to {
@@ -415,7 +415,7 @@
   from {
     rotate: -100deg;
     opacity: 0;
-    transform: translateY(-50%) translateX(-200%);
+    transform: translateY(-50%) translateX(-400%);
   }
   to {
     rotate: 0deg;

@@ -7,11 +7,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "@/public/*": ["./public/*"],
       "@/app/*": ["./app/*"],
       "@/styles/*": ["./styles/*"],
       "@/lang/*": ["./lang/*"],
       "@/images/*": ["./public/images/*"],
-      "@/appComponents/*": ["./app/components/*"]
+      "@/appComponents/*": ["./app/components/*"],
+      "@/data/*": ["./app/data/*"],
+      "@/store/*": ["./app/store/*"]
     }
   }
 }

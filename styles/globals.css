@@ -18,12 +18,12 @@ html {
 }
 
 :root {
-  --wc: #ffffff;
-  --oc: #dce5e5e6;
+  --wc: #faf9f7;
   --gc: #707070;
   --yc: #d5ab42;
+  --rc: #ac2b4d;
   --bc: #1d1b19;
-  --dc: #14120f;
+  --dc: #1f1f1f;
 }
 
 ::-webkit-scrollbar {
