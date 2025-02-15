@@ -8,14 +8,14 @@ function CategoriesSection() {
   return (
     <>
       <div className="categoriesContainer">
-        <dev className="categories">
+        <div className="categories">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1440 320"
             className="top topWave"
           >
             <path
-              fill="#ffffff"
+              fill="#faf9f7"
               fillOpacity="1"
               d="M0,160L40,160C80,160,160,160,240,149.3C320,139,400,117,480,122.7C560,128,640,160,720,176C800,192,880,192,960,160C1040,128,1120,64,1200,69.3C1280,75,1360,149,1400,186.7L1440,224L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
             ></path>
@@ -45,7 +45,7 @@ function CategoriesSection() {
               <div className="cardInfo">
                 <h1>Beauty Business Boost</h1>
                 <p>Take your beauty business to the next level</p>
-                <Link href={"/"} className="cardLink">
+                <Link href={"/products/all?page=1#0"} className="cardLink">
                   view
                 </Link>
               </div>
@@ -72,7 +72,7 @@ function CategoriesSection() {
               </div>
             </div>
           </div>
-        </dev>
+        </div>
         <div className="categorieInfo">
           <h1 className="headerText">
             <span>who</span>
@@ -162,13 +162,15 @@ function CategoriesSection() {
               <div className="bottom infoBox">
                 <h1 className="numberBox">
                   <span className="span-mother">
-                    <span>8</span>
+                    <span>1</span>
+                    <span>2</span>
                     <span>0</span>
                     <span>0</span>
                     <span className="spanPlus">+</span>
                   </span>
                   <span className="span-mother2">
-                    <span>8</span>
+                    <span>1</span>
+                    <span>2</span>
                     <span>0</span>
                     <span>0</span>
                     <span className="spanPlus">+</span>

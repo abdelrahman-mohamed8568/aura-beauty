@@ -1,0 +1,116 @@
+.productCard {
+  width: 250px;
+  height: 320px;
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.5s ease-in-out;
+  border-radius: 15px;
+}
+
+.imagCardBox {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.cardImg {
+  width: 230px;
+  height: 230px;
+  display: flex;
+  justify-content: center;
+}
+
+.imagCardBox:hover {
+  transform: scale(1.04);
+  border-radius: 25px;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  transition: all 0.5s ease-in-out;
+  z-index: 1;
+  width: 230px;
+  overflow: hidden;
+  bottom: 0;
+}
+
+.cardBody .productsCardInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  gap: 10px;
+}
+.productsCardInfo h3 {
+  font-size: 1rem;
+  text-transform: capitalize;
+  display: flex;
+  color: var(--dc);
+}
+
+.cardBody p,
+.productsCardInfo h5 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--gc);
+}
+.cardBody p,
+.productsCardInfo h3 {
+  text-decoration: none;
+  position: relative;
+}
+.cardBody p::after,
+.productsCardInfo h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--yc);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+.cardBody p:hover::after,
+.productsCardInfo h3:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------------------------- */
+.view {
+  position: absolute;
+  bottom: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f1f1f83;
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--yc);
+  transform: scale(0);
+  transition: all 0.3s ease-in-out;
+  z-index: 0;
+}
+.imagCardBox:hover .view {
+  transform: scale(1);
+}
+.view:hover {
+  color: var(--wc);
+  letter-spacing: 0.2rem;
+}
+/* ---------------------------- */

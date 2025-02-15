@@ -9,7 +9,7 @@ body {
   max-width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
-  transition: 1s ease;
+  overflow-y: scroll;
 }
 
 html {
@@ -21,7 +21,8 @@ html {
   --wc: #faf9f7;
   --gc: #707070;
   --yc: #d5ab42;
-  --rc: #ac2b4d;
+  --rc: #a52a2a;
+  --nc: #16a34a;
   --bc: #1d1b19;
   --dc: #1f1f1f;
 }
@@ -34,5 +35,117 @@ html {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   z-index: 9;
+}
+.shoppingCartHeader,
+.wishlistHeader {
+  width: 85%;
+  border-bottom: 1px solid var(--dc);
+}
+.wishlistHeader h1,
+.shoppingCartHeader h1,
+.empty {
+  margin-top: 25vh;
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--dc);
+}
+.empty {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.empty svg {
+  width: 80vh;
+}
+.wishlistContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  align-items: center;
+  justify-items: center;
+  margin: 10vh 0;
+  gap: 15px;
+}
+.wishlistCard {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  z-index: 3;
+}
+.wishlistCard svg {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--dc);
+  transition: all 0.3s ease-in-out;
+}
+.wishlistCard svg:nth-child(2) {
+  color: var(--rc);
+}
+#heartHover {
+  opacity: 0;
+}
+.wishlist svg:hover,
+#heartHover:hover,
+.shoppingCart svg:hover {
+  transform: scale(1.4);
+}
+#activeHeart {
+  opacity: 1;
+}
+.shoppingCart {
+  width: 350px;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid var(--dc);
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+}
+.shoppingCartOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 25px;
+  font-size: xx-large;
+}
+.shoppingCartDetails {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.shoppingCartDetails .shoppingCartInfo {
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+  font-size: 14px;
+  gap: 15px;
+  color: var(--dc);
+}
+.shoppingCartDetails .shoppingCartInfo p {
+  font-weight: 400;
+}
+.shoppingCartDetails .shoppingCartInfo h3 {
+  font-weight: 800;
+}
+.shoppingCartImg {
+  border-radius: 10px;
+  border: 1px solid var(--gc);
+}
+
+.shoppingCart svg {
+  color: var(--rc);
+  transition: all 0.5s ease;
+  cursor: pointer;
 }

@@ -3,90 +3,150 @@
     "id": 1,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "botox",
-    "price": 299
+    "price": 299,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 2,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 4550,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 3,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 4,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 5,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 6,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 7,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 8,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 9,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 10,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 11,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 12,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 13,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 14,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   },
   {
     "id": 15,
     "name": "ALIAXIN® LV - 2x1ml ",
     "category": "filler",
-    "price": 450
+    "price": 450,
+    "description": "JUVÉDERM® ULTRA 2 LIDOCAINE is an injectable filler, which is used to treat superficial to moderate facial lines and skin depressions, usually those around the lips and eyes. JUVÉDERM® ULTRA 2 LIDOCAINE contains hyaluronic acid, which is a natural substance found inside the human body. Its key property is to keep the skin hydrated whilst adding plumpness.  The product contains lidocaine to ensure a more comfortable injection.",
+    "cover": "/images/product_cover.jpg",
+    "img1": "/images/product_demo.png",
+    "img2": "/images/product_demo2.jpg"
   }
 ]

@@ -1,0 +1,86 @@
+.shoppingCartHeader p {
+  font-weight: 800;
+  color: var(--dc);
+}
+.total {
+  width: 80%;
+  margin-top: 5vh;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+  border: 1px solid var(--dc);
+  padding: 10px 25px;
+  color: var(--dc);
+}
+.total h2 {
+  font-weight: 800;
+}
+.total button {
+  width: 200px;
+  height: 50px;
+  font-size: large;
+  font-weight: 800;
+  color: var(--dc);
+  background-color: var(--gc);
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+.total button:hover {
+  color: var(--bc);
+  background-color: var(--yc);
+}
+.shoppingCartContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
+.promo {
+  width: 20%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-left: 1px solid var(--bc);
+  margin-top: 30px;
+}
+
+.shoppingCartArea {
+  width: 80%;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 10px;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid var(--dc);
+  border-radius: 5px;
+  width: 80%;
+}
+.quantity button {
+  width: 100%;
+  height: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: var(--dc);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quantity span {
+  font-size: 20;
+  font-weight: 800;
+  color: var(--yc);
+}

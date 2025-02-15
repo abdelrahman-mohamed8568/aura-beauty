@@ -1,26 +1,33 @@
 "use client";
-import React, { useState } from "react";
+import "@/styles/productsCard.css";
+import React, { useState, memo } from "react";
 import Image from "next/image";
-import cardImg from "@/images/product_demo.jpg";
 import Link from "next/link";
-function ProductsCard({ name, category, price }) {
-  const [activeHeart, setActiveHeart] = useState(false);
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { addHeart, removeHeart } from "../store/wishlist/wishlistSlice";
+
+const ProductsCard = memo((product) => {
+  const dispatch = useDispatch();
+  const wishlistItems = useSelector(
+    (state) => state.wishlist?.items || [],
+    shallowEqual
+  );
+
+  const isProductInWishlist = wishlistItems.some(
+    (item) => item.id === product.id
+  );
+
+  const [activeHeart, setActiveHeart] = useState(isProductInWishlist);
+
   const heartHandler = () => {
-    activeHeart == false ? setActiveHeart(true) : setActiveHeart(false);
+    isProductInWishlist == true
+      ? dispatch(removeHeart(product.id))
+      : dispatch(addHeart(product));
+
+    setActiveHeart(!isProductInWishlist);
   };
-  //   const itemsId = items.map((item) => item.id).toString();
-  //   useEffect(() => {
-  //     itemsId.includes(id) && setActiveHeart(true);
-  //   }, [dispatch]);
-  //   const wishlistData = {
-  //     id: id,
-  //     cardImg: cardImg,
-  //     title: title,
-  //     price: price,
-  //     offer: offer,
-  //     cardLink: cardLink,
-  //     categories: categories,
-  //   };
+
+  console.log(isProductInWishlist);
 
   return (
     <div className="productCard">
@@ -52,34 +59,36 @@ function ProductsCard({ name, category, price }) {
             />
           </svg>
         </button>
-        <Image
-          loading="lazy"
-          src={cardImg}
-          alt="Green double couch with wooden legs"
+        <Link
+          href={`/products/${product.category}/${product.id}`}
           className="cardImg"
-        />
-        <Link href={"/"} className="learn-more">
-          <span className="circle" aria-hidden="true">
-            <span className="fancy arrow"></span>
-          </span>
-          <span className="button-text">details</span>
+        >
+          <Image
+            src={product.cover}
+            alt={product.name}
+            width={230}
+            height={230}
+          />
+          <p className="view">view</p>
         </Link>
       </div>
       <div className="cardBody">
         <p>
-          <Link href={"/products/filler"} scroll={false}>
-            {category}
+          <Link href={`/products/${product.category}?page=${1}#1`}>
+            {product.category}
           </Link>
         </p>
         <div className="productsCardInfo">
           <h3>
-            <Link href={"/"}>{name}</Link>
+            <Link href={`/products/${product.category}/${product.id}`}>
+              {product.name}
+            </Link>
           </h3>
-          <h5>${price}</h5>
+          <h5>${product.price}</h5>
         </div>
       </div>
     </div>
   );
-}
+});
 
-export default React.memo(ProductsCard);
+export default ProductsCard;

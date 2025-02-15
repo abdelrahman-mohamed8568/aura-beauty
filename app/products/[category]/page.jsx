@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import "@/styles/products.css";
 import {
   Box,
@@ -10,7 +10,7 @@ import {
   AccordionItemTrigger,
   AccordionItemContent,
 } from "@chakra-ui/react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import {
   fetchProducts,
   setPage,
@@ -19,50 +19,73 @@ import {
   selectTotalPages,
 } from "@/store/products/productsSlice";
 import ProductsCard from "@/app/components/productsCard";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import EmptySection from "@/app/components/emptySection";
 
 function Products() {
   const dispatch = useDispatch();
-  const products = useSelector(selectPaginatedProducts);
-  const totalPages = useSelector(selectTotalPages);
-  const currentPage = useSelector((state) => state.products.currentPage);
-  const currentCategory = useSelector(
-    (state) => state.products.currentCategory
+  const pathname = usePathname();
+  const router = useRouter();
+  const currentCategory = pathname.split("/")[2] || "all";
+
+  const { products, totalPages, currentPage } = useSelector(
+    (state) => ({
+      products: selectPaginatedProducts(state),
+      totalPages: selectTotalPages(state),
+      currentPage: state.products.currentPage,
+    }),
+    shallowEqual
   );
-
-  // الفئات المتاحة
-  const tabsItems = [
-    { title: "all product", category: "all" },
-    { title: "botox", category: "botox" },
-    { title: "filler", category: "filler" },
-    { title: "facial machines", category: "facial-machines" },
-    { title: "laser machines", category: "laser-machines" },
-  ];
-  // استخراج `category` من `URL` عند تحميل الصفحة
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      dispatch(setPage(currentPage - 1));
-      window.scrollTo({ top: 500, behavior: "smooth" });
-    }
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      dispatch(setPage(currentPage + 1));
-      window.scrollTo({ top: 500, behavior: "smooth" });
-    }
-  };
+  const tabsItems = useMemo(
+    () => [
+      { title: "all product", category: "all" },
+      { title: "botox", category: "botox" },
+      { title: "filler", category: "filler" },
+      { title: "facial machines", category: "facial-machines" },
+      { title: "laser machines", category: "laser-machines" },
+    ],
+    []
+  );
+  const prevPage = currentPage - 1;
+  const nextPage = currentPage + 1;
 
   const handleTabChange = (category) => {
-    dispatch(setCategory(category));
-    dispatch(setPage(1));
-    window.scrollTo({ top: 500, behavior: "smooth" });
+    router.replace(`/products/${category}?page=${1}#1`);
+    currentCategory == category && dispatch(setPage(1));
   };
+  const handlePrevPage = useCallback(() => {
+    router.replace(`/products/${currentCategory}?page=${prevPage}#1`);
+    setTimeout(() => {
+      dispatch(setPage(prevPage));
+    }, 1500);
+  });
+  const handleNextPage = useCallback(() => {
+    router.replace(`/products/${currentCategory}?page=${nextPage}#1`);
+    setTimeout(() => {
+      dispatch(setPage(nextPage));
+    }, 1500);
+  });
+
+  const pathSegments = pathname.split("/");
+  const categoryFromPath = pathSegments[2] || "all";
+
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setIsLoading(true);
+    // تحليل الـ URL وضبط الحالة
+    const searchParams = new URLSearchParams(window.location.search);
+    const pageFromURL = searchParams.get("page");
+    const initialPage = pageFromURL ? parseInt(pageFromURL, 10) : 1;
+
+    // تحديث الفئة إذا تغيرت
+    dispatch(setCategory(categoryFromPath));
+    dispatch(setPage(initialPage));
+
+    // جلب المنتجات ثم إنهاء التحميل
+    dispatch(fetchProducts()).then(() => {
+      setIsLoading(false);
+    });
+  }, [pathname, categoryFromPath]);
 
   return (
     <div className="mainContainer">
@@ -73,7 +96,6 @@ function Products() {
         </div>
         <h3>simplicity of beauty at your fingertips</h3>
       </div>
-
       <div className="productsContainer">
         <div className="filter">
           <AccordionRoot multiple defaultValue={[""]} className="filterBox">
@@ -105,17 +127,15 @@ function Products() {
             </AccordionItem>
           </AccordionRoot>
         </div>
-
-        <div className="productsCards">
+        <div className="productsCards" id="1">
           <Flex minH="dvh">
             <Tabs.Root value={currentCategory} className="productsCardsBox">
               <Tabs.List className="tabList" borderBottomColor={"#707070"}>
                 {tabsItems.map((item) => (
                   <Tabs.Trigger
                     key={item.category}
-                    value={item.category}
                     onClick={() => handleTabChange(item.category)}
-                    fontWeight="400"
+                    value={item.category}
                     className="tabText"
                     _selected={{
                       color: "#707070",
@@ -127,10 +147,9 @@ function Products() {
                   </Tabs.Trigger>
                 ))}
               </Tabs.List>
-
               <Box className="productsGrid">
                 <Tabs.Content
-                  value={currentCategory}
+                  value={categoryFromPath}
                   _open={{
                     animationName: "fade-in, scale-in",
                     animationDuration: "1000ms",
@@ -141,40 +160,42 @@ function Products() {
                   }}
                   className="productsBox"
                 >
-                  {products.map((product) => (
-                    <ProductsCard
-                      key={product.id}
-                      category={product.category}
-                      name={product.name}
-                      price={product.price}
-                    />
-                  ))}
+                  {isLoading ? (
+                    <div className="emptyMessage">Loading...</div>
+                  ) : products.length > 0 ? (
+                    products.map((product) => (
+                      <ProductsCard key={product.id} {...product} />
+                    ))
+                  ) : (
+                    <EmptySection />
+                  )}
                 </Tabs.Content>
               </Box>
-
-              <div className="paginationContainer">
-                <button
-                  onClick={handlePrev}
-                  disabled={currentPage === 1}
-                  className="arrowBtn"
-                >
-                  ←
-                </button>
-
-                <div className="pageNumbers">
-                  <span className="baseNumber">{currentPage}</span>
-                  <span className="separator">/</span>
-                  <span className="variableNumber">{totalPages}</span>
+              {products.length > 0 ? (
+                <div className="paginationContainer">
+                  <button
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                    className="arrowBtn"
+                  >
+                    ←
+                  </button>
+                  <div className="pageNumbers">
+                    <span className="baseNumber">{currentPage}</span>
+                    <span className="separator">/</span>
+                    <span className="variableNumber">{totalPages}</span>
+                  </div>
+                  <button
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    className="arrowBtn"
+                  >
+                    →
+                  </button>
                 </div>
-
-                <button
-                  onClick={handleNext}
-                  disabled={currentPage === totalPages}
-                  className="arrowBtn"
-                >
-                  →
-                </button>
-              </div>
+              ) : (
+                <></>
+              )}
             </Tabs.Root>
           </Flex>
         </div>

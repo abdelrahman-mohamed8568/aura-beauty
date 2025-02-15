@@ -4,8 +4,7 @@ import Footer from "@/appComponents/sections/footer";
 import Navbar from "@/appComponents/sections/navbar";
 import { ReactLenis } from "lenis/react";
 import { Provider } from "@/components/ui/provider";
-import { ApiProvider } from "@reduxjs/toolkit/query/react";
-import { store } from "./store/store";
+
 import StoreProvider from "./StoreProvider";
 export const metadata = {
   title: "Create Next App",
@@ -18,12 +17,10 @@ export default function RootLayout({ children }) {
       <body className={montserratFont.className}>
         <ReactLenis root />
         <StoreProvider>
-          {/* <ApiProvider store={store}> */}
           <Navbar />
           <Provider>{children}</Provider>
           <Footer />
         </StoreProvider>
-        {/* </ApiProvider> */}
       </body>
     </html>
   );

@@ -1,16 +1,18 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
 
-// ✅ تحميل البيانات من ملف JSON
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
     const response = await fetch("/products.json");
     const data = await response.json();
-    return data || []; // تأكد من أن البيانات مصفوفة حتى لا تكون `undefined`
+    return data || [];
   }
 );
 
-// ✅ الحالة الأولية
 const initialState = {
   products: [],
   status: "idle",
@@ -38,7 +40,7 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.products = action.payload || []; // تأكد من أن البيانات موجودة
+        state.products = action.payload || [];
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = "failed";
@@ -47,33 +49,37 @@ const productsSlice = createSlice({
   },
 });
 
-// ✅ تصفية المنتجات بناءً على الفئة
-export const selectFilteredProducts = (state) => {
-  const { products, currentCategory } = state.products;
-  if (!Array.isArray(products)) return []; // تجنب الخطأ إذا لم تكن البيانات موجودة
+const selectProductsState = (state) => state.products;
 
-  return currentCategory === "all"
-    ? products
-    : products.filter((item) => item.category === currentCategory);
-};
+export const selectFilteredProducts = createSelector(
+  [selectProductsState],
+  (productsState) => {
+    const { products, currentCategory } = productsState;
+    if (!Array.isArray(products)) return [];
+    return currentCategory === "all"
+      ? products
+      : products.filter((item) => item.category === currentCategory);
+  }
+);
 
-// ✅ تحديد المنتجات التي سيتم عرضها في الصفحة الحالية
-export const selectPaginatedProducts = (state) => {
-  const { currentPage, itemsPerPage } = state.products;
-  const filtered = selectFilteredProducts(state);
+export const selectPaginatedProducts = createSelector(
+  [selectFilteredProducts, selectProductsState],
+  (filteredProducts, productsState) => {
+    const { currentPage, itemsPerPage } = productsState;
+    if (!Array.isArray(filteredProducts)) return [];
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredProducts.slice(start, start + itemsPerPage);
+  }
+);
 
-  if (!Array.isArray(filtered)) return []; // تجنب `undefined`
-
-  const start = (currentPage - 1) * itemsPerPage;
-  return filtered.slice(start, start + itemsPerPage);
-};
-
-// ✅ حساب إجمالي الصفحات بناءً على المنتجات المصفاة
-export const selectTotalPages = (state) => {
-  const filtered = selectFilteredProducts(state);
-  if (!Array.isArray(filtered) || filtered.length === 0) return 1; // تجنب القسمة على صفر
-  return Math.ceil(filtered.length / state.products.itemsPerPage);
-};
+export const selectTotalPages = createSelector(
+  [selectFilteredProducts, selectProductsState],
+  (filteredProducts, productsState) => {
+    if (!Array.isArray(filteredProducts) || filteredProducts.length === 0)
+      return 1;
+    return Math.ceil(filteredProducts.length / productsState.itemsPerPage);
+  }
+);
 
 export const { setPage, setCategory } = productsSlice.actions;
 export default productsSlice.reducer;

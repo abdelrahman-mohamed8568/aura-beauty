@@ -31,9 +31,21 @@ function Footer() {
                 </svg>
               </Link>
             </div>
+            <h6>Copyright © 2025 Aura-Beauty.com</h6>
           </div>
-          <Image alt="logo" src={logo} width={150} className="logo" />
-          <div className=""></div>
+          <div className="Sitemap">
+            <h3>Sitemap</h3>
+            <p>home</p>
+            <p>products</p>
+            <p>blog</p>
+            <p>contact us</p>
+            <p>about us</p>
+          </div>
+          <div className="address">
+            <h3>address</h3>
+            <p>aura beauty company in Kasr El Aini, Cairo, Egypt</p>
+            <Image alt="logo" src={logo} width={150} className="logo" />
+          </div>
         </div>
         <p>
           Can't find what you're looking for? Our customer support team is here

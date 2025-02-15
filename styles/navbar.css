@@ -73,8 +73,8 @@ li {
 }
 #Basket {
   position: absolute;
-  top: 7px;
-  color: var(--rc);
+  top: 8px;
+  color: var(--dc);
   width: 16px;
   height: 16px;
   display: flex;

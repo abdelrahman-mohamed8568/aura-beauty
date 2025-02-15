@@ -1,4 +1,5 @@
 .footerMain {
+  bottom: 0;
   width: 100%;
   height: 80vh;
   background-color: var(--dc);
@@ -7,29 +8,31 @@
   justify-content: center;
   align-items: center;
 }
+
 .footerBox {
-  width: 95%;
+  width: 90%;
   height: 70vh;
   border-bottom: 1px solid var(--wc);
   display: flex;
   justify-content: space-between;
-}
-.footerBox .logo {
-  align-self: flex-end;
-}
-.socialBox {
   text-transform: uppercase;
+}
+.footerBox h3 {
+  font-weight: 300;
+  font-size: larger;
+  color: var(--gc);
+}
+
+.socialBox {
   color: var(--wc);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 3vh;
+  width: 100%;
 }
-.socialBox h3 {
-  font-weight: 300;
-  color: var(--gc);
-}
+
 .socialIcons {
   display: flex;
   justify-content: space-between;
@@ -56,4 +59,26 @@
   text-align: center;
   display: flex;
   padding-top: 1vh;
+}
+.Sitemap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* background-color: brown; */
+  text-align: center;
+}
+.Sitemap p {
+  /* background-color: aqua; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.address {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
