@@ -1,0 +1,190 @@
+.checkoutContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.checkoutContainer p {
+  font-weight: 600;
+  color: var(--dc);
+}
+
+.checkoutContainer h2 {
+  font-weight: 700;
+  color: var(--yc);
+  align-self: start;
+}
+
+.checkoutContainer .info {
+  padding: 20vh 0 10vh 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.formInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--dc);
+  gap: 20px;
+}
+
+.formFlex {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+}
+
+.formInfo form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.field {
+  position: relative;
+  width: 100%;
+}
+
+.PhoneInputCountrySelect {
+  background-color: #e0e0e0 !important;
+}
+
+.formInfo form .errorSpan {
+  position: absolute;
+  bottom: -25;
+  left: 10;
+  color: var(--rc);
+  font-size: 12px;
+  font-weight: bolder;
+}
+
+.formInfo label {
+  padding-left: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.formInfo input,
+.formInfo select {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid var(--dc);
+  padding-left: 15px;
+  font-size: 18px;
+}
+
+.formInfo input:focus {
+  border: 1px solid var(--gc);
+}
+
+.myPhoneInput .PhoneInputCountrySelect {
+  background-color: var(--wc) !important;
+  color: var(--dc) !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--dc);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.formInfo .mainBtn,
+.formInfo .hoverBtn {
+  width: 300px;
+}
+
+.formInfo .hoverBtn {
+  background-color: var(--yc);
+  border: none;
+}
+
+.checkoutContainer .bagInfo {
+  padding: 20vh 0 10vh 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: sticky;
+  top: 0;
+}
+
+.infoSwiper {
+  color: var(--dc);
+  width: 70%;
+  height: 250px;
+  scroll-behavior: smooth;
+}
+
+.infoSwiperSlide {
+  width: 95% !important;
+  scroll-behavior: smooth;
+}
+
+.bagProduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 5px;
+  scroll-behavior: smooth;
+}
+
+.bagImage {
+  position: relative;
+}
+
+.bagImage .image {
+  border-radius: 5px;
+}
+
+.bagProduct span {
+  position: absolute;
+  top: -5;
+  right: -5;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: var(--gc);
+  color: var(--wc);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+}
+
+.bagTotal {
+  width: 70%;
+  color: var(--dc);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-top: 1px solid var(--gc);
+  padding-top: 15px;
+}
+
+.bagTotal .totalBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bold,
+.bold p {
+  font-weight: 800;
+  font-size: 20px;
+}

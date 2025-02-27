@@ -58,7 +58,9 @@ export const selectFilteredProducts = createSelector(
     if (!Array.isArray(products)) return [];
     return currentCategory === "all"
       ? products
-      : products.filter((item) => item.category === currentCategory);
+      : products.filter(
+          (item) => item.category.replace(/ /g, "-") === currentCategory
+        );
   }
 );
 
@@ -78,6 +80,18 @@ export const selectTotalPages = createSelector(
     if (!Array.isArray(filteredProducts) || filteredProducts.length === 0)
       return 1;
     return Math.ceil(filteredProducts.length / productsState.itemsPerPage);
+  }
+);
+export const selectCategories = createSelector(
+  [selectProductsState],
+  (productsState) => {
+    const { products } = productsState;
+    if (!Array.isArray(products)) return [];
+    const categories = products.map((product) =>
+      product.category.replace(/ /g, "-")
+    );
+    const allCategories = [...new Set(categories)];
+    return ["all", ...allCategories];
   }
 );
 

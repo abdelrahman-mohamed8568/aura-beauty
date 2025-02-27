@@ -3,17 +3,20 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10vh 0 90vh 0;
+  background-color: var(--wc);
+  width: 100%;
+  padding: 20vh 0 10vh 0;
   gap: 20px;
 }
 .global h2 {
   color: var(--dc);
   text-transform: uppercase;
+  font-weight: bolder;
 }
 
 .global svg {
   max-width: 100%;
-  max-height: 60vh;
+  height: 55vh;
 }
 
 .global .btnBox {
@@ -21,17 +24,7 @@
   gap: 15px;
 }
 
-.global .btn {
-  width: 150px;
-  height: 40px;
-  color: var(--dc);
-  border-radius: 25px;
-  background-color: transparent;
-  border: 1px solid var(--gc);
-  font-weight: 400;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  cursor: pointer;
+.btnBox .homeBtn {
+  font-size: medium;
+  width: 200px;
 }

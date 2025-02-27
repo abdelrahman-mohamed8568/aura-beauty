@@ -3,6 +3,7 @@ import { removeHeart } from "../store/wishlist/wishlistSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 
 function Wishlist() {
   const items = useSelector((state) => state.wishlist.items);
@@ -10,10 +11,11 @@ function Wishlist() {
 
   const removeItem = (id) => {
     dispatch(removeHeart(id));
+    toast.error("This product has been removed from the wishlist !");
   };
 
   return (
-    <div className="mainContainer">
+    <div className="buyContainer">
       <div className="wishlistHeader">
         <h1>YOUR WISHLIST</h1>
       </div>
@@ -164,7 +166,7 @@ function Wishlist() {
           </div>
         ) : (
           items.map((item, index) => (
-            <div className="wishlist" key={item.id || index}>
+            <div key={item.id || index}>
               <div className="shoppingCart">
                 <div className="shoppingCartDetails">
                   <div className="shoppingCartOption">
@@ -180,12 +182,27 @@ function Wishlist() {
                     </Link>
                   </div>
                   <div className="shoppingCartInfo">
-                    <Link href={`/products/${item.category}/${item.id}`}>
-                      <h3>{item.name}</h3>
-                    </Link>
-                    <Link href={`/products/${item.category}?page=${1}#1`}>
-                      <p>{item.category}</p>
-                    </Link>
+                    <h3>
+                      <Link
+                        href={`/products/${item.category.replace(" ", "-")}/${
+                          item.id
+                        }`}
+                        className="hoverText"
+                      >
+                        {item.name}
+                      </Link>
+                    </h3>
+                    <p>
+                      <Link
+                        href={`/products/${item.category.replace(
+                          " ",
+                          "-"
+                        )}?page=${1}`}
+                        className="hoverText"
+                      >
+                        {item.category}
+                      </Link>
+                    </p>
                     <h3>EGP {item.price}</h3>
                   </div>
                 </div>
@@ -206,6 +223,19 @@ function Wishlist() {
           ))
         )}
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        limit={2}
+        theme="dark"
+      />
     </div>
   );
 }

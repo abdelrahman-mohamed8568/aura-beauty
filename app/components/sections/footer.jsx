@@ -5,6 +5,7 @@ import Link from "next/link";
 function Footer() {
   return (
     <>
+      <div className="hoverFooter"></div>
       <div className="footerMain">
         <div className="footerBox">
           <div className="socialBox">
@@ -31,6 +32,13 @@ function Footer() {
                 </svg>
               </Link>
             </div>
+            <Image
+              alt="logo"
+              src={logo}
+              width={150}
+              className="logo"
+              priority
+            />
             <h6>Copyright © 2025 Aura-Beauty.com</h6>
           </div>
           <div className="Sitemap">
@@ -40,11 +48,6 @@ function Footer() {
             <p>blog</p>
             <p>contact us</p>
             <p>about us</p>
-          </div>
-          <div className="address">
-            <h3>address</h3>
-            <p>aura beauty company in Kasr El Aini, Cairo, Egypt</p>
-            <Image alt="logo" src={logo} width={150} className="logo" />
           </div>
         </div>
         <p>

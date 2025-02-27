@@ -1,10 +1,7 @@
 "use client";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect } from "react";
 import "@/styles/products.css";
 import {
-  Box,
-  Flex,
-  Tabs,
   AccordionRoot,
   AccordionItem,
   AccordionItemTrigger,
@@ -17,15 +14,21 @@ import {
   setCategory,
   selectPaginatedProducts,
   selectTotalPages,
+  selectCategories,
 } from "@/store/products/productsSlice";
 import ProductsCard from "@/app/components/productsCard";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import EmptySection from "@/app/components/emptySection";
+import { ToastContainer } from "react-toastify";
+import { useTransitionRouter } from "next-view-transitions";
+import { slideInOut } from "@/app/components/animations";
 
 function Products() {
+  const router = useTransitionRouter();
   const dispatch = useDispatch();
   const pathname = usePathname();
-  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pageFromURL = searchParams.get("page");
   const currentCategory = pathname.split("/")[2] || "all";
 
   const { products, totalPages, currentPage } = useSelector(
@@ -36,66 +39,32 @@ function Products() {
     }),
     shallowEqual
   );
-  const tabsItems = useMemo(
-    () => [
-      { title: "all product", category: "all" },
-      { title: "botox", category: "botox" },
-      { title: "filler", category: "filler" },
-      { title: "facial machines", category: "facial-machines" },
-      { title: "laser machines", category: "laser-machines" },
-    ],
-    []
-  );
+  const categories = useSelector(selectCategories);
   const prevPage = currentPage - 1;
   const nextPage = currentPage + 1;
-
-  const handleTabChange = (category) => {
-    router.replace(`/products/${category}?page=${1}#1`);
-    currentCategory == category && dispatch(setPage(1));
-  };
-  const handlePrevPage = useCallback(() => {
-    router.replace(`/products/${currentCategory}?page=${prevPage}#1`);
-    setTimeout(() => {
-      dispatch(setPage(prevPage));
-    }, 1500);
-  });
-  const handleNextPage = useCallback(() => {
-    router.replace(`/products/${currentCategory}?page=${nextPage}#1`);
-    setTimeout(() => {
-      dispatch(setPage(nextPage));
-    }, 1500);
-  });
-
   const pathSegments = pathname.split("/");
   const categoryFromPath = pathSegments[2] || "all";
 
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setIsLoading(true);
-    // تحليل الـ URL وضبط الحالة
-    const searchParams = new URLSearchParams(window.location.search);
-    const pageFromURL = searchParams.get("page");
-    const initialPage = pageFromURL ? parseInt(pageFromURL, 10) : 1;
+  const [isScrolled, setIsScrolled] = useState(false);
 
-    // تحديث الفئة إذا تغيرت
+  useEffect(() => {
+    const initialPage = pageFromURL ? parseInt(pageFromURL, 10) : 1;
     dispatch(setCategory(categoryFromPath));
     dispatch(setPage(initialPage));
-
-    // جلب المنتجات ثم إنهاء التحميل
-    dispatch(fetchProducts()).then(() => {
-      setIsLoading(false);
-    });
-  }, [pathname, categoryFromPath]);
+    dispatch(fetchProducts());
+    const handleScroll = () => {
+      const scroll = window.scrollY;
+      scroll >= 60 ? setIsScrolled(true) : null;
+      scroll <= 20 ? setIsScrolled(false) : null;
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [pageFromURL, categoryFromPath]);
 
   return (
     <div className="mainContainer">
-      <div className="productsHeader">
-        <div className="productsHeaderText">
-          <h1>our products</h1> <h1>our products</h1>
-          <h1>our products</h1>
-        </div>
-        <h3>simplicity of beauty at your fingertips</h3>
-      </div>
       <div className="productsContainer">
         <div className="filter">
           <AccordionRoot multiple defaultValue={[""]} className="filterBox">
@@ -128,78 +97,82 @@ function Products() {
           </AccordionRoot>
         </div>
         <div className="productsCards" id="1">
-          <Flex minH="dvh">
-            <Tabs.Root value={currentCategory} className="productsCardsBox">
-              <Tabs.List className="tabList" borderBottomColor={"#707070"}>
-                {tabsItems.map((item) => (
-                  <Tabs.Trigger
-                    key={item.category}
-                    onClick={() => handleTabChange(item.category)}
-                    value={item.category}
-                    className="tabText"
-                    _selected={{
-                      color: "#707070",
-                      fontWeight: "bold",
-                    }}
-                    transition="all .3s ease"
-                  >
-                    {item.title}
-                  </Tabs.Trigger>
-                ))}
-              </Tabs.List>
-              <Box className="productsGrid">
-                <Tabs.Content
-                  value={categoryFromPath}
-                  _open={{
-                    animationName: "fade-in, scale-in",
-                    animationDuration: "1000ms",
-                  }}
-                  _closed={{
-                    animationName: "fade-out, scale-out, ",
-                    animationDuration: "1000ms",
-                  }}
-                  className="productsBox"
-                >
-                  {isLoading ? (
-                    <div className="emptyMessage">Loading...</div>
-                  ) : products.length > 0 ? (
-                    products.map((product) => (
-                      <ProductsCard key={product.id} {...product} />
-                    ))
-                  ) : (
-                    <EmptySection />
-                  )}
-                </Tabs.Content>
-              </Box>
-              {products.length > 0 ? (
-                <div className="paginationContainer">
-                  <button
-                    onClick={handlePrevPage}
-                    disabled={currentPage === 1}
-                    className="arrowBtn"
-                  >
-                    ←
-                  </button>
-                  <div className="pageNumbers">
-                    <span className="baseNumber">{currentPage}</span>
-                    <span className="separator">/</span>
-                    <span className="variableNumber">{totalPages}</span>
-                  </div>
-                  <button
-                    onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                    className="arrowBtn"
-                  >
-                    →
-                  </button>
-                </div>
-              ) : (
-                <></>
-              )}
-            </Tabs.Root>
-          </Flex>
+          <div className={`tabList ${isScrolled ? "hide" : ""}`}>
+            {categories.map((item) => (
+              <button
+                key={item}
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push(`/products/${item}?page=${1}`, {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
+                className="tabText"
+                disabled={currentCategory === item}
+              >
+                {item.replace("-", " ")}
+              </button>
+            ))}
+          </div>
+          <div className="productsBox">
+            {products.length > 0 ? (
+              products.map((product) => (
+                <ProductsCard key={product.id} {...product} />
+              ))
+            ) : (
+              <EmptySection />
+            )}
+          </div>
+          {products.length > 0 ? (
+            <div className="paginationContainer">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push(`/products/${currentCategory}?page=${prevPage}`, {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
+                className="arrowBtn"
+                disabled={currentPage === 1}
+              >
+                ←
+              </button>
+              <div className="pageNumbers">
+                <span className="baseNumber">{currentPage}</span>
+                <span className="separator">/</span>
+                <span className="variableNumber">{totalPages}</span>
+              </div>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push(`/products/${currentCategory}?page=${nextPage}`, {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
+                className="arrowBtn"
+                disabled={currentPage === totalPages}
+              >
+                →
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        limit={2}
+        theme="dark"
+      />
     </div>
   );
 }

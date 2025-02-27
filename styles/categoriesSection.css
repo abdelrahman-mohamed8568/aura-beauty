@@ -1,24 +1,11 @@
-.categoriesContainer {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-.topWave {
-  z-index: 100;
-  position: absolute;
-  top: 0;
-}
-
 .categories {
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20vh 0;
+  padding-bottom: 20vh;
+  border-radius: 45px;
   background: linear-gradient(
     245deg,
     var(--bc),
@@ -29,17 +16,10 @@
   background-size: 240% 240%;
   animation: gradient-animation 15s ease infinite;
   position: sticky;
-  top: -210vh;
+  top: -190vh;
   z-index: 2;
 }
-.wave {
-  position: sticky;
-  height: 400vh;
-  left: -500;
-  top: 100vh;
-  z-index: -1;
-  width: 100%;
-}
+
 .headerText {
   display: flex;
   flex-direction: column;
@@ -48,7 +28,7 @@
   text-transform: uppercase;
   color: var(--wc);
   letter-spacing: -0.3rem;
-  left: -300;
+  left: -400;
   position: relative;
   padding: 5vh 0;
 }
@@ -126,24 +106,15 @@
   color: var(--bc);
   width: 50%;
 }
-.cardLink {
-  text-decoration: none;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 800;
-  width: 150px;
-  height: 50px;
-  border: var(--wc) 1px solid;
+.cardInfo .mainBtn {
   color: var(--wc);
-  border-radius: 25px;
-  transition: all 0.4s ease-in-out;
+  border-color: var(--wc);
 }
-.cardLink:hover {
+.cardInfo .mainBtn,
+.cardInfo .hoverBtn {
   width: 200px;
 }
+
 .categorieInfo {
   width: 100%;
   height: 100%;
@@ -154,7 +125,7 @@
   padding-top: 15px;
   position: relative;
   z-index: 3;
-  border-radius: 10rem 10rem 0 0;
+  border-radius: 45px;
 }
 .categorieInfo .headerText {
   left: 100;
@@ -163,7 +134,7 @@
 }
 .categorieInfoBox {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   position: relative;
 }
 .categorieInfoBox h2 {
@@ -177,33 +148,70 @@
   left: 15vh;
   top: 50vh;
 }
+.categorieText {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 10vh;
+  text-transform: uppercase;
+}
+.categorieText h1 {
+  color: var(--dc);
+  font-size: 3rem;
+  font-weight: 300;
+}
+.categorieText h1 span {
+  color: var(--wc);
+  background-color: var(--dc);
+  border-radius: 15px;
+}
+.homeSwiper {
+  width: 100%;
+  height: 100%;
+  scroll-behavior: smooth;
+  box-shadow: none;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--wc) !important;
+}
+.homeSwiperSlide {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.homeSwiperSlide img {
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: none;
+}
+.homeSwiperSlide:not(.homeBtn) :hover img {
+  opacity: 0.9;
+}
+.homeSwiperSlide h2 {
+  cursor: pointer;
+  position: absolute;
+  bottom: 70;
+  right: 0;
+  left: 0;
+  letter-spacing: -0.2rem;
+  color: var(--rc);
+  backdrop-filter: blur(5px);
+  font-size: 3rem;
+  text-transform: uppercase;
+}
 
 .homeSlider {
   width: 100%;
-  padding: 20px 0;
-  height: fit-content;
-  overflow: hidden;
-}
-.homeSlider .logos {
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: slide 15s linear infinite;
-}
-.homeSlider .logos h1 {
-  margin: 0 50px;
   font-size: 40px;
   color: var(--dc);
+  margin-bottom: 20vh;
 }
 
-.categorieInfo .cardLink {
-  color: var(--dc);
-  position: absolute;
-  border-color: var(--dc);
-  right: 35vh;
-  top: 80vh;
-}
 .categorieInfoCards {
   width: 100%;
   height: 100%;
@@ -287,6 +295,9 @@
 .infoBox .span-mother span:nth-child(4) {
   transition: 1.5s;
 }
+.infoBox .span-mother span:nth-child(5) {
+  transition: 1.8s;
+}
 
 .infoBox .span-mother2 {
   display: flex;
@@ -316,6 +327,9 @@
 
 .infoBox .span-mother2 span:nth-child(4) {
   transition: 1.2s;
+}
+.infoBox .span-mother2 span:nth-child(5) {
+  transition: 1.5s;
 }
 
 .right h2,

@@ -1,18 +1,22 @@
 "use client";
-import { geistMono, montserratFont } from "@/lang/lang";
+import { useTransitionRouter } from "next-view-transitions";
+import { montserratFont } from "@/lang/lang";
 import "@/styles/navbar.css";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import icon from "@/app/favicon.ico";
-// import { font2 } from "@fonts/font";
-import { getTotal } from "@/store/card/cardSlice";
+import { getTotalItems } from "@/store/card/cardSlice";
 import { shallowEqual, useSelector } from "react-redux";
-// import { RootState } from "@/app/store/store";
+import Search from "../search";
+import { slideInOut } from "../animations";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
+  const router = useTransitionRouter();
+  const pathname = usePathname();
+
   const [isScrolled, setIsScrolled] = useState(false);
-  const cartItems = useSelector(getTotal);
+  const cartItems = useSelector(getTotalItems);
   const wishlistItems = useSelector(
     (state) => state.wishlist?.items || [],
     shallowEqual
@@ -28,26 +32,37 @@ function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  // console.log(wishlistItems);
   return (
     <nav className={`${montserratFont.className} container`}>
       <div className={`user ${isScrolled ? "hide" : ""}`}>
-        <span></span>
         <h4>{`Your new world for your clinic's needs...`}</h4>
-        <div className="info">
-          <span className="lang">Contact Us</span>
-          <span>|</span>
-          <span className="about">About Us</span>
-        </div>
       </div>
       <ul>
         <li>
-          <Link href="/" className={`navLogo `}>
-            <Image src={icon} alt="icon" height={50} />
-          </Link>
+          <button
+            className={`categoriesLink`}
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/", {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            disabled={pathname === "/"}
+          >
+            <Image src={icon} alt="icon" height={50} priority />
+          </button>
         </li>
         <li>
-          <Link href="/" className="categoriesLink">
+          <button
+            className="categoriesLink"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/", {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            disabled={pathname === "/"}
+          >
             <span className="span-mother">
               <span>H</span>
               <span>o</span>
@@ -60,8 +75,17 @@ function Navbar() {
               <span>m</span>
               <span>e</span>
             </span>
-          </Link>
-          <Link href="/products/all?page=1#0" className="categoriesLink">
+          </button>
+          <button
+            className="categoriesLink"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/products/all?page=1", {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            disabled={pathname === "/products/all"}
+          >
             <span className="span-mother">
               <span>P</span>
               <span>r</span>
@@ -82,24 +106,73 @@ function Navbar() {
               <span>t</span>
               <span>s</span>
             </span>
-          </Link>
-          <Link href="/blog" className="categoriesLink">
+          </button>
+          <button
+            className="categoriesLink"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/contact", {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            disabled={pathname === "/contact"}
+          >
             <span className="span-mother">
-              <span>B</span>
-              <span>l</span>
+              <span>c</span>
               <span>o</span>
-              <span>g</span>
+              <span>n</span>
+              <span>t</span>
+              <span>a</span>
+              <span>c</span>
+              <span>t</span>
             </span>
             <span className="span-mother2">
-              <span>B</span>
-              <span>l</span>
+              <span>c</span>
               <span>o</span>
-              <span>g</span>
+              <span>n</span>
+              <span>t</span>
+              <span>a</span>
+              <span>c</span>
+              <span>t</span>
             </span>
-          </Link>
+          </button>
+          <button
+            className="categoriesLink"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/about", {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            disabled={pathname === "/about"}
+          >
+            <span className="span-mother">
+              <span>a</span>
+              <span>b</span>
+              <span>o</span>
+              <span>u</span>
+              <span>t</span>
+            </span>
+            <span className="span-mother2">
+              <span>a</span>
+              <span>b</span>
+              <span>o</span>
+              <span>u</span>
+              <span>t</span>
+            </span>
+          </button>
         </li>
         <li className="Settings">
-          <Link href="/shopping-cart" className="navLink">
+          <button
+            className="navLink"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/shopping-cart", {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            disabled={pathname === "/shopping-cart"}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -111,8 +184,17 @@ function Navbar() {
               <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
             </svg>
             {cartItems > 0 && <span id="Basket"> {cartItems}</span>}
-          </Link>
-          <Link href="/wishlist" className="navLink">
+          </button>
+          <button
+            className="navLink"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/wishlist", {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            disabled={pathname === "/wishlist"}
+          >
             {wishlistItems.length == 0 ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,34 +221,10 @@ function Navbar() {
                 />
               </svg>
             )}
-          </Link>
-          <Link href="/shopping-cart" className="navLink">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              className="bi bi-search"
-              viewBox="0 0 16 16"
-            >
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-            </svg>
-          </Link>
+          </button>
+          <Search />
         </li>
       </ul>
-      {/* <div id="menuToggle">
-          <input
-            id="checkbox"
-            type="checkbox"
-            checked={activeToggle}
-            onChange={() => setActiveToggle(!activeToggle)}
-          />
-          <label className="toggle" htmlFor="checkbox">
-            <div className="bar bar--top"></div>
-            <div className="bar bar--middle"></div>
-            <div className="bar bar--bottom"></div>
-          </label>
-        </div> */}
     </nav>
   );
 }

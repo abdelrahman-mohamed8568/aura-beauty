@@ -1,25 +1,39 @@
 import "@/styles/categoriesSection.css";
-import Link from "next/link";
 import Image from "next/image";
 import card1 from "@/public/images/homeCard1.jpeg";
 import card2 from "@/public/images/homeCard2.jpg";
 import card3 from "@/public/images/homeCard3.webp";
+import cover from "@/public/images/categorieCover.jpg";
+import { useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Navigation, Autoplay } from "swiper/modules";
+import { fatfaceFont } from "@/lang/lang";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "@/app/store/products/productsSlice";
+import { useTransitionRouter } from "next-view-transitions";
+import { slideInOut } from "../animations";
+
 function CategoriesSection() {
+  const router = useTransitionRouter();
+  const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch();
+  const categories = products
+    ? [
+        ...new Set(
+          products.map((product) => product.category.replace(/ /g, "-"))
+        ),
+      ]
+    : [];
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
   return (
     <>
-      <div className="categoriesContainer">
+      <div className="mainContainer">
         <div className="categories">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 320"
-            className="top topWave"
-          >
-            <path
-              fill="#faf9f7"
-              fillOpacity="1"
-              d="M0,160L40,160C80,160,160,160,240,149.3C320,139,400,117,480,122.7C560,128,640,160,720,176C800,192,880,192,960,160C1040,128,1120,64,1200,69.3C1280,75,1360,149,1400,186.7L1440,224L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
-            ></path>
-          </svg>
           <h1 className="headerText">
             <span>choose</span>
             <span>your</span>
@@ -32,28 +46,72 @@ function CategoriesSection() {
                 alt="cover over"
                 className="categoriesImage"
                 width={700}
+                priority
               />
               <div className="cardInfo">
                 <h1>Professional Corner</h1>
                 <p>Upgrade your treatments with the latest tech</p>
-                <Link href={"/"} className="cardLink">
-                  view
-                </Link>
+                <div className="homeBtn">
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/", {
+                        onTransitionReady: slideInOut,
+                      });
+                    }}
+                    className="mainBtn"
+                  >
+                    view
+                  </a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/", {
+                        onTransitionReady: slideInOut,
+                      });
+                    }}
+                    className="hoverBtn"
+                  >
+                    view
+                  </a>
+                </div>
               </div>
             </div>
             <div className="homeCard">
               <div className="cardInfo">
                 <h1>Beauty Business Boost</h1>
                 <p>Take your beauty business to the next level</p>
-                <Link href={"/products/all?page=1#0"} className="cardLink">
-                  view
-                </Link>
+                <div className="homeBtn">
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/", {
+                        onTransitionReady: slideInOut,
+                      });
+                    }}
+                    className="mainBtn"
+                  >
+                    view
+                  </a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/", {
+                        onTransitionReady: slideInOut,
+                      });
+                    }}
+                    className="hoverBtn"
+                  >
+                    view
+                  </a>
+                </div>
               </div>
               <Image
                 src={card3}
                 alt="cover over"
                 className="categoriesImage right"
                 width={700}
+                priority
               />
             </div>
             <div className="homeCard">
@@ -62,13 +120,35 @@ function CategoriesSection() {
                 alt="cover over"
                 className="categoriesImage"
                 width={700}
+                priority
               />
               <div className="cardInfo">
                 <h1>Your Beauty Routine</h1>
                 <p>Achieve your beauty goals with ease</p>
-                <Link href={"/"} className="cardLink">
-                  view
-                </Link>
+                <div className="homeBtn">
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/", {
+                        onTransitionReady: slideInOut,
+                      });
+                    }}
+                    className="mainBtn"
+                  >
+                    view
+                  </a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/", {
+                        onTransitionReady: slideInOut,
+                      });
+                    }}
+                    className="hoverBtn"
+                  >
+                    view
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -84,32 +164,83 @@ function CategoriesSection() {
               technologies to make our brand a formidable force and deliver
               exceptional products in the Egyptian market.
             </h2>
-            <Link href={"/"} className="cardLink">
-              {" Let's talk!"}
-            </Link>
           </div>
-          <div className="homeSlider">
-            <div className="logos">
-              <h1>sssssss</h1>
-              <h1>Embark</h1>
-              <h1>Embark</h1>
-              <h1>Embark</h1>
-              <h1>Embark</h1>
-              <h1>fitness</h1>
-              <h1>fitness</h1>
-              <h1>fitness</h1>
-              <h1>fitness</h1>
-              <h1>sssssss</h1>
-              <h1>Embark</h1>
-              <h1>Embark</h1>
-              <h1>Embark</h1>
-              <h1>Embark</h1>
-              <h1>fitness</h1>
-              <h1>fitness</h1>
-              <h1>fitness</h1>
-              <h1>fitness</h1>
-            </div>
+          <div className="categorieText">
+            <h1>
+              our <span>categories</span>
+            </h1>
+
+            <a
+              className="contactBtn"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/products/all?page=1", {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+            >
+              <span className="buttonIcon">
+                <svg
+                  width="10"
+                  className="buttonSvg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 15"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  ></path>
+                </svg>
+                <svg
+                  className="buttonSvg svgCopy"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="10"
+                  fill="none"
+                  viewBox="0 0 14 15"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  ></path>
+                </svg>
+              </span>
+              view all
+            </a>
           </div>
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={40}
+            loop={true}
+            easing="ease-in-out"
+            speed={2000}
+            navigation={true}
+            autoplay={{
+              delay: 1000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            modules={[Navigation, Autoplay]}
+            className="homeSwiper"
+          >
+            {categories.map((item) => (
+              <SwiperSlide className="homeSwiperSlide" key={item}>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push(`/products/${item}?page=${1}`, {
+                      onTransitionReady: slideInOut,
+                    });
+                  }}
+                >
+                  <Image src={cover} alt="categories" priority />
+                  <h2 className={fatfaceFont.className}>
+                    {item.replace("-", " ")}
+                  </h2>
+                </a>
+              </SwiperSlide>
+            ))}
+          </Swiper>
           <div className="categorieInfoCards">
             <div className="left">
               <div className="top infoBox">
@@ -180,6 +311,28 @@ function CategoriesSection() {
               </div>
             </div>
           </div>
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={6}
+            loop={true}
+            easing="ease-in-out"
+            speed={2000}
+            autoplay={{
+              delay: 10,
+            }}
+            modules={[Autoplay]}
+            className="homeSlider"
+          >
+            <SwiperSlide>Slide 1</SwiperSlide>
+            <SwiperSlide>Slide 2</SwiperSlide>
+            <SwiperSlide>Slide 3</SwiperSlide>
+            <SwiperSlide>Slide 4</SwiperSlide>
+            <SwiperSlide>Slide 5</SwiperSlide>
+            <SwiperSlide>Slide 6</SwiperSlide>
+            <SwiperSlide>Slide 7</SwiperSlide>
+            <SwiperSlide>Slide 8</SwiperSlide>
+            <SwiperSlide>Slide 9</SwiperSlide>
+          </Swiper>
         </div>
       </div>
     </>

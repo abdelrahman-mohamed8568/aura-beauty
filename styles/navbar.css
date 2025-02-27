@@ -10,9 +10,10 @@
   border-radius: 0 0 25px 25px;
   backdrop-filter: blur(25px);
   border: 1px solid var(--bc);
+  background-color: #faf9f746;
   border-top: 0;
   transition: all ease 0.15s;
-  z-index: 9999999999;
+  z-index: 999;
 }
 
 .container span {
@@ -20,17 +21,14 @@
 }
 
 .user {
+  width: 90%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   height: 35px;
-  gap: 20px;
-  width: 90%;
   color: var(--dc);
   border-bottom: 1px solid var(--bc);
-  transition: all ease 0.15s;
-}
-.user h4 {
+  transition: all ease 0.4s;
   text-transform: capitalize;
   font-weight: 400;
 }
@@ -48,10 +46,7 @@
 .hide {
   margin-top: -36px;
 }
-.info {
-  display: flex;
-  gap: 15px;
-}
+
 ul {
   width: 100%;
   height: 50px;
@@ -87,15 +82,7 @@ li {
 .bi-heart {
   color: var(--dc);
 }
-.lang,
-.about {
-  cursor: pointer;
-  transition: 0.5s ease;
-}
-.lang:hover,
-.about:hover {
-  text-shadow: 0px 5px 5px var(--sc);
-}
+
 /* 
 .ulToggle {
   right: 0;
@@ -109,6 +96,11 @@ li {
   color: var(--dc);
   transition: 0.5s ease;
   display: flex;
+  cursor: pointer;
+}
+.categoriesLink:disabled {
+  color: var(--gc);
+  cursor: default;
 }
 .categoriesLink .span-mother {
   display: flex;
@@ -117,6 +109,9 @@ li {
 
 .categoriesLink:hover .span-mother span {
   transform: translateY(-1.2em);
+}
+.categoriesLink:disabled:hover .span-mother span {
+  transform: translateY(0);
 }
 .categoriesLink .span-mother span:nth-child(1) {
   transition: 0.2s;
@@ -162,6 +157,9 @@ li {
 .categoriesLink:hover .span-mother2 span {
   transform: translateY(0);
 }
+.categoriesLink:disabled .span-mother2 span {
+  transform: translateY(1.2em);
+}
 
 .categoriesLink .span-mother2 span {
   transition: 0.2s;
@@ -192,36 +190,6 @@ li {
 .categoriesLink .span-mother2 span:nth-child(8) {
   transition: 0.9s;
 }
-/* @keyframes waveUp {
-  0% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  51% {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-} */
-/* .categoriesLink span:nth-child(1) {
-  animation-delay: 0s;
-}
-.categoriesLink span:nth-child(2) {
-  animation-delay: 0.25s;
-}
-.categoriesLink span:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.categoriesLink span:nth-child(4) {
-  animation-delay: 0.35s;
-} */
 
 .navLink {
   text-decoration: none;
@@ -232,6 +200,10 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+.navLink:disabled {
+  cursor: default;
 }
 .navHeart {
   color: var(--rc);
@@ -249,3 +221,95 @@ li {
     gap: 60px;
   }
 } */
+.overlayBox {
+  height: 100vh !important;
+  min-width: 100vw !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent !important;
+}
+.searchOverlay {
+  backdrop-filter: blur(3px);
+  position: absolute;
+  height: 100vh !important;
+  min-width: 100vw !important;
+  transition: 0.4s all ease-in-out;
+}
+.searchBox {
+  border-radius: 15px;
+  width: 40%;
+  height: 70%;
+  background-color: var(--wc);
+  color: var(--dc);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+  width: 80%;
+  height: 35px;
+  margin-top: 20px;
+}
+
+.search input {
+  background-color: var(--wc);
+  border: 1px solid var(--dc);
+  border-radius: 10px;
+  padding-left: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.searchClear {
+  background-color: transparent;
+  position: absolute;
+  right: 5;
+  color: var(--gc);
+}
+
+.results {
+  width: 90%;
+  height: 80%;
+  scroll-behavior: smooth;
+}
+.resultsSlide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-behavior: smooth;
+}
+.resultsBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  scroll-behavior: smooth;
+  width: 80%;
+}
+.resultsBox p {
+  cursor: pointer;
+  position: relative;
+}
+.resultsImage {
+  border-radius: 5px;
+  cursor: pointer;
+}
+.resultsLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emptyResults {
+  color: var(--gc);
+  font-size: 30px;
+}
