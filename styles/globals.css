@@ -123,7 +123,6 @@ html {
   padding: 10px;
   border-radius: 15px;
   border: 1px solid var(--dc);
-  text-transform: uppercase;
   transition: all 0.5s ease;
 }
 .shoppingCartOption {
@@ -137,18 +136,22 @@ html {
 .shoppingCartDetails {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 30px;
 }
 .shoppingCartDetails .shoppingCartInfo {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   height: 85%;
+  width: 50%;
   font-size: 14px;
-  gap: 15px;
+  gap: 5%;
   color: var(--dc);
 }
 .shoppingCartDetails .shoppingCartInfo p {
   font-weight: 400;
+  text-transform: uppercase;
 }
 .shoppingCartDetails .shoppingCartInfo h3 {
   font-weight: 800;
@@ -168,6 +171,7 @@ html {
   text-decoration: none;
   position: relative;
   cursor: pointer;
+  text-align: start;
 }
 .hoverText::after {
   content: "";
@@ -228,9 +232,7 @@ html {
 .homeBtn:hover .hoverBtn {
   top: 0;
 }
-body.zoomed {
-  overflow-y: hidden;
-}
+
 /* ----------------------- */
 .contactBtn {
   width: 180px;
@@ -316,15 +318,57 @@ body.zoomed {
 ::view-transition-new(root) {
   animation: none !important;
 }
-/* ::view-transition-group(root) {
+::view-transition-group(root) {
   z-index: auto !important;
 }
 ::view-transition-image-pair(root) {
   isolation: isolate;
   will-change: transform, opacity, clip-path;
   z-index: 1;
-} */
-/* ::view-transition-new(root) {
+}
+::view-transition-new(root) {
   z-index: 1000;
   animation: none !important;
+}
+/* -------------------------------------- */
+.formInfo label,
+.sendMessageContent label {
+  padding-left: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* .PhoneInputCountrySelect {
+  background-color: #bd1d1d !important;
 } */
+
+.myPhoneInput .PhoneInputCountrySelect {
+  background-color: var(--wc) !important;
+  color: var(--dc) !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--dc);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input,
+select {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid var(--dc);
+  padding-left: 15px;
+  font-size: 18px;
+}
+
+.errorSpan {
+  position: absolute;
+  bottom: -25;
+  left: 10;
+  color: var(--rc);
+  font-size: 12px;
+  font-weight: bolder;
+}

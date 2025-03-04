@@ -1,12 +1,12 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "@/styles/products.css";
 import {
-  AccordionRoot,
   AccordionItem,
-  AccordionItemTrigger,
   AccordionItemContent,
-} from "@chakra-ui/react";
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "@/components/ui/accordion";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import {
   fetchProducts,
@@ -15,6 +15,9 @@ import {
   selectPaginatedProducts,
   selectTotalPages,
   selectCategories,
+  setStockFilter,
+  setPriceFilter,
+  setDateFilter,
 } from "@/store/products/productsSlice";
 import ProductsCard from "@/app/components/productsCard";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -22,6 +25,7 @@ import EmptySection from "@/app/components/emptySection";
 import { ToastContainer } from "react-toastify";
 import { useTransitionRouter } from "next-view-transitions";
 import { slideInOut } from "@/app/components/animations";
+import { RadioCardItem, RadioCardRoot } from "@/components/ui/radio-card";
 
 function Products() {
   const router = useTransitionRouter();
@@ -39,67 +43,166 @@ function Products() {
     }),
     shallowEqual
   );
+  const [stockValue, setStockValue] = useState("1");
+  const [priceValue, setPriceValue] = useState("1");
+  const [dateValue, setDateValue] = useState("1");
+
   const categories = useSelector(selectCategories);
   const prevPage = currentPage - 1;
   const nextPage = currentPage + 1;
   const pathSegments = pathname.split("/");
   const categoryFromPath = pathSegments[2] || "all";
 
-  const [isScrolled, setIsScrolled] = useState(false);
-
   useEffect(() => {
     const initialPage = pageFromURL ? parseInt(pageFromURL, 10) : 1;
     dispatch(setCategory(categoryFromPath));
     dispatch(setPage(initialPage));
     dispatch(fetchProducts());
-    const handleScroll = () => {
-      const scroll = window.scrollY;
-      scroll >= 60 ? setIsScrolled(true) : null;
-      scroll <= 20 ? setIsScrolled(false) : null;
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, [pageFromURL, categoryFromPath]);
 
   return (
     <div className="mainContainer">
       <div className="productsContainer">
         <div className="filter">
-          <AccordionRoot multiple defaultValue={[""]} className="filterBox">
-            <AccordionItem value="1">
-              <AccordionItemTrigger>
-                <h1>dgdgdfg</h1>
+          <AccordionRoot collapsible variant="plain" className="filterBox">
+            <AccordionItem>
+              <AccordionItemTrigger className="filterText">
+                price
               </AccordionItemTrigger>
               <AccordionItemContent>
-                <p>fgbfgbfgbgfbfgbfbfgb</p>
+                <RadioCardRoot
+                  value={priceValue}
+                  onValueChange={(e) => {
+                    setPriceValue(e.value);
+                    dispatch(setPriceFilter(e.value));
+                  }}
+                  orientation="vertical"
+                >
+                  <RadioCardItem
+                    value="1"
+                    indicator={false}
+                    label={"default"}
+                    className="filterRadioCard"
+                    _checked={{
+                      borderColor: "#d5ab42",
+                      color: "#d5ab42",
+                    }}
+                  />
+                  <RadioCardItem
+                    value="2"
+                    indicator={false}
+                    label={"high to low"}
+                    className="filterRadioCard"
+                    _checked={{
+                      borderColor: "#d5ab42",
+                      color: "#d5ab42",
+                    }}
+                  />
+                  <RadioCardItem
+                    value="3"
+                    indicator={false}
+                    label={"low to high"}
+                    className="filterRadioCard"
+                    _checked={{
+                      borderColor: "#d5ab42",
+                      color: "#d5ab42",
+                    }}
+                  />
+                </RadioCardRoot>
               </AccordionItemContent>
             </AccordionItem>
-
-            <AccordionItem value="2">
-              <AccordionItemTrigger>
-                <h1>dgdgdfg</h1>
+          </AccordionRoot>
+          <AccordionRoot collapsible variant="plain" className="filterBox">
+            <AccordionItem>
+              <AccordionItemTrigger className="filterText">
+                stock
               </AccordionItemTrigger>
               <AccordionItemContent>
-                <p>fgbfgbfgbgfbfgbfbfgb</p>
+                <RadioCardRoot
+                  value={stockValue}
+                  onValueChange={(e) => {
+                    setStockValue(e.value);
+                    dispatch(setStockFilter(e.value));
+                  }}
+                  orientation="vertical"
+                >
+                  <RadioCardItem
+                    value="1"
+                    indicator={false}
+                    label={"default"}
+                    className="filterRadioCard"
+                    _checked={{
+                      borderColor: "#d5ab42",
+                      color: "#d5ab42",
+                    }}
+                  />
+                  <RadioCardItem
+                    value="2"
+                    indicator={false}
+                    label={"stock"}
+                    className="filterRadioCard"
+                    _checked={{
+                      borderColor: "#d5ab42",
+                      color: "#d5ab42",
+                    }}
+                  />
+                  <RadioCardItem
+                    value="3"
+                    indicator={false}
+                    label={"out of stock"}
+                    className="filterRadioCard"
+                    _checked={{
+                      borderColor: "#d5ab42",
+                      color: "#d5ab42",
+                    }}
+                  />
+                </RadioCardRoot>
               </AccordionItemContent>
             </AccordionItem>
-
-            <AccordionItem value="3">
-              <AccordionItemTrigger>
-                <h1>dgdgdfg</h1>
+          </AccordionRoot>
+          <AccordionRoot collapsible variant="plain" className="filterBox">
+            <AccordionItem>
+              <AccordionItemTrigger className="filterText">
+                date
               </AccordionItemTrigger>
               <AccordionItemContent>
-                <p>fgbfgbfgbgfbfgbfbfgb</p>
+                <RadioCardRoot
+                  value={dateValue}
+                  onValueChange={(e) => {
+                    setDateValue(e.value);
+                    dispatch(setDateFilter(e.value));
+                  }}
+                  orientation="vertical"
+                >
+                  <RadioCardItem
+                    value="1"
+                    indicator={false}
+                    label={"old to new"}
+                    className="filterRadioCard"
+                    _checked={{
+                      borderColor: "#d5ab42",
+                      color: "#d5ab42",
+                    }}
+                  />
+                  <RadioCardItem
+                    value="2"
+                    indicator={false}
+                    label={"new to old"}
+                    className="filterRadioCard"
+                    _checked={{
+                      borderColor: "#d5ab42",
+                      color: "#d5ab42",
+                    }}
+                  />
+                </RadioCardRoot>
               </AccordionItemContent>
             </AccordionItem>
           </AccordionRoot>
         </div>
         <div className="productsCards" id="1">
-          <div className={`tabList ${isScrolled ? "hide" : ""}`}>
+          <div className="tabList">
             {categories.map((item) => (
-              <button
+              <a
                 key={item}
                 onClick={(e) => {
                   e.preventDefault();
@@ -107,11 +210,12 @@ function Products() {
                     onTransitionReady: slideInOut,
                   });
                 }}
-                className="tabText"
-                disabled={currentCategory === item}
+                className={
+                  currentCategory === item ? "tabText disabledTab" : "tabText"
+                }
               >
                 {item.replace("-", " ")}
-              </button>
+              </a>
             ))}
           </div>
           <div className="productsBox">
@@ -125,35 +229,35 @@ function Products() {
           </div>
           {products.length > 0 ? (
             <div className="paginationContainer">
-              <button
+              <a
                 onClick={(e) => {
                   e.preventDefault();
                   router.push(`/products/${currentCategory}?page=${prevPage}`, {
                     onTransitionReady: slideInOut,
                   });
                 }}
-                className="arrowBtn"
-                disabled={currentPage === 1}
+                className={currentPage === 1 ? "disabledBtn" : "arrowBtn"}
               >
                 ←
-              </button>
+              </a>
               <div className="pageNumbers">
                 <span className="baseNumber">{currentPage}</span>
                 <span className="separator">/</span>
                 <span className="variableNumber">{totalPages}</span>
               </div>
-              <button
+              <a
                 onClick={(e) => {
                   e.preventDefault();
                   router.push(`/products/${currentCategory}?page=${nextPage}`, {
                     onTransitionReady: slideInOut,
                   });
                 }}
-                className="arrowBtn"
-                disabled={currentPage === totalPages}
+                className={
+                  currentPage === totalPages ? "disabledBtn" : "arrowBtn"
+                }
               >
                 →
-              </button>
+              </a>
             </div>
           ) : (
             <></>

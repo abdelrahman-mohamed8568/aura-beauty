@@ -1,12 +1,11 @@
 "use client";
 import "@/styles/productDetails.css";
-import { useEffect, useMemo, useCallback, useState } from "react";
-import { fetchProducts } from "@/app/store/products/productsSlice";
+import { useEffect, useMemo, useState } from "react";
 import { addToCard } from "@/store/card/cardSlice";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Image from "next/image";
-import { Badge } from "@chakra-ui/react";
+import { Badge, Box, Collapsible, HStack, Textarea } from "@chakra-ui/react";
 import { HiAtSymbol } from "react-icons/hi";
 import Subtitle from "@/app/components/subtitle";
 import { addHeart, removeHeart } from "@/app/store/wishlist/wishlistSlice";
@@ -16,32 +15,45 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useTransitionRouter } from "next-view-transitions";
 import { slideInOut } from "@/app/components/animations";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   DialogActionTrigger,
-  DialogCloseTrigger,
   DialogContent,
   DialogRoot,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { CloseButton } from "@/components/ui/close-button";
-
+import {
+  RadioCardItem,
+  RadioCardLabel,
+  RadioCardRoot,
+} from "@/components/ui/radio-card";
+import {
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "@/components/ui/accordion";
+import { Controller, useForm } from "react-hook-form";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 function ProductDetails() {
   const router = useTransitionRouter();
   const dispatch = useDispatch();
   const params = useParams();
   const productId = params?.productDetails;
-  const [isZoomed, setIsZoomed] = useState(false);
+
   const [isAdded, setIsAdded] = useState(false);
+  const [activeHeart, setActiveHeart] = useState(false);
+  const [images, setImages] = useState([]);
+  const [mainImage, setMainImage] = useState("");
+  const [sizes, setSizes] = useState(null);
+  const [colors, setColors] = useState(null);
 
   const products = useSelector(
     (state) => state.products.products || [],
     shallowEqual
   );
-  const status = useSelector(
-    (state) => state.products.status || [],
-    shallowEqual
-  );
+
   const cardItems = useSelector(
     (state) => state.card?.items || [],
     shallowEqual
@@ -50,12 +62,6 @@ function ProductDetails() {
     (state) => state.wishlist?.items || [],
     shallowEqual
   );
-  const itemsId = cardItems.map((item) => item.id).toString();
-  const fetchProductsData = useCallback(() => {
-    if (status === "idle") {
-      dispatch(fetchProducts());
-    }
-  }, [dispatch, status]);
 
   const selectedProduct = useMemo(() => {
     return (
@@ -64,65 +70,97 @@ function ProductDetails() {
   }, [products, productId]);
 
   const relatedProducts = useMemo(() => {
-    if (!selectedProduct) return [];
+    if (!selectedProduct || !selectedProduct.tag) return [];
+    const tags = selectedProduct.tag;
 
-    return products.filter(
-      (product) =>
-        product.id !== selectedProduct.id &&
-        product.tag?.some((tag) => selectedProduct.tag?.includes(tag))
-    );
+    return products.filter((product) => {
+      if (product.id === selectedProduct.id) return false;
+      const productCategory = product.category;
+      return tags.some((tag) => productCategory.includes(tag));
+    });
   }, [products, selectedProduct]);
 
-  const [Images, setImages] = useState(() =>
-    [
-      selectedProduct?.cover,
-      selectedProduct?.img1,
-      selectedProduct?.img2,
-    ].filter(Boolean)
-  );
-  const ImageError = (errorUrl) => {
-    setImages((prev) => prev.filter((url) => url !== errorUrl));
+  useEffect(() => {
+    if (selectedProduct) {
+      const productImages = [
+        selectedProduct.cover,
+        selectedProduct.img1,
+        selectedProduct.img2,
+      ].filter(Boolean);
+      setImages(productImages);
+      setMainImage(selectedProduct.cover || "");
+      setSizes(
+        selectedProduct.size && selectedProduct.size.length > 0
+          ? selectedProduct.size[0]
+          : null
+      );
+      setColors(
+        selectedProduct.color && selectedProduct.color.length > 0
+          ? selectedProduct.color[0]
+          : null
+      );
+    }
+  }, [selectedProduct]);
+
+  const checkedProduct = useMemo(() => {
+    if (!selectedProduct) return null;
+    return {
+      ...selectedProduct,
+      size:
+        sizes !== null
+          ? sizes
+          : selectedProduct.size && Array.isArray(selectedProduct.size)
+          ? selectedProduct.size[0]
+          : null,
+      color:
+        colors !== null
+          ? colors
+          : selectedProduct.color && Array.isArray(selectedProduct.color)
+          ? selectedProduct.color[0]
+          : null,
+    };
+  }, [selectedProduct, sizes, colors]);
+
+  const productMatches = (item, product, selectedSize, selectedColor) => {
+    if (item.id !== product.id) return false;
+
+    if (product.size) {
+      const sizeToCompare =
+        selectedSize ||
+        (Array.isArray(product.size) ? product.size[0] : product.size);
+      if (item.size !== sizeToCompare) return false;
+    }
+
+    if (product.color) {
+      const colorToCompare =
+        selectedColor ||
+        (Array.isArray(product.color) ? product.color[0] : product.color);
+      if (item.color !== colorToCompare) return false;
+    }
+
+    return true;
   };
 
-  const [mainImage, setMainImage] = useState(selectedProduct?.cover || "");
-  const handleImageClick = () => {
-    setIsZoomed(true);
-  };
+  const isMatched = useMemo(() => {
+    if (!selectedProduct) return false;
+    return cardItems.some((item) =>
+      productMatches(item, selectedProduct, sizes, colors)
+    );
+  }, [cardItems, selectedProduct, sizes, colors]);
 
-  const handleClose = () => {
-    setIsZoomed(false);
-  };
-
-  if (isZoomed) {
-    document.body.classList.add("zoomed");
-  } else {
-    document.body.classList.remove("zoomed");
-  }
+  const isProductInWishlist = useMemo(() => {
+    return wishlistItems.some((item) => item.id === selectedProduct?.id);
+  }, [wishlistItems, selectedProduct]);
 
   useEffect(() => {
-    fetchProductsData();
-    itemsId.includes(productId) && setIsAdded(true);
     setActiveHeart(isProductInWishlist);
-    selectedProduct &&
-      setImages(
-        [
-          selectedProduct.cover,
-          selectedProduct.img1,
-          selectedProduct.img2,
-        ].filter(Boolean)
-      );
-  }, [fetchProductsData, cardItems, wishlistItems, selectedProduct]);
-
-  const isProductInWishlist = wishlistItems.some(
-    (item) => item.id === selectedProduct?.id
-  );
-
-  const [activeHeart, setActiveHeart] = useState(false);
+    setIsAdded(isMatched);
+  }, [isMatched, isProductInWishlist]);
 
   const heartHandler = () => {
     if (activeHeart) {
       dispatch(removeHeart(selectedProduct.id));
-      toast.error("This product has been removed from the wishlist !");
+      toast.error("This product has been removed from the wishlist!");
     } else {
       dispatch(addHeart(selectedProduct));
       toast.success("This product has been added to your wishlist.");
@@ -130,9 +168,8 @@ function ProductDetails() {
     setActiveHeart(!activeHeart);
   };
 
-  const addToCardHandler = (selectedProduct) => {
-    dispatch(addToCard(selectedProduct));
-    setIsAdded(true);
+  const addToCardHandler = () => {
+    dispatch(addToCard(checkedProduct));
     toast(
       <div className="toast">
         <Image
@@ -173,8 +210,20 @@ function ProductDetails() {
       </div>
     );
   };
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log("بيانات النموذج:", data);
+  };
+
   return (
-    <div className="mainContainer ">
+    <div className="mainContainer">
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
@@ -198,7 +247,7 @@ function ProductDetails() {
             <div className="productBox">
               <div className="productCover">
                 <div className="sideImages">
-                  {Images.map(
+                  {images.map(
                     (img, index) =>
                       img && (
                         <Image
@@ -208,12 +257,9 @@ function ProductDetails() {
                           width={90}
                           height={90}
                           onMouseEnter={() => setMainImage(img)}
-                          onError={() => ImageError(img)}
                           className={
-                            mainImage == img ? "selectedImage" : "sideImage"
+                            mainImage === img ? "selectedImage" : "sideImage"
                           }
-                          {...(index === 0 &&
-                            !mainImage && { className: "selectedImage" })}
                           priority
                         />
                       )
@@ -257,7 +303,11 @@ function ProductDetails() {
               </div>
               <div className="productInfo">
                 <h1>{selectedProduct.name}</h1>
-                {selectedProduct.price && <h3>{selectedProduct.price} EGP</h3>}
+                {selectedProduct.price ? (
+                  <h3>{selectedProduct.price} EGP</h3>
+                ) : (
+                  <p>indefinite price</p>
+                )}
                 {selectedProduct.store ? (
                   <div>
                     <Badge variant="solid" colorPalette="green">
@@ -285,9 +335,7 @@ function ProductDetails() {
                               " ",
                               "-"
                             )}?page=1`,
-                            {
-                              onTransitionReady: slideInOut,
-                            }
+                            { onTransitionReady: slideInOut }
                           );
                         }}
                         className="brandLink hoverText"
@@ -298,11 +346,75 @@ function ProductDetails() {
                     {selectedProduct.brand && (
                       <h6>
                         Brand:
-                        <span className="brandLink ">
+                        <span className="brandLink">
                           {selectedProduct.brand}
                         </span>
                       </h6>
                     )}
+                    {selectedProduct.size &&
+                      selectedProduct.size.length > 0 && (
+                        <RadioCardRoot
+                          orientation="vertical"
+                          defaultValue={selectedProduct.size[0]}
+                          className="sizes"
+                        >
+                          <RadioCardLabel
+                            fontSize="14px"
+                            fontWeight="500"
+                            color="#707070"
+                          >
+                            Size:
+                          </RadioCardLabel>
+                          <HStack>
+                            {selectedProduct.size.map((item) => (
+                              <RadioCardItem
+                                key={item}
+                                label={item}
+                                value={item}
+                                onChange={() => setSizes(item)}
+                                indicator={false}
+                                _checked={{
+                                  borderColor: "#d5ab42",
+                                  color: "#d5ab42",
+                                }}
+                                className="radioCard"
+                              />
+                            ))}
+                          </HStack>
+                        </RadioCardRoot>
+                      )}
+                    {selectedProduct.color &&
+                      selectedProduct.color.length > 0 && (
+                        <RadioCardRoot
+                          orientation="vertical"
+                          defaultValue={selectedProduct.color[0]}
+                          className="colors"
+                        >
+                          <RadioCardLabel
+                            fontSize="14px"
+                            fontWeight="500"
+                            color="#707070"
+                          >
+                            Color:
+                          </RadioCardLabel>
+                          <HStack>
+                            {selectedProduct.color.map((item) => (
+                              <RadioCardItem
+                                key={item}
+                                label={item}
+                                value={item}
+                                onChange={() => setColors(item)}
+                                indicator={false}
+                                _checked={{
+                                  borderColor: "#d5ab42",
+                                  color: "#d5ab42",
+                                }}
+                                className="radioCard"
+                              />
+                            ))}
+                          </HStack>
+                        </RadioCardRoot>
+                      )}
                   </div>
                 </div>
                 <div className="attentionBox">
@@ -323,7 +435,7 @@ function ProductDetails() {
                         width="20"
                         height="20"
                         fill="currentColor"
-                        className=" bi bi-heart-fill "
+                        className="bi bi-heart-fill"
                         id={activeHeart ? "activeHeart" : "heartHover"}
                         viewBox="0 0 16 16"
                       >
@@ -337,7 +449,7 @@ function ProductDetails() {
                   </div>
                   <button
                     className={`addCard ${isAdded ? "addedCard" : ""}`}
-                    onClick={() => addToCardHandler(selectedProduct)}
+                    onClick={addToCardHandler}
                     disabled={isAdded || !selectedProduct.store}
                   >
                     {!isAdded && (
@@ -348,15 +460,21 @@ function ProductDetails() {
                           height="30"
                           fill="currentColor"
                           className="bi bi-cart3"
-                          id={isAdded ? "hidden" : ""}
                           viewBox="0 0 16 16"
                         >
                           <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                         </svg>
                       </div>
                     )}
+                    {!selectedProduct.store && <p>Out Of Stock</p>}
                     <div className="btnText">
-                      <p>{isAdded ? "ADDED TO BAG" : "ADD TO BAG"}</p>
+                      <p>
+                        {selectedProduct.store
+                          ? isAdded
+                            ? "ADDED TO BAG"
+                            : "ADD TO BAG"
+                          : "OUT OF STOCK"}
+                      </p>
                     </div>
                   </button>
                 </div>
@@ -378,24 +496,26 @@ function ProductDetails() {
                     </svg>
                   </div>
                 </div>
-                <div className="cashBox">
-                  <div>
-                    <h3>Delivery Charges</h3>
-                    <p>Free delivery to any governorate in Egypt.</p>
+                {selectedProduct.delivery && (
+                  <div className="cashBox">
+                    <div>
+                      <h3>Delivery Charges</h3>
+                      <p>Free delivery to any governorate in Egypt.</p>
+                    </div>
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        fill="currentColor"
+                        className="bi bi-currency-dollar"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
+                      </svg>
+                    </div>
                   </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      className="bi bi-currency-dollar"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
-                    </svg>
-                  </div>
-                </div>
+                )}
                 <div className="vat">
                   <p>*All prices are after 14% VAT.</p>
                 </div>
@@ -438,13 +558,11 @@ function ProductDetails() {
                   soon as possible.
                 </h3>
               </div>
-              <a
+              {/* <a
                 className="contactBtn"
                 onClick={(e) => {
                   e.preventDefault();
-                  router.push("/contact", {
-                    onTransitionReady: slideInOut,
-                  });
+                  router.push("/contact", { onTransitionReady: slideInOut });
                 }}
               >
                 <span className="buttonIcon">
@@ -474,8 +592,110 @@ function ProductDetails() {
                   </svg>
                 </span>
                 contact us
-              </a>
+              </a> */}
             </div>
+            <AccordionRoot className="sendMessage" collapsible variant="plain">
+              <AccordionItem className="sendMessageHeader">
+                <AccordionItemTrigger className="sendMessageText">
+                  Send your message
+                </AccordionItemTrigger>
+                <AccordionItemContent className="sendMessageContent">
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="formFlex">
+                      <div className="field">
+                        <label>Your name</label>
+                        <input
+                          type="text"
+                          autoFocus={true}
+                          {...register("name", {
+                            required: "The field is required!",
+                          })}
+                        />
+                        {errors.name && (
+                          <span className="errorSpan">
+                            {errors.name.message}
+                          </span>
+                        )}
+                      </div>
+                      <div className="field">
+                        <label>phone number</label>
+                        <Controller
+                          name="phone"
+                          control={control}
+                          rules={{ required: "The field is required!" }}
+                          render={({ field }) => (
+                            <PhoneInput
+                              className="myPhoneInput"
+                              defaultCountry="EG"
+                              value={field.value}
+                              onChange={field.onChange}
+                              international
+                            />
+                          )}
+                        />
+                        {errors.phone && (
+                          <span className="errorSpan">
+                            {errors.phone.message}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="field">
+                      <label>
+                        email address
+                        <Badge
+                          variant="subtle"
+                          size="xs"
+                          height={"15px"}
+                          backgroundColor={"#707070"}
+                        >
+                          optional
+                        </Badge>
+                      </label>
+                      <input
+                        type="email"
+                        {...register("email", {
+                          pattern: {
+                            value: /^\S+@\S+$/i,
+                            message: "Email format is incorrect",
+                          },
+                        })}
+                      />
+                      {errors.email && (
+                        <span className="errorSpan">
+                          {errors.email.message}
+                        </span>
+                      )}
+                    </div>
+                    <div className="field">
+                      <label>your inquiry</label>
+                      <Textarea
+                        placeholder="tell us your request or inquiry..."
+                        minH={"150px"}
+                        borderRadius="15px"
+                        _focus={{
+                          borderColor: "#707070",
+                        }}
+                        {...register("message", {
+                          required: "The field is required!",
+                        })}
+                      />
+                      {errors.message && (
+                        <span className="errorSpan">
+                          {errors.message.message}
+                        </span>
+                      )}
+                    </div>
+                    <div className="homeBtn">
+                      <button className="mainBtn">send</button>
+                      <button type="submit" className="hoverBtn">
+                        send
+                      </button>
+                    </div>
+                  </form>
+                </AccordionItemContent>
+              </AccordionItem>
+            </AccordionRoot>
           </>
         )}
       </div>

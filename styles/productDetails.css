@@ -41,7 +41,6 @@
 .productBox {
   display: flex;
   width: 90%;
-  height: 90vh;
   justify-content: space-between;
 }
 
@@ -50,6 +49,8 @@
   height: 80vh;
   display: flex;
   justify-content: space-around;
+  /* position: sticky;
+  top: 15vh; */
 }
 .mainImage {
   transition: all 0.5s ease;
@@ -131,7 +132,7 @@
   align-items: center;
   gap: 5px;
   color: var(--gc);
-  font-weight: bold;
+  font-weight: 500;
   font-size: 14px;
   padding-bottom: 10px;
 }
@@ -144,6 +145,22 @@
   text-transform: uppercase;
   color: var(--dc);
   padding-left: 5px;
+}
+
+.sizes,
+.colors {
+  color: var(--dc);
+}
+
+.radioCard {
+  background-color: var(--wc);
+  font-size: 16px;
+  max-width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  cursor: pointer;
 }
 
 .attentionBox {
@@ -261,25 +278,6 @@
   text-transform: uppercase;
   letter-spacing: -0.1rem;
 }
-.inquiry {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  color: var(--dc);
-  width: 100%;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-.inquiryText {
-  width: 50%;
-}
-.inquiry h2 {
-  color: var(--yc);
-  font-size: 20px;
-}
-.inquiry h3 {
-  font-size: 16px;
-}
 
 .related {
   width: 100%;
@@ -301,6 +299,89 @@
   scroll-behavior: smooth;
 }
 
+.inquiry {
+  color: var(--dc);
+  width: 70%;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.inquiryText {
+  width: 60%;
+}
+.inquiry h2 {
+  color: var(--yc);
+  font-size: 20px;
+}
+
+.sendMessage {
+  color: var(--dc);
+  max-width: 70%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.sendMessageText {
+  text-transform: uppercase;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 16px;
+  width: 250px;
+  position: absolute;
+  top: -150px;
+  right: 0;
+  color: var(--gc);
+  transition: all 0.3s ease-in-out;
+}
+
+.sendMessageText:hover {
+  color: var(--yc);
+}
+
+.sendMessageContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.sendMessageContent form {
+  padding: 7vh 0;
+  border-radius: 25px;
+  border: 1px solid var(--gc);
+  width: 85%;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: center;
+}
+.sendMessageContent form .field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 70%;
+}
+.sendMessageContent form .formFlex {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  gap: 15px;
+}
+.sendMessageContent form .field input {
+  background-color: var(--wc);
+  border: 1px solid var(--dc);
+  color: var(--dc);
+}
+
+.sendMessageContent form .field input:focus {
+  border: 1px solid var(--gc);
+}
+
+.sendMessageContent .homeBtn {
+  width: 250px;
+}
 .toast {
   height: 70px;
   width: 270px;
@@ -320,6 +401,7 @@
   font-size: 14px;
   height: 30px;
   border-radius: 10px;
+  width: 100px;
 }
 .toastInfo .mainBtn {
   color: var(--wc);

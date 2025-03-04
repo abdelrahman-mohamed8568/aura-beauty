@@ -9,8 +9,10 @@ const cardSlice = createSlice({
   initialState,
   reducers: {
     addToCard: (state, action) => {
+      const { id, size, color, quantity } = action.payload;
+      // البحث عن المنتج مع مقارنة id و size و color
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id === id && item.size === size && item.color === color
       );
       if (existingItem) {
         if (existingItem.quantity < existingItem.maxQuantity) {
@@ -20,21 +22,32 @@ const cardSlice = createSlice({
         state.items.push({
           ...action.payload,
           quantity: 1,
-          maxQuantity: action.payload.quantity, // نأخذ القيمة من البيانات المرسلة
+          maxQuantity: quantity, // نأخذ القيمة من البيانات المرسلة
         });
       }
     },
     removeCard: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      const { id, size, color } = action.payload;
+      state.items = state.items.filter(
+        (item) =>
+          !(item.id === id && item.size === size && item.color === color)
+      );
     },
+
     plusQuantity: (state, action) => {
-      const item = state.items.find((item) => item.id === action.payload);
+      const { id, size, color } = action.payload;
+      const item = state.items.find(
+        (item) => item.id === id && item.size === size && item.color === color
+      );
       if (item && item.quantity < item.maxQuantity) {
         item.quantity += 1;
       }
     },
     minusQuantity: (state, action) => {
-      const item = state.items.find((item) => item.id === action.payload);
+      const { id, size, color } = action.payload;
+      const item = state.items.find(
+        (item) => item.id === id && item.size === size && item.color === color
+      );
       if (item && item.quantity > 1) {
         item.quantity -= 1;
       }

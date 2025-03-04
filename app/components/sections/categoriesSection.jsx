@@ -315,6 +315,7 @@ function CategoriesSection() {
             spaceBetween={10}
             slidesPerView={6}
             loop={true}
+            centeredSlides={true}
             easing="ease-in-out"
             speed={2000}
             autoplay={{

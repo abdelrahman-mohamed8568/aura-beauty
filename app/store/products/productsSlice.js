@@ -20,6 +20,9 @@ const initialState = {
   currentPage: 1,
   itemsPerPage: 12,
   currentCategory: "all",
+  stockFilter: "1",
+  priceFilter: "1",
+  dateFilter: "1",
 };
 
 const productsSlice = createSlice({
@@ -31,6 +34,15 @@ const productsSlice = createSlice({
     },
     setCategory: (state, action) => {
       state.currentCategory = action.payload;
+    },
+    setStockFilter: (state, action) => {
+      state.stockFilter = action.payload;
+    },
+    setPriceFilter: (state, action) => {
+      state.priceFilter = action.payload;
+    },
+    setDateFilter: (state, action) => {
+      state.dateFilter = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -54,13 +66,31 @@ const selectProductsState = (state) => state.products;
 export const selectFilteredProducts = createSelector(
   [selectProductsState],
   (productsState) => {
-    const { products, currentCategory } = productsState;
+    const { products, currentCategory, stockFilter, priceFilter, dateFilter } =
+      productsState;
     if (!Array.isArray(products)) return [];
-    return currentCategory === "all"
-      ? products
-      : products.filter(
-          (item) => item.category.replace(/ /g, "-") === currentCategory
-        );
+    let filtered =
+      currentCategory === "all"
+        ? products
+        : products.filter(
+            (product) =>
+              product.category.replace(/ /g, "-").toLowerCase() ===
+              currentCategory.toLowerCase()
+          );
+    if (stockFilter === "2") {
+      filtered = filtered.filter((product) => product.store === true);
+    } else if (stockFilter === "3") {
+      filtered = filtered.filter((product) => product.store === false);
+    }
+    if (priceFilter === "2") {
+      filtered = [...filtered].sort((a, b) => b.price - a.price);
+    } else if (priceFilter === "3") {
+      filtered = [...filtered].sort((a, b) => a.price - b.price);
+    }
+    if (dateFilter === "2") {
+      filtered = [...filtered].reverse();
+    }
+    return filtered;
   }
 );
 
@@ -82,6 +112,7 @@ export const selectTotalPages = createSelector(
     return Math.ceil(filteredProducts.length / productsState.itemsPerPage);
   }
 );
+
 export const selectCategories = createSelector(
   [selectProductsState],
   (productsState) => {
@@ -95,5 +126,11 @@ export const selectCategories = createSelector(
   }
 );
 
-export const { setPage, setCategory } = productsSlice.actions;
+export const {
+  setPage,
+  setCategory,
+  setStockFilter,
+  setPriceFilter,
+  setDateFilter,
+} = productsSlice.actions;
 export default productsSlice.reducer;

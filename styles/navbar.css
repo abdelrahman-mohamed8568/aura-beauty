@@ -9,8 +9,7 @@
   align-items: center;
   border-radius: 0 0 25px 25px;
   backdrop-filter: blur(25px);
-  border: 1px solid var(--bc);
-  background-color: #faf9f746;
+  border: 1px solid var(--dc);
   border-top: 0;
   transition: all ease 0.15s;
   z-index: 999;
@@ -27,7 +26,7 @@
   align-items: center;
   height: 35px;
   color: var(--dc);
-  border-bottom: 1px solid var(--bc);
+  border-bottom: 1px solid var(--dc);
   transition: all ease 0.4s;
   text-transform: capitalize;
   font-weight: 400;
@@ -61,11 +60,16 @@ li {
   justify-content: space-evenly;
   align-items: center;
 }
-.Settings {
+.settings {
   display: flex;
   justify-content: center;
   gap: 25px;
 }
+
+.settings .disabledLink {
+  color: var(--dc);
+}
+
 #Basket {
   position: absolute;
   top: 8px;
@@ -89,122 +93,112 @@ li {
   padding-left: 40px;
 } */
 
-.categoriesLink {
+.navLink {
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--dc);
   transition: 0.5s ease;
+  position: relative;
+  align-items: center;
+  justify-content: center;
   display: flex;
   cursor: pointer;
 }
-.categoriesLink:disabled {
+.disabledLink {
   color: var(--gc);
-  cursor: default;
+  pointer-events: none;
 }
-.categoriesLink .span-mother {
+
+.navLink .span-mother {
   display: flex;
   overflow: hidden;
 }
 
-.categoriesLink:hover .span-mother span {
+.navLink:hover .span-mother span {
   transform: translateY(-1.2em);
 }
-.categoriesLink:disabled:hover .span-mother span {
+.navLink:disabled:hover .span-mother span {
   transform: translateY(0);
 }
-.categoriesLink .span-mother span:nth-child(1) {
+.navLink .span-mother span:nth-child(1) {
   transition: 0.2s;
 }
 
-.categoriesLink .span-mother span:nth-child(2) {
+.navLink .span-mother span:nth-child(2) {
   transition: 0.3s;
 }
 
-.categoriesLink .span-mother span:nth-child(3) {
+.navLink .span-mother span:nth-child(3) {
   transition: 0.4s;
 }
 
-.categoriesLink .span-mother span:nth-child(4) {
+.navLink .span-mother span:nth-child(4) {
   transition: 0.5s;
 }
 
-.categoriesLink .span-mother span:nth-child(5) {
+.navLink .span-mother span:nth-child(5) {
   transition: 0.6s;
 }
 
-.categoriesLink .span-mother span:nth-child(6) {
+.navLink .span-mother span:nth-child(6) {
   transition: 0.7s;
 }
-.categoriesLink .span-mother span:nth-child(7) {
+.navLink .span-mother span:nth-child(7) {
   transition: 0.8s;
 }
-.categoriesLink .span-mother span:nth-child(8) {
+.navLink .span-mother span:nth-child(8) {
   transition: 0.9s;
 }
 
-.categoriesLink .span-mother2 {
+.navLink .span-mother2 {
   display: flex;
   position: absolute;
   overflow: hidden;
   color: var(--gc);
 }
 
-.categoriesLink .span-mother2 span {
+.navLink .span-mother2 span {
   transform: translateY(1.2em);
 }
 
-.categoriesLink:hover .span-mother2 span {
+.navLink:hover .span-mother2 span {
   transform: translateY(0);
 }
-.categoriesLink:disabled .span-mother2 span {
+.navLink:disabled .span-mother2 span {
   transform: translateY(1.2em);
 }
 
-.categoriesLink .span-mother2 span {
+.navLink .span-mother2 span {
   transition: 0.2s;
 }
 
-.categoriesLink .span-mother2 span:nth-child(2) {
+.navLink .span-mother2 span:nth-child(2) {
   transition: 0.3s;
 }
 
-.categoriesLink .span-mother2 span:nth-child(3) {
+.navLink .span-mother2 span:nth-child(3) {
   transition: 0.4s;
 }
 
-.categoriesLink .span-mother2 span:nth-child(4) {
+.navLink .span-mother2 span:nth-child(4) {
   transition: 0.5s;
 }
 
-.categoriesLink .span-mother2 span:nth-child(5) {
+.navLink .span-mother2 span:nth-child(5) {
   transition: 0.6s;
 }
 
-.categoriesLink .span-mother2 span:nth-child(6) {
+.navLink .span-mother2 span:nth-child(6) {
   transition: 0.7s;
 }
-.categoriesLink .span-mother2 span:nth-child(7) {
+.navLink .span-mother2 span:nth-child(7) {
   transition: 0.8s;
 }
-.categoriesLink .span-mother2 span:nth-child(8) {
+.navLink .span-mother2 span:nth-child(8) {
   transition: 0.9s;
 }
 
-.navLink {
-  text-decoration: none;
-  text-transform: uppercase;
-  color: var(--dc);
-  transition: 0.3s ease;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.navLink:disabled {
-  cursor: default;
-}
 .navHeart {
   color: var(--rc);
 }

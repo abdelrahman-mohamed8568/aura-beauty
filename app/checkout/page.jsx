@@ -15,7 +15,7 @@ import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
 function Checkout() {
   const cardItems = useSelector((state) => state.card.items);
   const total = useSelector(getTotalPrice);
-
+  const cashDelivery = cardItems.some((item) => item.delivery === false);
   const {
     register,
     handleSubmit,
@@ -256,8 +256,8 @@ function Checkout() {
             className="infoSwiper"
             data-lenis-prevent
           >
-            {cardItems.map((item) => (
-              <SwiperSlide key={item.id} className="infoSwiperSlide">
+            {cardItems.map((item, index) => (
+              <SwiperSlide key={index} className="infoSwiperSlide">
                 <div className="bagProduct">
                   <div className="bagImage">
                     <Image
@@ -270,8 +270,12 @@ function Checkout() {
                     />
                     <span>{item.quantity}</span>
                   </div>
-                  <p>{item.name}</p>
-                  <h6>EGP: {item.price}</h6>
+                  <p>
+                    {item.name}
+                    <br /> {item.size && ` -  ${item.size}`}
+                    {item.color && ` -  ${item.color}`}
+                  </p>
+                  {item.price ? <h6>EGP: {item.price}</h6> : <h6></h6>}
                 </div>
               </SwiperSlide>
             ))}
@@ -281,10 +285,12 @@ function Checkout() {
               <p>Subtotal:</p>
               <h6>{total}</h6>
             </div>
-            <div className="totalBox">
-              <p>Delivery:</p>
-              <h6>EGP: 0</h6>
-            </div>
+            {!cashDelivery && (
+              <div className="totalBox">
+                <p>Delivery:</p>
+                <h6>EGP: 0</h6>
+              </div>
+            )}
             <div className="totalBox bold">
               <p>Total:</p>
               <h6>EGP: {total}</h6>

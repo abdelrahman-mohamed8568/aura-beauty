@@ -200,7 +200,6 @@
   left: 0;
   letter-spacing: -0.2rem;
   color: var(--rc);
-  backdrop-filter: blur(5px);
   font-size: 3rem;
   text-transform: uppercase;
 }
@@ -415,26 +414,30 @@
 
 @keyframes rightBox {
   from {
-    rotate: 100deg;
-    transform: translateY(50%) translateX(400%);
+    /* rotate: 100deg;
+    transform: translateY(50%) translateX(400%); */
     opacity: 0;
+    scale: 0;
   }
   to {
-    rotate: 0deg;
-    transform: translateY(0%) translateX(0%);
+    /* rotate: 0deg;
+    transform: translateY(0%) translateX(0%); */
     opacity: 1;
+    scale: 1;
   }
 }
 @keyframes leftBox {
   from {
-    rotate: -100deg;
+    /* rotate: -100deg;
+    transform: translateY(-50%) translateX(-400%); */
     opacity: 0;
-    transform: translateY(-50%) translateX(-400%);
+    scale: 0;
   }
   to {
-    rotate: 0deg;
+    /* rotate: 0deg;
+    transform: translateY(0%) translateX(0%); */
     opacity: 1;
-    transform: translateY(0%) translateX(0%);
+    scale: 1;
   }
 }
 

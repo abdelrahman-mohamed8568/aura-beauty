@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   DialogActionTrigger,
-  DialogCloseTrigger,
   DialogContent,
   DialogRoot,
   DialogTrigger,
@@ -11,21 +10,35 @@ import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../store/products/productsSlice";
-import Link from "next/link";
 import { CloseButton } from "@/components/ui/close-button";
+import { useTransitionRouter } from "next-view-transitions";
+import { slideInOut } from "./animations";
+import "swiper/css";
+import "swiper/css/scrollbar";
 
 function Search() {
+  const router = useTransitionRouter();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const [value, setValue] = useState("");
 
+  const filter = products.filter((item) =>
+    item.name.toLowerCase().includes(value.toLowerCase())
+  );
+  const filtered = React.useMemo(() => {
+    const searchValue = value.toLowerCase();
+    const startsWith = filter.filter((item) =>
+      item.name.toLowerCase().startsWith(searchValue)
+    );
+    const includes = filter.filter(
+      (item) => !item.name.toLowerCase().startsWith(searchValue)
+    );
+    return [...startsWith, ...includes];
+  }, [filter, value]);
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
-  const filtered = products.filter((item) =>
-    item.name.toLowerCase().includes(value.toLowerCase())
-  );
 
   return (
     <DialogRoot>
@@ -78,10 +91,18 @@ function Search() {
                   <SwiperSlide key={item.id} className="resultsSlide">
                     <div className="resultsBox">
                       <DialogActionTrigger asChild>
-                        <Link
-                          href={`/products/${item.category.replace(" ", "-")}/${
-                            item.id
-                          }`}
+                        <a
+                          onClick={(e) => {
+                            e.preventDefault();
+                            router.push(
+                              `/products/${item.category.replace(" ", "-")}/${
+                                item.id
+                              }`,
+                              {
+                                onTransitionReady: slideInOut,
+                              }
+                            );
+                          }}
                         >
                           <Image
                             src={item.cover}
@@ -91,16 +112,24 @@ function Search() {
                             className="resultsImage"
                             priority
                           />
-                        </Link>
+                        </a>
                       </DialogActionTrigger>
                       <DialogActionTrigger asChild>
-                        <Link
-                          href={`/products/${item.category.replace(" ", "-")}/${
-                            item.id
-                          }`}
+                        <a
+                          onClick={(e) => {
+                            e.preventDefault();
+                            router.push(
+                              `/products/${item.category.replace(" ", "-")}/${
+                                item.id
+                              }`,
+                              {
+                                onTransitionReady: slideInOut,
+                              }
+                            );
+                          }}
                         >
                           <p>{item.name}</p>
-                        </Link>
+                        </a>
                       </DialogActionTrigger>
                     </div>
                   </SwiperSlide>

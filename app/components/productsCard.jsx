@@ -140,7 +140,7 @@ const ProductsCard = memo((product) => {
               {product.name}
             </a>
           </h3>
-          {product.price && <h5>${product.price}</h5>}
+          {product.price ? <h5>${product.price}</h5> : <p>indefinite</p>}
         </div>
       </div>
     </div>

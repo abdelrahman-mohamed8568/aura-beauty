@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           <StoreProvider>
             <Provider>
               <ReactLenis root />
-              <Preloader />
+              {/* <Preloader /> */}
               <Navbar />
               {children}
               <Footer />

@@ -1,11 +1,14 @@
 "use client";
 import { removeHeart } from "../store/wishlist/wishlistSlice";
 import Image from "next/image";
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
+import { slideInOut } from "../components/animations";
+import { useTransitionRouter } from "next-view-transitions";
 
 function Wishlist() {
+  const router = useTransitionRouter();
+
   const items = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch();
 
@@ -170,7 +173,14 @@ function Wishlist() {
               <div className="shoppingCart">
                 <div className="shoppingCartDetails">
                   <div className="shoppingCartOption">
-                    <Link href={`/products/${item.category}/${item.id}`}>
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        router.push(`/products/${item.category}/${item.id}`, {
+                          onTransitionReady: slideInOut,
+                        });
+                      }}
+                    >
                       <Image
                         src={item.cover}
                         alt={"product image"}
@@ -179,29 +189,45 @@ function Wishlist() {
                         height={150}
                         priority
                       />
-                    </Link>
+                    </a>
                   </div>
                   <div className="shoppingCartInfo">
                     <h3>
-                      <Link
-                        href={`/products/${item.category.replace(" ", "-")}/${
-                          item.id
-                        }`}
+                      <a
+                        onClick={(e) => {
+                          e.preventDefault();
+                          router.push(
+                            `/products/${item.category.replace(" ", "-")}/${
+                              item.id
+                            }`,
+                            {
+                              onTransitionReady: slideInOut,
+                            }
+                          );
+                        }}
                         className="hoverText"
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     </h3>
                     <p>
-                      <Link
-                        href={`/products/${item.category.replace(
-                          " ",
-                          "-"
-                        )}?page=${1}`}
+                      <a
+                        onClick={(e) => {
+                          e.preventDefault();
+                          router.push(
+                            `/products/${item.category.replace(
+                              " ",
+                              "-"
+                            )}?page=${1}`,
+                            {
+                              onTransitionReady: slideInOut,
+                            }
+                          );
+                        }}
                         className="hoverText"
                       >
                         {item.category}
-                      </Link>
+                      </a>
                     </p>
                     <h3>EGP {item.price}</h3>
                   </div>
