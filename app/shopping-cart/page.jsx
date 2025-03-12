@@ -14,9 +14,9 @@ import { slideInOut } from "../components/animations";
 
 function ShoppingCart() {
   const router = useTransitionRouter();
+  const dispatch = useDispatch();
   const items = useSelector((state) => state.card.items);
   const total = useSelector(getTotalPrice);
-  const dispatch = useDispatch();
   const plus = (item) =>
     dispatch(plusQuantity({ id: item.id, size: item.size, color: item.color }));
 
@@ -338,9 +338,14 @@ function ShoppingCart() {
                     <a
                       onClick={(e) => {
                         e.preventDefault();
-                        router.push(`/products/${item.category}/${item.id}`, {
-                          onTransitionReady: slideInOut,
-                        });
+                        router.push(
+                          `/${item.fromPath}/${item.category[0]
+                            .toString()
+                            .replace(" ", "-")}/${item.id}`,
+                          {
+                            onTransitionReady: slideInOut,
+                          }
+                        );
                       }}
                     >
                       <Image
@@ -359,9 +364,9 @@ function ShoppingCart() {
                         onClick={(e) => {
                           e.preventDefault();
                           router.push(
-                            `/products/${item.category.replace(" ", "-")}/${
-                              item.id
-                            }`,
+                            `/${item.fromPath}/${item.category[0]
+                              .toString()
+                              .replace(" ", "-")}/${item.id}`,
                             {
                               onTransitionReady: slideInOut,
                             }
@@ -374,26 +379,36 @@ function ShoppingCart() {
                         {item.color && <span> {item.color}</span>}
                       </a>
                     </h3>
-                    <p>
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                          router.push(
-                            `/products/${item.category.replace(
-                              " ",
-                              "-"
-                            )}?page=${1}`,
-                            {
-                              onTransitionReady: slideInOut,
-                            }
-                          );
-                        }}
-                        className="hoverText"
-                      >
-                        {item.category}
-                      </a>
-                    </p>
-                    {item.price && <h3>EGP {item.price}</h3>}
+                    {item.category.map((items, index) => {
+                      const category = items.toString();
+                      return (
+                        <p key={index}>
+                          <a
+                            className="hoverText"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              router.push(
+                                `/${item.fromPath}/${category.replace(
+                                  " ",
+                                  "-"
+                                )}?page=${1}`,
+                                {
+                                  onTransitionReady: slideInOut,
+                                }
+                              );
+                            }}
+                          >
+                            {category}
+                          </a>
+                        </p>
+                      );
+                    })}
+                    {item.price ? (
+                      <h3>EGP {item.price}</h3>
+                    ) : (
+                      <h4>indefinite</h4>
+                    )}
+
                     <div className="quantity">
                       <button onClick={() => minus(item)}>-</button>
                       <span>{item.quantity}</span>

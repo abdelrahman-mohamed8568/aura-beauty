@@ -9,7 +9,10 @@ const wishlistSlice = createSlice({
   initialState,
   reducers: {
     addHeart(state, action) {
-      state.items.push(action.payload);
+      state.items.push({
+        ...action.payload,
+        fromPath: action.payload.fromPath,
+      });
     },
     removeHeart(state, action) {
       state.items = state.items.filter((item) => item.id !== action.payload);

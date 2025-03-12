@@ -49,8 +49,6 @@
   height: 80vh;
   display: flex;
   justify-content: space-around;
-  /* position: sticky;
-  top: 15vh; */
 }
 .mainImage {
   transition: all 0.5s ease;
@@ -67,11 +65,9 @@
 
 .sideImages {
   display: flex;
-  position: sticky;
-  top: 20vh;
-  height: 43vh;
+  position: relative;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px;
 }
 .sideImage,
 .selectedImage {
@@ -82,6 +78,28 @@
 .selectedImage {
   border: 1px solid var(--yc);
 }
+.swiper-zoom-container {
+  cursor: zoom-in;
+}
+
+.sideImagesSwiper .swiper-button-next,
+.sideImagesSwiper .swiper-button-prev {
+  color: var(--dc);
+  width: 30px;
+  height: 30px;
+  rotate: 90deg;
+}
+
+.sideImagesSwiper .swiper-button-next::after,
+.sideImagesSwiper .swiper-button-prev::after {
+  font-size: 18px;
+}
+.sideImagesSwiper .swiper-button-prev,
+.sideImagesSwiper .swiper-button-next {
+  bottom: -10;
+  top: auto;
+}
+
 /* ---------------------------- */
 .overlay {
   position: fixed;

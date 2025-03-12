@@ -176,9 +176,14 @@ function Wishlist() {
                     <a
                       onClick={(e) => {
                         e.preventDefault();
-                        router.push(`/products/${item.category}/${item.id}`, {
-                          onTransitionReady: slideInOut,
-                        });
+                        router.push(
+                          `/${item.fromPath}/${item.category[0]
+                            .toString()
+                            .replace(" ", "-")}/${item.id}`,
+                          {
+                            onTransitionReady: slideInOut,
+                          }
+                        );
                       }}
                     >
                       <Image
@@ -197,9 +202,9 @@ function Wishlist() {
                         onClick={(e) => {
                           e.preventDefault();
                           router.push(
-                            `/products/${item.category.replace(" ", "-")}/${
-                              item.id
-                            }`,
+                            `/${item.fromPath}/${item.category[0]
+                              .toString()
+                              .replace(" ", "-")}/${item.id}`,
                             {
                               onTransitionReady: slideInOut,
                             }
@@ -210,26 +215,35 @@ function Wishlist() {
                         {item.name}
                       </a>
                     </h3>
-                    <p>
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                          router.push(
-                            `/products/${item.category.replace(
-                              " ",
-                              "-"
-                            )}?page=${1}`,
-                            {
-                              onTransitionReady: slideInOut,
-                            }
-                          );
-                        }}
-                        className="hoverText"
-                      >
-                        {item.category}
-                      </a>
-                    </p>
-                    <h3>EGP {item.price}</h3>
+                    {item.category.map((items, index) => {
+                      const category = items.toString();
+                      return (
+                        <p key={index}>
+                          <a
+                            className="hoverText"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              router.push(
+                                `/${item.fromPath}/${category.replace(
+                                  " ",
+                                  "-"
+                                )}?page=${1}`,
+                                {
+                                  onTransitionReady: slideInOut,
+                                }
+                              );
+                            }}
+                          >
+                            {category}
+                          </a>
+                        </p>
+                      );
+                    })}
+                    {item.price ? (
+                      <h3>EGP {item.price}</h3>
+                    ) : (
+                      <h4>indefinite</h4>
+                    )}
                   </div>
                 </div>
                 <svg

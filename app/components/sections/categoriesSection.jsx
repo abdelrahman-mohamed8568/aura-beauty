@@ -11,21 +11,20 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { fatfaceFont } from "@/lang/lang";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "@/app/store/products/productsSlice";
+import {
+  fetchProducts,
+  selectCategories,
+} from "@/app/store/products/productsSlice";
 import { useTransitionRouter } from "next-view-transitions";
 import { slideInOut } from "../animations";
+import Link from "next/link";
 
 function CategoriesSection() {
   const router = useTransitionRouter();
   const products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
-  const categories = products
-    ? [
-        ...new Set(
-          products.map((product) => product.category.replace(/ /g, "-"))
-        ),
-      ]
-    : [];
+  const categories = useSelector(selectCategories);
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
@@ -41,13 +40,22 @@ function CategoriesSection() {
           </h1>
           <div className="homeCards">
             <div className="homeCard">
-              <Image
-                src={card2}
-                alt="cover over"
-                className="categoriesImage"
-                width={700}
-                priority
-              />
+              <Link
+                href={"/professionals/all?page=1"}
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/professionals/all?page=1", {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
+              >
+                <Image
+                  className="categoriesImage"
+                  src={card2}
+                  alt="Professional Corner"
+                  priority
+                />
+              </Link>
               <div className="cardInfo">
                 <h1>Professional Corner</h1>
                 <p>Upgrade your treatments with the latest tech</p>
@@ -55,7 +63,7 @@ function CategoriesSection() {
                   <a
                     onClick={(e) => {
                       e.preventDefault();
-                      router.push("/", {
+                      router.push("/professionals/all?page=1", {
                         onTransitionReady: slideInOut,
                       });
                     }}
@@ -66,7 +74,7 @@ function CategoriesSection() {
                   <a
                     onClick={(e) => {
                       e.preventDefault();
-                      router.push("/", {
+                      router.push("/professionals/all?page=1", {
                         onTransitionReady: slideInOut,
                       });
                     }}
@@ -85,7 +93,7 @@ function CategoriesSection() {
                   <a
                     onClick={(e) => {
                       e.preventDefault();
-                      router.push("/", {
+                      router.push("/centers/all?page=1", {
                         onTransitionReady: slideInOut,
                       });
                     }}
@@ -96,7 +104,7 @@ function CategoriesSection() {
                   <a
                     onClick={(e) => {
                       e.preventDefault();
-                      router.push("/", {
+                      router.push("/centers/all?page=1", {
                         onTransitionReady: slideInOut,
                       });
                     }}
@@ -106,22 +114,38 @@ function CategoriesSection() {
                   </a>
                 </div>
               </div>
-              <Image
-                src={card3}
-                alt="cover over"
-                className="categoriesImage right"
-                width={700}
-                priority
-              />
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/centers/all?page=1", {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
+              >
+                <Image
+                  src={card3}
+                  alt="Beauty Business Boost"
+                  priority
+                  className="categoriesImage rightImage"
+                />
+              </a>
             </div>
             <div className="homeCard">
-              <Image
-                src={card1}
-                alt="cover over"
-                className="categoriesImage"
-                width={700}
-                priority
-              />
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/personal/all?page=1", {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
+              >
+                <Image
+                  src={card1}
+                  alt="Beauty Routine"
+                  className="categoriesImage"
+                  priority
+                />
+              </a>
               <div className="cardInfo">
                 <h1>Your Beauty Routine</h1>
                 <p>Achieve your beauty goals with ease</p>
@@ -129,7 +153,7 @@ function CategoriesSection() {
                   <a
                     onClick={(e) => {
                       e.preventDefault();
-                      router.push("/", {
+                      router.push("/personal/all?page=1", {
                         onTransitionReady: slideInOut,
                       });
                     }}
@@ -140,7 +164,7 @@ function CategoriesSection() {
                   <a
                     onClick={(e) => {
                       e.preventDefault();
-                      router.push("/", {
+                      router.push("/personal/all?page=1", {
                         onTransitionReady: slideInOut,
                       });
                     }}
@@ -169,7 +193,6 @@ function CategoriesSection() {
             <h1>
               our <span>categories</span>
             </h1>
-
             <a
               className="contactBtn"
               onClick={(e) => {
@@ -223,23 +246,25 @@ function CategoriesSection() {
             modules={[Navigation, Autoplay]}
             className="homeSwiper"
           >
-            {categories.map((item) => (
-              <SwiperSlide className="homeSwiperSlide" key={item}>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    router.push(`/products/${item}?page=${1}`, {
-                      onTransitionReady: slideInOut,
-                    });
-                  }}
-                >
-                  <Image src={cover} alt="categories" priority />
-                  <h2 className={fatfaceFont.className}>
-                    {item.replace("-", " ")}
-                  </h2>
-                </a>
-              </SwiperSlide>
-            ))}
+            {categories
+              .filter((item) => item.toLowerCase() !== "all")
+              .map((item) => (
+                <SwiperSlide className="homeSwiperSlide" key={item}>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push(`/products/${item}?page=${1}`, {
+                        onTransitionReady: slideInOut,
+                      });
+                    }}
+                  >
+                    <Image src={cover} alt="categories" priority />
+                    <h2 className={fatfaceFont.className}>
+                      {item.replace("-", " ")}
+                    </h2>
+                  </a>
+                </SwiperSlide>
+              ))}
           </Swiper>
           <div className="categorieInfoCards">
             <div className="left">

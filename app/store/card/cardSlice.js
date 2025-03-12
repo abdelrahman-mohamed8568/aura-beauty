@@ -9,8 +9,7 @@ const cardSlice = createSlice({
   initialState,
   reducers: {
     addToCard: (state, action) => {
-      const { id, size, color, quantity } = action.payload;
-      // البحث عن المنتج مع مقارنة id و size و color
+      const { id, size, color, quantity, fromPath } = action.payload;
       const existingItem = state.items.find(
         (item) => item.id === id && item.size === size && item.color === color
       );
@@ -22,7 +21,8 @@ const cardSlice = createSlice({
         state.items.push({
           ...action.payload,
           quantity: 1,
-          maxQuantity: quantity, // نأخذ القيمة من البيانات المرسلة
+          maxQuantity: quantity,
+          fromPath: fromPath,
         });
       }
     },
@@ -33,7 +33,6 @@ const cardSlice = createSlice({
           !(item.id === id && item.size === size && item.color === color)
       );
     },
-
     plusQuantity: (state, action) => {
       const { id, size, color } = action.payload;
       const item = state.items.find(
@@ -52,6 +51,9 @@ const cardSlice = createSlice({
         item.quantity -= 1;
       }
     },
+    clearCart: (state) => {
+      state.items = [];
+    },
   },
 });
 
@@ -63,6 +65,6 @@ export const getTotalPrice = (state) =>
     0
   );
 
-export const { addToCard, removeCard, plusQuantity, minusQuantity } =
+export const { addToCard, removeCard, plusQuantity, minusQuantity, clearCart } =
   cardSlice.actions;
 export default cardSlice.reducer;

@@ -4,15 +4,21 @@ import "@/styles/checkout.css";
 import "swiper/css/scrollbar";
 import "react-phone-number-input/style.css";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Badge, Textarea } from "@chakra-ui/react";
-import { getTotalPrice } from "../store/card/cardSlice";
+import { clearCart, getTotalPrice } from "../store/card/cardSlice";
 import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { supabase } from "@/lib/supabase";
+import { useTransitionRouter } from "next-view-transitions";
+import { useEffect } from "react";
 function Checkout() {
+  const router = useTransitionRouter();
+  const dispatch = useDispatch();
   const cardItems = useSelector((state) => state.card.items);
   const total = useSelector(getTotalPrice);
   const cashDelivery = cardItems.some((item) => item.delivery === false);
@@ -23,8 +29,54 @@ function Checkout() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("بيانات النموذج:", data, total, cardItems);
+  useEffect(() => {
+    if (cardItems.length === 0) {
+      router.push("/products/all?page=1");
+    }
+  }, [cardItems, router]);
+
+  const onSubmit = async (data) => {
+    try {
+      const items = cardItems.map((item) => ({
+        id: item.id,
+        name: item.name,
+        category: item.category,
+        brand: item.brand,
+        quantity: item.quantity,
+        price: item.price,
+        cover: item.cover,
+        size: item.size,
+        color: item.color,
+      }));
+      const orderData = {
+        first_name: data.firstName,
+        last_name: data.lastName || null,
+        email: data.email || null,
+        phone: data.phone,
+        governorate: data.governorate,
+        city: data.city,
+        address: data.address,
+        note: data.note || null,
+        products: items,
+        total: total,
+        created_at: new Date().toISOString(),
+      };
+      const { error } = await supabase.from("orders").insert([orderData]);
+      if (error) {
+        toast.error("An error occurred while sending the order!");
+      } else {
+        toast.success("Your order has been sent successfully!");
+        setTimeout(() => {
+          router.push("/products/all?page=1");
+        }, 2000);
+        setTimeout(() => {
+          dispatch(clearCart());
+        }, 3000);
+        window.history.replaceState(null, "", "/products/all?page=1");
+      }
+    } catch (err) {
+      toast.error("An unexpected error occurred!");
+    }
   };
   const governorates = [
     { value: "", label: "Select Governorate", disabled: true },
@@ -56,17 +108,29 @@ function Checkout() {
     { value: "Sharkia", label: "Sharkia" },
     { value: "Assiut", label: "Assiut" },
   ];
-
   return (
     <div className="buyContainer">
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        limit={2}
+        theme="dark"
+      />
       <div className="checkoutContainer">
         <div className="info">
           <div className="formInfo">
-            <h2>order information</h2>
+            <h2>Order Information</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="formFlex">
                 <div className="field">
-                  <label>first name</label>
+                  <label>First Name</label>
                   <input
                     type="text"
                     autoFocus={true}
@@ -82,7 +146,7 @@ function Checkout() {
                 </div>
                 <div className="field">
                   <label>
-                    last name
+                    Last Name
                     <Badge
                       variant="subtle"
                       size="xs"
@@ -97,7 +161,7 @@ function Checkout() {
               </div>
               <div className="field">
                 <label>
-                  email address
+                  Email Address
                   <Badge
                     variant="subtle"
                     size="xs"
@@ -121,7 +185,7 @@ function Checkout() {
                 )}
               </div>
               <div className="field">
-                <label>phone number</label>
+                <label>Phone Number</label>
                 <Controller
                   name="phone"
                   control={control}
@@ -141,12 +205,12 @@ function Checkout() {
                 )}
               </div>
               <div className="field">
-                <label>country</label>
+                <label>Country</label>
                 <input type="text" placeholder="Egypt (EG)" disabled={true} />
               </div>
               <div className="formFlex">
                 <div className="field">
-                  <label>governorate</label>
+                  <label>Governorate</label>
                   <select
                     defaultValue=""
                     {...register("governorate", {
@@ -170,7 +234,7 @@ function Checkout() {
                   )}
                 </div>
                 <div className="field">
-                  <label>city</label>
+                  <label>City</label>
                   <input
                     type="text"
                     {...register("city", {
@@ -183,7 +247,7 @@ function Checkout() {
                 </div>
               </div>
               <div className="field">
-                <label>address</label>
+                <label>Address</label>
                 <input
                   type="text"
                   {...register("address", {
@@ -196,7 +260,7 @@ function Checkout() {
               </div>
               <div className="field">
                 <label>
-                  note
+                  Note
                   <Badge
                     variant="subtle"
                     size="xs"
@@ -207,7 +271,7 @@ function Checkout() {
                   </Badge>
                 </label>
                 <Textarea
-                  placeholder="let us know if you have any comments or requests..."
+                  placeholder="Let us know if you have any comments or requests..."
                   minH={"80px"}
                   borderRadius="15px"
                   _focus={{
@@ -237,9 +301,9 @@ function Checkout() {
                 </div>
               </div>
               <div className="homeBtn">
-                <button className="mainBtn">Order now</button>
+                <button className="mainBtn">Order Now</button>
                 <button type="submit" className="hoverBtn">
-                  Order now
+                  Order Now
                 </button>
               </div>
             </form>
@@ -288,7 +352,7 @@ function Checkout() {
             {!cashDelivery && (
               <div className="totalBox">
                 <p>Delivery:</p>
-                <h6>EGP: 0</h6>
+                <h6>Free</h6>
               </div>
             )}
             <div className="totalBox bold">

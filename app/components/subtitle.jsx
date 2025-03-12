@@ -1,7 +1,7 @@
 import { useTransitionRouter } from "next-view-transitions";
 import { slideInOut } from "./animations";
 
-const Subtitle = ({ name, category }) => {
+const Subtitle = ({ name, category, path }) => {
   const router = useTransitionRouter();
 
   return (
@@ -21,19 +21,19 @@ const Subtitle = ({ name, category }) => {
       <a
         onClick={(e) => {
           e.preventDefault();
-          router.push("/products/all?page=1", {
+          router.push(`/${path}/all?page=1`, {
             onTransitionReady: slideInOut,
           });
         }}
         className="subtitleLink"
       >
-        products
+        {path}
       </a>
       ›
       <a
         onClick={(e) => {
           e.preventDefault();
-          router.push(`/products/${category.replace(" ", "-")}?page=1`, {
+          router.push(`/${path}/${category.replace(" ", "-")}?page=1`, {
             onTransitionReady: slideInOut,
           });
         }}

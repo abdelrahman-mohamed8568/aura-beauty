@@ -46,7 +46,7 @@
 .cardBody .productsCardInfo {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   gap: 10px;
 }
 .productsCardInfo h3 {
@@ -55,16 +55,19 @@
   display: flex;
   color: var(--dc);
 }
-.productsCardInfo p {
-  font-size: 0.7rem;
-  color: var(--dc);
-}
 
-.cardBody p,
-.productsCardInfo h5 {
+.cardBody p {
   text-transform: uppercase;
   font-weight: 400;
   color: var(--gc);
+  font-size: 0.8rem;
+}
+.productsCardInfo h5 {
+  font-weight: 800;
+  color: var(--dc);
+  font-size: 0.8rem;
+  text-align: right;
+  width: 35%;
 }
 .cardCategory {
   display: flex;

@@ -155,6 +155,13 @@ html {
 }
 .shoppingCartDetails .shoppingCartInfo h3 {
   font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+.shoppingCartDetails .shoppingCartInfo h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--gc);
 }
 .shoppingCartImg {
   border-radius: 10px;
@@ -168,7 +175,6 @@ html {
   cursor: pointer;
 }
 .hoverText {
-  text-decoration: none;
   position: relative;
   cursor: pointer;
   text-align: start;
@@ -314,7 +320,7 @@ html {
   right: 20;
 }
 /* ----------------------------------------- */
-::view-transition-old(root),
+/* ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none !important;
 }
@@ -329,7 +335,7 @@ html {
 ::view-transition-new(root) {
   z-index: 1000;
   animation: none !important;
-}
+} */
 /* -------------------------------------- */
 .formInfo label,
 .sendMessageContent label {

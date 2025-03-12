@@ -10,6 +10,7 @@ import { shallowEqual, useSelector } from "react-redux";
 import { slideInOut } from "../animations";
 import { usePathname } from "next/navigation";
 import Search from "../search";
+import Link from "next/link";
 
 function Navbar() {
   const router = useTransitionRouter();
@@ -44,7 +45,7 @@ function Navbar() {
             onClick={(e) => {
               e.preventDefault();
               router.push("/", {
-                onTransitionReady: slideInOut,
+                // onTransitionReady: slideInOut,
               });
             }}
           >
@@ -57,7 +58,7 @@ function Navbar() {
             onClick={(e) => {
               e.preventDefault();
               router.push("/", {
-                onTransitionReady: slideInOut,
+                // onTransitionReady: slideInOut,
               });
             }}
           >
@@ -74,18 +75,21 @@ function Navbar() {
               <span>e</span>
             </span>
           </a>
-          <a
+
+          <Link
+            href={"/products/all?page=1"}
+            prefetch={true}
             className={
               pathname.startsWith("/products")
                 ? "navLink disabledLink"
                 : "navLink"
             }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/products/all?page=1", {
-                onTransitionReady: slideInOut,
-              });
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   router.push("/products/all?page=1", {
+            //   });
+            // }}
+            // onTransitionReady: slideInOut,
           >
             <span className="span-mother">
               <span>P</span>
@@ -107,15 +111,126 @@ function Navbar() {
               <span>t</span>
               <span>s</span>
             </span>
+          </Link>
+          <a
+            className={
+              pathname.startsWith("/professionals")
+                ? "navLink disabledLink"
+                : "navLink"
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/professionals/all?page=1", {
+                // onTransitionReady: slideInOut,
+              });
+            }}
+          >
+            <span className="span-mother">
+              <span>P</span>
+              <span>r</span>
+              <span>o</span>
+              <span>f</span>
+              <span>e</span>
+              <span>s</span>
+              <span>s</span>
+              <span>i</span>
+              <span>o</span>
+              <span>n</span>
+              <span>a</span>
+              <span>l</span>
+              <span>s</span>
+            </span>
+            <span className="span-mother2">
+              <span>P</span>
+              <span>r</span>
+              <span>o</span>
+              <span>f</span>
+              <span>e</span>
+              <span>s</span>
+              <span>s</span>
+              <span>i</span>
+              <span>o</span>
+              <span>n</span>
+              <span>a</span>
+              <span>l</span>
+              <span>s</span>
+            </span>
           </a>
           <a
+            className={
+              pathname.startsWith("/centers")
+                ? "navLink disabledLink"
+                : "navLink"
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/centers/all?page=1", {
+                // onTransitionReady: slideInOut,
+              });
+            }}
+          >
+            <span className="span-mother">
+              <span>c</span>
+              <span>e</span>
+              <span>n</span>
+              <span>t</span>
+              <span>e</span>
+              <span>r</span>
+              <span>s</span>
+            </span>
+            <span className="span-mother2">
+              <span>c</span>
+              <span>e</span>
+              <span>n</span>
+              <span>t</span>
+              <span>e</span>
+              <span>r</span>
+              <span>s</span>
+            </span>
+          </a>
+          <a
+            className={
+              pathname.startsWith("/personal")
+                ? "navLink disabledLink"
+                : "navLink"
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/personal/all?page=1", {
+                // onTransitionReady: slideInOut,
+              });
+            }}
+          >
+            <span className="span-mother">
+              <span>P</span>
+              <span>e</span>
+              <span>r</span>
+              <span>s</span>
+              <span>o</span>
+              <span>n</span>
+              <span>a</span>
+              <span>l</span>
+            </span>
+            <span className="span-mother2">
+              <span>P</span>
+              <span>e</span>
+              <span>r</span>
+              <span>s</span>
+              <span>o</span>
+              <span>n</span>
+              <span>a</span>
+              <span>l</span>
+            </span>
+          </a>
+        </li>
+        {/*  <a
             className={
               pathname === "/contact" ? "navLink disabledLink" : "navLink"
             }
             onClick={(e) => {
               e.preventDefault();
               router.push("/contact", {
-                onTransitionReady: slideInOut,
+                // onTransitionReady: slideInOut,
               });
             }}
           >
@@ -145,7 +260,7 @@ function Navbar() {
             onClick={(e) => {
               e.preventDefault();
               router.push("/about", {
-                onTransitionReady: slideInOut,
+                // onTransitionReady: slideInOut,
               });
             }}
           >
@@ -163,8 +278,7 @@ function Navbar() {
               <span>u</span>
               <span>t</span>
             </span>
-          </a>
-        </li>
+          </a> */}
         <li className="settings">
           <a
             className={
@@ -173,7 +287,7 @@ function Navbar() {
             onClick={(e) => {
               e.preventDefault();
               router.push("/shopping-cart", {
-                onTransitionReady: slideInOut,
+                // onTransitionReady: slideInOut,
               });
             }}
           >
@@ -196,7 +310,7 @@ function Navbar() {
             onClick={(e) => {
               e.preventDefault();
               router.push("/wishlist", {
-                onTransitionReady: slideInOut,
+                // onTransitionReady: slideInOut,
               });
             }}
           >

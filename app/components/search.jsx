@@ -21,7 +21,6 @@ function Search() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const [value, setValue] = useState("");
-
   const filter = products.filter((item) =>
     item.name.toLowerCase().includes(value.toLowerCase())
   );
@@ -95,9 +94,9 @@ function Search() {
                           onClick={(e) => {
                             e.preventDefault();
                             router.push(
-                              `/products/${item.category.replace(" ", "-")}/${
-                                item.id
-                              }`,
+                              `/products/${item.category[0]
+                                .toString()
+                                .replace(" ", "-")}/${item.id}`,
                               {
                                 onTransitionReady: slideInOut,
                               }
@@ -119,9 +118,9 @@ function Search() {
                           onClick={(e) => {
                             e.preventDefault();
                             router.push(
-                              `/products/${item.category.replace(" ", "-")}/${
-                                item.id
-                              }`,
+                              `/products/${item.category[0]
+                                .toString()
+                                .replace(" ", "-")}/${item.id}`,
                               {
                                 onTransitionReady: slideInOut,
                               }

@@ -1,7 +1,3 @@
-.shoppingCartHeader p {
-  font-weight: 800;
-  color: var(--dc);
-}
 .shoppingCartContainer .total {
   display: flex;
   justify-content: center;

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import {
   fetchProducts,
@@ -24,7 +24,7 @@ import {
 } from "@/appComponents/filter/filterOptions";
 import ProductsList from "@/appComponents/productsList";
 
-function Products() {
+function Professionals() {
   const router = useTransitionRouter();
   const dispatch = useDispatch();
   const pathname = usePathname();
@@ -108,4 +108,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Professionals;

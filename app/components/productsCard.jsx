@@ -10,6 +10,7 @@ import { Badge } from "@chakra-ui/react";
 import { HiAtSymbol } from "react-icons/hi";
 import { useTransitionRouter } from "next-view-transitions";
 import { slideInOut } from "./animations";
+import { usePathname } from "next/navigation";
 
 const ProductsCard = memo((product) => {
   const router = useTransitionRouter();
@@ -29,11 +30,15 @@ const ProductsCard = memo((product) => {
     isProductInWishlist == true
       ? (dispatch(removeHeart(product.id)),
         toast.error("This product has been removed from the wishlist !"))
-      : (dispatch(addHeart(product)),
+      : (dispatch(addHeart({ ...product, fromPath: FromPath })),
         toast.success("This product has been added to your wishlist."));
 
     setActiveHeart(!isProductInWishlist);
   };
+  const pathname = usePathname();
+  const pathSegments = pathname.split("/");
+  const FromPath = pathSegments[1];
+  const categorys = product.category[0].toString();
 
   return (
     <div className="productCard">
@@ -67,14 +72,13 @@ const ProductsCard = memo((product) => {
             </svg>
           </button>
         </Tooltip>
-
         <a
           onClick={(e) => {
             e.preventDefault();
             router.push(
-              `/products/${product.category.replace(" ", "-")}/${product.id}`,
+              `/${FromPath}/${categorys.replace(" ", "-")}/${product.id}`,
               {
-                onTransitionReady: slideInOut,
+                // onTransitionReady: slideInOut,
               }
             );
           }}
@@ -85,7 +89,6 @@ const ProductsCard = memo((product) => {
             alt={product.name}
             width={230}
             height={230}
-            priority
           />
           <div className="view">
             <div className="homeBtn">
@@ -97,24 +100,28 @@ const ProductsCard = memo((product) => {
       </div>
       <div className="cardBody">
         <div className="cardCategory">
-          <p className="hoverText">
-            <a
-              onClick={(e) => {
-                e.preventDefault();
-                router.push(
-                  `/products/${product.category.replace(
-                    /\s+/g,
-                    "-"
-                  )}?page=${1}`,
-                  {
-                    onTransitionReady: slideInOut,
-                  }
-                );
-              }}
-            >
-              {product.category}
-            </a>
-          </p>
+          <div>
+            {product.category.map((item, index) => {
+              const category = item.toString();
+              return (
+                <p className="hoverText" key={index}>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push(
+                        `/${FromPath}/${category.replace(" ", "-")}?page=${1}`,
+                        {
+                          // onTransitionReady: slideInOut,
+                        }
+                      );
+                    }}
+                  >
+                    {category}
+                  </a>
+                </p>
+              );
+            })}
+          </div>
           {product.store ? (
             <Badge variant="solid" colorPalette="green" size="xs" height={4}>
               In Stock
@@ -132,15 +139,18 @@ const ProductsCard = memo((product) => {
             <a
               onClick={(e) => {
                 e.preventDefault();
-                router.push(`/products/${product.category}/${product.id}`, {
-                  onTransitionReady: slideInOut,
-                });
+                router.push(
+                  `/${FromPath}/${categorys.replace(" ", "-")}/${product.id}`,
+                  {
+                    // onTransitionReady: slideInOut,
+                  }
+                );
               }}
             >
               {product.name}
             </a>
           </h3>
-          {product.price ? <h5>${product.price}</h5> : <p>indefinite</p>}
+          {product.price ? <h5>EGP {product.price}</h5> : <p>indefinite</p>}
         </div>
       </div>
     </div>
