@@ -283,15 +283,33 @@ function ProductsDetails() {
                 <div className="sideImages">
                   {images.length > 5 ? (
                     <Swiper
-                      direction="vertical"
-                      slidesPerView={4}
                       spaceBetween={10}
                       navigation={true}
                       modules={[Navigation]}
+                      breakpoints={{
+                        320: {
+                          direction: "horizontal",
+                          slidesPerView: 3,
+                        },
+                        375: {
+                          slidesPerView: 3,
+                        },
+                        768: {
+                          direction: "horizontal",
+                          slidesPerView: 4,
+                        },
+                        1024: {
+                          direction: "vertical",
+                          slidesPerView: 4,
+                        },
+                      }}
                       className="sideImagesSwiper"
                     >
                       {images.map((img, index) => (
-                        <SwiperSlide key={index}>
+                        <SwiperSlide
+                          key={index}
+                          className="sideImagesSwiperBox"
+                        >
                           <Image
                             src={img}
                             alt="Product Image"
@@ -440,7 +458,11 @@ function ProductsDetails() {
                           >
                             Size:
                           </RadioCardLabel>
-                          <HStack>
+                          <HStack
+                            style={{
+                              flexWrap: "wrap",
+                            }}
+                          >
                             {selectedProduct.size.map((item) => (
                               <RadioCardItem
                                 key={item}
@@ -472,7 +494,11 @@ function ProductsDetails() {
                           >
                             Color:
                           </RadioCardLabel>
-                          <HStack>
+                          <HStack
+                            style={{
+                              flexWrap: "wrap",
+                            }}
+                          >
                             {selectedProduct.color.map((item) => (
                               <RadioCardItem
                                 key={item}
@@ -614,6 +640,24 @@ function ProductsDetails() {
                   pauseOnMouseEnter: true,
                 }}
                 modules={[Autoplay]}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                  },
+                  480: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                  },
+                }}
                 className="productsSwiper"
               >
                 {relatedProducts.map((product) => (

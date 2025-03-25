@@ -21,11 +21,12 @@
   font-size: 0.9rem;
 }
 
-.user {
+.navScroll {
   width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   height: 35px;
   color: var(--dc);
   border-bottom: 1px solid var(--dc);
@@ -34,11 +35,23 @@
   font-weight: 400;
 }
 
+.navContact {
+  position: absolute;
+  right: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.navContact .span-mother span,
+.navContact .span-mother2 span {
+  font-size: 12px;
+}
+
 .hide {
   margin-top: -36px;
 }
 
-ul {
+.navCategory {
   width: 100%;
   height: 50px;
   display: flex;
@@ -46,6 +59,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 li {
   width: 100%;
   display: flex;
@@ -80,12 +94,16 @@ li {
   color: var(--dc);
 }
 
-/* 
-.ulToggle {
-  right: 0;
-  padding-left: 40px;
-} */
+.navHidden {
+  color: var(--dc);
+}
+.navHidden .socialIcons {
+  flex-direction: row;
+}
 
+.navHidden .socialIcons p {
+  display: none;
+}
 .navLink {
   text-decoration: none;
   text-transform: uppercase;
@@ -114,48 +132,65 @@ li {
 .navLink:disabled:hover .span-mother span {
   transform: translateY(0);
 }
-.navLink .span-mother span:nth-child(1) {
+.navLink
+  .span-mother
+  span:nth-child(1)
+  .navLink
+  .span-mother2
+  span:nth-child(1) {
   transition: 0.2s;
 }
 
-.navLink .span-mother span:nth-child(2) {
+.navLink .span-mother span:nth-child(2),
+.navLink .span-mother2 span:nth-child(2) {
   transition: 0.3s;
 }
 
-.navLink .span-mother span:nth-child(3) {
+.navLink .span-mother span:nth-child(3),
+.navLink .span-mother2 span:nth-child(3) {
   transition: 0.4s;
 }
 
-.navLink .span-mother span:nth-child(4) {
+.navLink .span-mother span:nth-child(4),
+.navLink .span-mother2 span:nth-child(4) {
   transition: 0.5s;
 }
 
-.navLink .span-mother span:nth-child(5) {
+.navLink .span-mother span:nth-child(5),
+.navLink .span-mother2 span:nth-child(5) {
   transition: 0.6s;
 }
 
-.navLink .span-mother span:nth-child(6) {
+.navLink .span-mother span:nth-child(6),
+.navLink .span-mother2 span:nth-child(6) {
   transition: 0.7s;
 }
-.navLink .span-mother span:nth-child(7) {
+.navLink .span-mother span:nth-child(7),
+.navLink .span-mother2 span:nth-child(7) {
   transition: 0.8s;
 }
-.navLink .span-mother span:nth-child(8) {
+.navLink .span-mother span:nth-child(8),
+.navLink .span-mother2 span:nth-child(8) {
   transition: 0.9s;
 }
-.navLink .span-mother span:nth-child(9) {
+.navLink .span-mother span:nth-child(9),
+.navLink .span-mother2 span:nth-child(9) {
   transition: 1s;
 }
-.navLink .span-mother span:nth-child(10) {
+.navLink .span-mother span:nth-child(10),
+.navLink .span-mother2 span:nth-child(10) {
   transition: 1.1s;
 }
-.navLink .span-mother span:nth-child(11) {
+.navLink .span-mother span:nth-child(11),
+.navLink .span-mother2 span:nth-child(11) {
   transition: 1.2s;
 }
-.navLink .span-mother span:nth-child(12) {
+.navLink .span-mother span:nth-child(12),
+.navLink .span-mother2 span:nth-child(12) {
   transition: 1.3s;
 }
-.navLink .span-mother span:nth-child(13) {
+.navLink .span-mother span:nth-child(13),
+.navLink .span-mother2 span:nth-child(13) {
   transition: 1.4s;
 }
 
@@ -168,6 +203,7 @@ li {
 
 .navLink .span-mother2 span {
   transform: translateY(1.2em);
+  transition: 0.2s;
 }
 
 .navLink:hover .span-mother2 span {
@@ -177,67 +213,10 @@ li {
   transform: translateY(1.2em);
 }
 
-.navLink .span-mother2 span {
-  transition: 0.2s;
-}
-
-.navLink .span-mother2 span:nth-child(2) {
-  transition: 0.3s;
-}
-
-.navLink .span-mother2 span:nth-child(3) {
-  transition: 0.4s;
-}
-
-.navLink .span-mother2 span:nth-child(4) {
-  transition: 0.5s;
-}
-
-.navLink .span-mother2 span:nth-child(5) {
-  transition: 0.6s;
-}
-
-.navLink .span-mother2 span:nth-child(6) {
-  transition: 0.7s;
-}
-.navLink .span-mother2 span:nth-child(7) {
-  transition: 0.8s;
-}
-.navLink .span-mother2 span:nth-child(8) {
-  transition: 0.9s;
-}
-.navLink .span-mother2 span:nth-child(9) {
-  transition: 1s;
-}
-.navLink .span-mother2 span:nth-child(10) {
-  transition: 1.1s;
-}
-.navLink .span-mother2 span:nth-child(11) {
-  transition: 1.2s;
-}
-.navLink .span-mother2 span:nth-child(12) {
-  transition: 1.3s;
-}
-.navLink .span-mother2 span:nth-child(13) {
-  transition: 1.4s;
-}
-
 .navHeart {
   color: var(--rc);
 }
-/* 
-@media (max-width: 768px) {
-  .containerMedia {
-    height: 80vh;
-  }
-  .toggle {
-    top: 5px;
-  }
-  ul {
-    flex-direction: column;
-    gap: 60px;
-  }
-} */
+
 .overlayBox {
   height: 100vh !important;
   min-width: 100vw !important;
@@ -329,4 +308,198 @@ li {
 .emptyResults {
   color: var(--gc);
   font-size: 30px;
+}
+/* ------------------------------------- */
+.toggle {
+  height: 30x;
+  width: 30px;
+  transform: 0.2s;
+  position: absolute;
+  top: 10;
+  right: 20px;
+}
+.toggle .checkbox {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+.line {
+  transition: 0.5s;
+  stroke-width: 6px;
+  stroke: var(--dc);
+}
+.lineTop {
+  stroke-dasharray: 40 40;
+  stroke-dashoffset: 25;
+}
+.lineBottom {
+  stroke-dasharray: 40 40;
+  stroke-dashoffset: 60;
+}
+.lineMid {
+  stroke-dasharray: 40 40;
+}
+.toggle .checkbox:checked + svg .line {
+  stroke: var(--yc);
+}
+.toggle .checkbox:checked + svg .lineTop {
+  stroke-dashoffset: 0;
+  transform-origin: left;
+  transform: rotateZ(45deg) translate(-7px, -5px);
+}
+.toggle .checkbox:checked + svg .lineMid {
+  stroke-dashoffset: 40;
+}
+.toggle .checkbox:checked + svg .lineBottom {
+  stroke-dashoffset: 0;
+  transform-origin: left;
+  transform: rotateZ(-45deg) translate(-5px, 5px);
+}
+@media (min-width: 769) {
+  .toggle {
+    display: none;
+  }
+  .navLink {
+    opacity: 1 !important;
+  }
+  .navCategory .navContact {
+    display: none;
+  }
+  .navHidden {
+    display: none;
+  }
+}
+
+@media (max-width: 768) {
+  .navScroll {
+    display: none;
+  }
+  .container {
+    top: 2vh;
+    left: 2.5vw;
+    border: none;
+    height: 8vh;
+    width: 95vw;
+    border-radius: 15px;
+    box-shadow: inset 0px 0px 100px 1px #e2e2e2;
+    transition: all 0.9s ease-in-out;
+  }
+  .navOpen {
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+  }
+  .navCategoryBox {
+    flex-direction: column;
+    position: absolute;
+    top: 15%;
+  }
+  .navOpenOptionsAll {
+    height: 100%;
+    flex-direction: column;
+  }
+  .navOverlay {
+    animation: fadeIn 0.7s ease-in-out forwards;
+    width: 200vw;
+    height: 200vh;
+    position: absolute;
+    display: flex;
+    background-color: var(--dc);
+    z-index: -1;
+    opacity: 0.3 !important;
+    transition: all 1s ease-in-out;
+  }
+  .navOpenOptionsAll .settings {
+    opacity: 0;
+  }
+  .navLink:not(.settings .navLink) {
+    align-self: start;
+    border-bottom: 1px dotted var(--dc);
+    padding: 0 15px;
+  }
+  .container .span-mother span,
+  .container .span-mother2 span {
+    font-size: 26px !important;
+  }
+  .span-mother2 span,
+  .disabledLink {
+    color: var(--wc) !important;
+  }
+  .navContact {
+    position: static;
+  }
+  .navLogo {
+    width: 45px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 999;
+  }
+  .settings {
+    position: absolute;
+    top: 2.5vh;
+    flex-direction: row !important;
+    transition: all 1s ease-in-out;
+  }
+  .settings .navLink {
+    display: flex !important;
+  }
+  .settings svg {
+    width: 20px;
+    height: 20px;
+  }
+  #Basket {
+    top: 5 !important;
+  }
+  .navHidden {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    position: relative;
+    gap: 10px;
+    padding-top: 10px;
+    font-size: 10px;
+  }
+  .navOpen .navHidden {
+    animation: fadeInIcon 2s ease-in-out;
+  }
+  .searchBox {
+    width: 70% !important;
+  }
+  .emptyResults {
+    font-size: 1.4rem !important;
+  }
+}
+@media (max-width: 425) {
+  .searchBox {
+    width: 90% !important;
+  }
+  .emptyResults {
+    font-size: 1.1rem !important;
+  }
+  .resultsBox {
+    width: 90% !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.3;
+  }
+}
+@keyframes fadeInIcon {
+  from {
+    top: 100vh;
+  }
+  to {
+    top: 0;
+  }
 }

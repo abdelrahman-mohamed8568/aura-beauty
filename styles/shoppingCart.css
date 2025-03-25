@@ -6,6 +6,7 @@
   position: absolute;
   top: 35vh;
 }
+
 .shoppingCartContainer .totalBox {
   width: 80%;
   display: flex;
@@ -77,4 +78,16 @@
 .shoppingText {
   color: var(--dc);
   padding: 3vh 0;
+}
+@media (max-width: 425) {
+  .shoppingCartContainer .totalBox {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .shoppingCartContainer {
+    padding-top: 50px;
+  }
+  .quantity span {
+    font-size: 14px;
+  }
 }

@@ -12,6 +12,7 @@ import {
   setPriceFilter,
   setDateFilter,
   setFromPath,
+  setCategoryOrder,
 } from "@/store/products/productsSlice";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useTransitionRouter } from "next-view-transitions";
@@ -23,6 +24,13 @@ import {
   DATE_OPTIONS,
 } from "@/appComponents/filter/filterOptions";
 import ProductsList from "@/appComponents/productsList";
+import {
+  DialogRoot,
+  DialogTrigger,
+  DialogContent,
+  DialogActionTrigger,
+} from "@/components/ui/dialog";
+import { CloseButton } from "@/components/ui/close-button";
 
 function Products() {
   const router = useTransitionRouter();
@@ -48,7 +56,6 @@ function Products() {
   const categories = useSelector(selectCategories);
   const pathSegments = pathname.split("/");
   const FromPath = pathSegments[1];
-  const categoryFromPath = pathSegments[2] || "all";
 
   useEffect(() => {
     const initialPage = pageFromURL ? parseInt(pageFromURL, 10) : 1;
@@ -59,40 +66,62 @@ function Products() {
     dispatch(setPriceFilter("1"));
     dispatch(setDateFilter("1"));
     dispatch(fetchProducts());
+    dispatch(setCategoryOrder(["hifu", "cryo", "botox", "filler"]));
   }, [pageFromURL, currentCategory, pathname, dispatch]);
+
+  const Filters = () => (
+    <>
+      <FilterSection
+        title="price"
+        options={PRICE_OPTIONS}
+        value={priceValue}
+        onValueChange={(e) => {
+          setPriceValue(e.value);
+          dispatch(setPriceFilter(e.value));
+        }}
+      />
+      <FilterSection
+        title="stock"
+        options={STOCK_OPTIONS}
+        value={stockValue}
+        onValueChange={(e) => {
+          setStockValue(e.value);
+          dispatch(setStockFilter(e.value));
+        }}
+      />
+      <FilterSection
+        title="sort by"
+        options={DATE_OPTIONS}
+        value={dateValue}
+        onValueChange={(e) => {
+          setDateValue(e.value);
+          dispatch(setDateFilter(e.value));
+        }}
+      />
+    </>
+  );
 
   return (
     <div className="mainContainer">
       <div className="productsContainer">
+        <DialogRoot>
+          <DialogTrigger asChild>
+            <button className="filterBtn">Filter</button>
+          </DialogTrigger>
+          <DialogContent className="filterDialog">
+            <DialogActionTrigger asChild>
+              <CloseButton className="closeButton" />
+            </DialogActionTrigger>
+            <div className="filterContent">
+              <Filters />
+            </div>
+          </DialogContent>
+        </DialogRoot>
+
         <div className="filter">
-          <FilterSection
-            title="price"
-            options={PRICE_OPTIONS}
-            value={priceValue}
-            onValueChange={(e) => {
-              setPriceValue(e.value);
-              dispatch(setPriceFilter(e.value));
-            }}
-          />
-          <FilterSection
-            title="stock"
-            options={STOCK_OPTIONS}
-            value={stockValue}
-            onValueChange={(e) => {
-              setStockValue(e.value);
-              dispatch(setStockFilter(e.value));
-            }}
-          />
-          <FilterSection
-            title="sort by"
-            options={DATE_OPTIONS}
-            value={dateValue}
-            onValueChange={(e) => {
-              setDateValue(e.value);
-              dispatch(setDateFilter(e.value));
-            }}
-          />
+          <Filters />
         </div>
+
         <ProductsList
           products={products}
           currentPage={currentPage}

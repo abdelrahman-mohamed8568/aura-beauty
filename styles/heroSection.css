@@ -4,6 +4,7 @@
   background-color: var(--wc);
   border-radius: 45px;
   padding-bottom: 5vh;
+  width: 100%;
 }
 .heroImage {
   background-color: var(--yc);
@@ -44,11 +45,55 @@
   right: 160;
   bottom: 10;
   position: absolute;
-
   height: 100vh;
   border-radius: 350px 350px 0 0;
 }
 .heroEmpty {
   background-color: var(--yc);
   width: 35%;
+}
+/* ---------------------- */
+@media (max-width: 1024) {
+  .hero {
+    top: -55vh;
+  }
+  .heroImage {
+    height: 100%;
+    width: 100%;
+    padding-top: 15vh;
+    background-color: var(--wc);
+  }
+  .homeCover {
+    height: 100%;
+    width: 100%;
+  }
+  .heroContent {
+    justify-content: center;
+  }
+  .heroEmpty {
+    display: none;
+  }
+  .coverOver {
+    display: none;
+    position: static;
+  }
+  .heroText {
+    width: 100%;
+  }
+  .heroContent h1 {
+    width: 80%;
+  }
+}
+@media (max-width: 768) {
+  .hero {
+    top: -25vh;
+  }
+}
+@media (max-width: 425) {
+  .hero {
+    top: 0;
+  }
+  .heroText {
+    height: 50vh;
+  }
 }

@@ -16,97 +16,96 @@
   background-size: 240% 240%;
   animation: gradient-animation 15s ease infinite;
   position: sticky;
-  top: -170vh;
+  top: -185% !important;
   z-index: 2;
 }
 
 .headerText {
   display: flex;
   flex-direction: column;
-  font-size: 5rem;
-  font-weight: 800;
   text-transform: uppercase;
+  width: 100%;
+  font-size: 4rem;
+  font-weight: 800;
   color: var(--wc);
   letter-spacing: -0.3rem;
-  left: -400;
-  position: relative;
-  padding: 5vh 0;
+  padding: 5vh 10vh;
 }
 .headerText span {
-  animation: text1 linear;
-  animation-timeline: view();
-  animation-range: entry 0% entry 200%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  width: 90%;
 }
 
-.headerText span:nth-child(2) {
-  animation: text2 linear;
-  animation-timeline: view();
-  animation-range: entry 0% entry 200%;
-}
-.headerText span:nth-child(3) {
-  animation: text3 linear;
-  animation-timeline: view();
-  animation-range: entry 0% entry 100%;
-}
 .homeCards {
   width: 90%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 15px;
   z-index: 4;
 }
 .homeCard {
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 .categoriesImage {
   position: relative;
   border-radius: 25px;
-  transition: all 0.4s ease-in-out;
-  animation: leftAppear linear;
-  animation-timeline: view();
-  animation-range: entry 0% entry 100%;
   cursor: pointer;
-  height: 450px;
-  width: 1000px;
+  transition: all 0.3s ease-in-out;
+  width: 90vw;
+  background-color: #fff;
+  height: 70vh;
 }
-.rightImage {
-  animation: rightAppear linear;
-  animation-timeline: view();
-  animation-range: entry 0% entry 100%;
-}
+
 .categoriesImage:hover {
   filter: brightness(0.9);
 }
-.cardInfo {
+
+.cardInfo,
+.cardDescription {
   display: flex;
   flex-direction: column;
   text-align: right;
   align-items: flex-end;
-  gap: 15px;
-  animation: up linear;
-  animation-timeline: view();
-  animation-range: entry -30% entry 100%;
+  gap: 5px;
+  width: 60% !important;
 }
-.cardInfo:nth-child(1) {
+
+.cardInfo span {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  padding: 0 5px;
+}
+
+.leftCard,
+.leftCard .cardDescription {
   text-align: left;
   align-items: flex-start;
 }
+
 .cardInfo h1 {
   text-transform: uppercase;
-  font-size: 4rem;
-  letter-spacing: -0.3rem;
+  font-size: 3rem;
+  letter-spacing: -0.2rem;
   color: var(--wc);
   font-weight: 800;
 }
+
 .cardInfo p {
   text-transform: uppercase;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--bc);
-  width: 50%;
+  width: 70%;
 }
 .cardInfo .mainBtn {
   color: var(--wc);
@@ -130,13 +129,10 @@
   border-radius: 45px;
 }
 .categorieInfo .headerText {
-  left: 100;
-  position: absolute;
   color: var(--dc);
 }
 .categorieInfoBox {
   width: 100%;
-  height: 90vh;
   position: relative;
 }
 .categorieInfoBox h2 {
@@ -146,15 +142,13 @@
   text-transform: capitalize;
   color: var(--dc);
   text-align: start;
-  position: absolute;
-  left: 15vh;
-  top: 50vh;
+  padding: 0 10vh;
 }
 .categorieText {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: 10vh;
+  padding-bottom: 5vh;
   text-transform: uppercase;
 }
 .categorieText h1 {
@@ -162,6 +156,7 @@
   font-size: 3rem;
   font-weight: 300;
 }
+
 .categorieText h1 span {
   color: var(--wc);
   background-color: var(--dc);
@@ -197,7 +192,7 @@
 .homeSwiperSlide h2 {
   cursor: pointer;
   position: absolute;
-  bottom: 70;
+  bottom: 20%;
   right: 0;
   left: 0;
   letter-spacing: -0.2rem;
@@ -213,6 +208,128 @@
   margin-bottom: 20vh;
 }
 
+@media (max-width: 1024) {
+  .categories {
+    top: -285% !important;
+  }
+  .headerText {
+    font-size: 3.5rem;
+    align-items: center;
+    padding: 40px 0 0 0;
+  }
+  .headerText span {
+    margin-top: -40px;
+    justify-content: center;
+  }
+  .homeCard {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+  }
+  .reverse {
+    flex-direction: column-reverse;
+  }
+  .cardInfo {
+    width: 100%;
+  }
+  .cardInfo span {
+    height: 80px;
+    margin-top: -50px;
+  }
+  .cardInfo h1 {
+    font-size: 2.5rem;
+  }
+  .cardInfo p {
+    font-size: 0.8rem;
+  }
+  .categoriesImage {
+    margin-bottom: 50px;
+  }
+  /* ------------------------ */
+  .categorieInfoBox h2 {
+    font-size: 1rem;
+    width: 100%;
+  }
+  .categorieText h1 {
+    font-size: 1.2rem;
+  }
+  .categorieInfoCards {
+    flex-direction: column;
+    align-items: center;
+    /* background-color: blueviolet; */
+    margin-top: -20vh !important;
+  }
+  .categorieInfoCards .top,
+  .bottom {
+    max-width: 85vw !important;
+    max-height: 300px !important;
+  }
+  .left,
+  .right {
+    align-items: center !important;
+  }
+  .numberBox {
+    font-size: 3.5rem !important;
+  }
+  .numberBox .spanPlus {
+    font-size: 1.5rem !important;
+  }
+  .right h2,
+  .left h2 {
+    font-size: 1.5rem !important;
+  }
+}
+@media (max-width: 768) {
+  .categories {
+    top: -280% !important;
+  }
+  .categoriesImage {
+    height: 100%;
+  }
+  .cardInfo {
+    width: 100% !important;
+  }
+  .cardDescription {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100% !important;
+  }
+  .leftCard .cardDescription {
+    flex-direction: row;
+  }
+}
+@media (max-width: 425) {
+  .categories {
+    top: -180% !important;
+  }
+}
+@media (max-width: 375) {
+  .categories {
+    top: -165% !important;
+  }
+}
+@media (max-width: 320) {
+  .categories {
+    top: -155% !important;
+  }
+  .categoriesImage {
+    height: 200px;
+  }
+  .cardInfo h1 {
+    font-size: 2.3rem;
+  }
+  .categorieText h1 {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+  }
+  .categorieInfoCards .top,
+  .bottom {
+    max-height: 250px !important;
+  }
+}
 .categorieInfoCards {
   width: 100%;
   height: 100%;
@@ -227,15 +344,17 @@
   height: 400px;
   border-radius: 40px;
   background-color: var(--dc);
-  /* background-color: #70707070; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .right,
 .left {
-  width: 70%;
+  width: 100%;
   height: 100%;
-  display: flex;
   gap: 25px;
+  display: flex;
   flex-direction: column;
 }
 .left {
@@ -270,6 +389,7 @@
 .numberBox .spanPlus {
   font-size: 4rem;
   color: var(--yc);
+  padding: 0 5px;
 }
 .infoBox:hover {
   background-color: var(--yc);
@@ -284,7 +404,7 @@
 }
 
 .infoBox:hover .span-mother span {
-  transform: translateY(-2.5em);
+  transform: translateY(-3em);
 }
 .infoBox .span-mother span:nth-child(1) {
   transition: 0.7s;
@@ -312,7 +432,7 @@
 }
 
 .infoBox .span-mother2 span {
-  transform: translateY(2.5em);
+  transform: translateY(3em);
 }
 
 .infoBox:hover .span-mother2 span {
@@ -343,11 +463,11 @@
   font-size: 2rem;
   font-weight: 600;
   color: var(--wc);
-  padding: 50px 200px 0;
+  padding-right: 10px;
   text-transform: uppercase;
   display: flex;
-  width: 50%;
   text-align: right;
+  align-self: end;
 }
 /* ---------------------------------------------- */
 @keyframes gradient-animation {
@@ -362,106 +482,23 @@
   }
 }
 
-@keyframes text1 {
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
-@keyframes text2 {
-  from {
-    opacity: 0;
-    transform: translateX(200px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
-@keyframes text3 {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-
-@keyframes leftAppear {
-  from {
-    rotate: -10deg;
-    transform: translateX(-40%);
-    left: -500px;
-  }
-  to {
-    rotate: 0deg;
-    transform: translateX(0%);
-    left: 0px;
-  }
-}
-
-@keyframes rightAppear {
-  from {
-    rotate: 10deg;
-    transform: translateX(40%);
-    right: -500px;
-  }
-  to {
-    rotate: 0deg;
-    transform: translateX(0%);
-    right: 0;
-  }
-}
-
 @keyframes rightBox {
   from {
-    /* rotate: 100deg;
-    transform: translateY(50%) translateX(400%); */
     opacity: 0;
     scale: 0;
   }
   to {
-    /* rotate: 0deg;
-    transform: translateY(0%) translateX(0%); */
     opacity: 1;
     scale: 1;
   }
 }
 @keyframes leftBox {
   from {
-    /* rotate: -100deg;
-    transform: translateY(-50%) translateX(-400%); */
     opacity: 0;
     scale: 0;
   }
   to {
-    /* rotate: 0deg;
-    transform: translateY(0%) translateX(0%); */
     opacity: 1;
     scale: 1;
-  }
-}
-
-@keyframes up {
-  from {
-    transform: translateY(200px);
-  }
-  to {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes slide {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
   }
 }

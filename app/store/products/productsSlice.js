@@ -36,6 +36,7 @@ const initialState = {
   itemsPerPage: 12,
   currentCategory: "all",
   currentFromPath: "products",
+  categoryOrder: [],
   stockFilter: "1",
   priceFilter: "1",
   dateFilter: "1",
@@ -53,6 +54,9 @@ const productsSlice = createSlice({
     },
     setFromPath: (state, action) => {
       state.currentFromPath = action.payload;
+    },
+    setCategoryOrder: (state, action) => {
+      state.categoryOrder = action.payload;
     },
     setStockFilter: (state, action) => {
       state.stockFilter = action.payload;
@@ -146,9 +150,21 @@ export const selectTotalPages = createSelector(
   }
 );
 
+export const selectAllCategories = createSelector(
+  [(state) => state.products.products],
+  (products) => {
+    const allCategories = products
+      .flatMap((product) => product.category)
+      .map((c) => c.toLowerCase());
+    const uniqueCategories = [...new Set(allCategories)];
+    uniqueCategories.sort();
+    return uniqueCategories;
+  }
+);
+
 export const selectCategories = createSelector(
-  [selectProductsState],
-  ({ products, currentFromPath }) => {
+  [(state) => state.products],
+  ({ products, currentFromPath, categoryOrder }) => {
     const categories = products
       .filter(
         (product) =>
@@ -157,7 +173,15 @@ export const selectCategories = createSelector(
       )
       .flatMap((product) => product.category)
       .map((c) => c.toLowerCase());
-    return ["all", ...new Set(categories)];
+    const uniqueCategories = [...new Set(categories)];
+    if (categoryOrder.length > 0) {
+      uniqueCategories.sort(
+        (a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b)
+      );
+    } else {
+      uniqueCategories.sort();
+    }
+    return ["all", ...uniqueCategories];
   }
 );
 
@@ -165,6 +189,7 @@ export const {
   setPage,
   setCategory,
   setFromPath,
+  setCategoryOrder,
   setStockFilter,
   setPriceFilter,
   setDateFilter,

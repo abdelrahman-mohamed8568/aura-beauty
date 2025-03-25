@@ -3,6 +3,13 @@ import React, { useMemo } from "react";
 import dynamic from "next/dynamic";
 import EmptySection from "@/app/components/emptySection";
 import { ToastContainer } from "react-toastify";
+import {
+  DialogRoot,
+  DialogTrigger,
+  DialogContent,
+  DialogActionTrigger,
+} from "@/components/ui/dialog";
+import { CloseButton } from "@/components/ui/close-button";
 
 const ProductsCard = dynamic(() => import("@/app/components/productsCard"), {
   ssr: false,
@@ -45,23 +52,54 @@ const ProductsList = ({
         limit={2}
         theme="dark"
       />
-      <div className="tabList">
-        {categories.map((item) => (
-          <a
-            key={item}
-            onClick={(e) => {
-              e.preventDefault();
-              router.push(`/${FromPath}/${item}?page=1`, {
-                onTransitionReady: slideInOut,
-              });
-            }}
-            className={
-              currentCategory === item ? "tabText disabledTab" : "tabText"
-            }
-          >
-            {item.replace("-", " ")}
-          </a>
-        ))}
+      <div className="tabListContainer">
+        <DialogRoot>
+          <DialogTrigger asChild>
+            <button className="menuButton">Category</button>
+          </DialogTrigger>
+          <DialogContent className="categoriesDialog" data-lenis-prevent>
+            <DialogActionTrigger asChild>
+              <CloseButton className="closeButton" />
+            </DialogActionTrigger>
+            <ul className="categoriesList">
+              {categories.map((item) => (
+                <li key={item} className="categoryItem">
+                  <DialogActionTrigger asChild>
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        router.push(`/${FromPath}/${item}?page=1`);
+                      }}
+                      className={
+                        currentCategory === item
+                          ? "tabText disabledTab"
+                          : "tabText"
+                      }
+                    >
+                      {item.replace("-", " ")}
+                    </a>
+                  </DialogActionTrigger>
+                </li>
+              ))}
+            </ul>
+          </DialogContent>
+        </DialogRoot>
+        <div className="tabList">
+          {categories.map((item) => (
+            <a
+              key={item}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push(`/${FromPath}/${item}?page=1`);
+              }}
+              className={
+                currentCategory === item ? "tabText disabledTab" : "tabText"
+              }
+            >
+              {item.replace("-", " ")}
+            </a>
+          ))}
+        </div>
       </div>
       <div className="productsBox">
         {products.length > 0 ? allProducts : <EmptySection />}
@@ -71,9 +109,7 @@ const ProductsList = ({
           <a
             onClick={(e) => {
               e.preventDefault();
-              router.push(`/${FromPath}/${currentCategory}?page=${prevPage}`, {
-                onTransitionReady: slideInOut,
-              });
+              router.push(`/${FromPath}/${currentCategory}?page=${prevPage}`);
             }}
             className={currentPage === 1 ? "disabledBtn" : "arrowBtn"}
           >
@@ -87,9 +123,7 @@ const ProductsList = ({
           <a
             onClick={(e) => {
               e.preventDefault();
-              router.push(`/${FromPath}/${currentCategory}?page=${nextPage}`, {
-                onTransitionReady: slideInOut,
-              });
+              router.push(`/${FromPath}/${currentCategory}?page=${nextPage}`);
             }}
             className={currentPage === totalPages ? "disabledBtn" : "arrowBtn"}
           >

@@ -70,7 +70,7 @@ function ShoppingCart() {
         <div className="wishlistContainer">
           {items.length === 0 ? (
             <div className="empty">
-              <h1>The wishlist is empty!</h1>
+              <h1>The bag is empty!</h1>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 id="empty-cart"

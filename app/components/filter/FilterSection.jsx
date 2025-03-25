@@ -20,8 +20,9 @@ const RadioGroup = ({ options, value, onValueChange }) => (
         label={option.label}
         className="filterRadioCard"
         _checked={{
-          borderColor: "#d5ab42",
+          border: "1px solid #d5ab42 ",
           color: "#d5ab42",
+          boxShadow: "none",
         }}
       />
     ))}

@@ -4,184 +4,125 @@ import card1 from "@/public/images/homeCard1.jpeg";
 import card2 from "@/public/images/homeCard2.jpg";
 import card3 from "@/public/images/homeCard3.webp";
 import cover from "@/public/images/categorieCover.jpg";
-import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { fatfaceFont } from "@/lang/lang";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProducts,
-  selectCategories,
-} from "@/app/store/products/productsSlice";
+import { useSelector } from "react-redux";
+import { selectAllCategories } from "@/app/store/products/productsSlice";
 import { useTransitionRouter } from "next-view-transitions";
-import { slideInOut } from "../animations";
 import Link from "next/link";
-
+import { motion } from "framer-motion";
+import { homeAnimations } from "@/appComponents/homeAnimations";
 function CategoriesSection() {
   const router = useTransitionRouter();
-  const products = useSelector((state) => state.products.products);
-  const dispatch = useDispatch();
-  const categories = useSelector(selectCategories);
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
-
+  const categories = useSelector(selectAllCategories);
+  const CardInfo = ({ titleParts, description, link, Class }) => (
+    <div className={Class}>
+      {titleParts.map((word, index) => (
+        <span key={index}>
+          <motion.h1 {...homeAnimations.text}>{word}</motion.h1>
+        </span>
+      ))}
+      <div className="cardDescription">
+        <p>{description}</p>
+        <div className="homeBtn">
+          <AnimatedLink href={link} className="mainBtn" />
+          <AnimatedLink href={link} className="hoverBtn" />
+        </div>
+      </div>
+    </div>
+  );
+  const AnimatedLink = ({ href, className }) => (
+    <a
+      onClick={(e) => {
+        e.preventDefault();
+        router.push(href);
+      }}
+      className={className}
+    >
+      view
+    </a>
+  );
   return (
     <>
       <div className="mainContainer">
         <div className="categories">
-          <h1 className="headerText">
-            <span>choose</span>
-            <span>your</span>
-            <span>area</span>
-          </h1>
+          <motion.h1 className="headerText">
+            {["choose", "your", "area"].map((word, index) => (
+              <span key={index}>
+                <motion.div {...homeAnimations.text}>{word}</motion.div>
+              </span>
+            ))}
+          </motion.h1>
           <div className="homeCards">
             <div className="homeCard">
-              <Link
-                href={"/professionals/all?page=1"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push("/professionals/all?page=1", {
-                    onTransitionReady: slideInOut,
-                  });
-                }}
-              >
-                <Image
-                  className="categoriesImage"
-                  src={card2}
-                  alt="Professional Corner"
-                  priority
-                />
+              <Link href="/professionals/all?page=1">
+                <motion.div {...homeAnimations.image("left")}>
+                  <Image
+                    src={card2}
+                    alt="Image description"
+                    className="categoriesImage"
+                    priority
+                  />
+                </motion.div>
               </Link>
-              <div className="cardInfo">
-                <h1>Professional Corner</h1>
-                <p>Upgrade your treatments with the latest tech</p>
-                <div className="homeBtn">
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push("/professionals/all?page=1", {
-                        onTransitionReady: slideInOut,
-                      });
-                    }}
-                    className="mainBtn"
-                  >
-                    view
-                  </a>
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push("/professionals/all?page=1", {
-                        onTransitionReady: slideInOut,
-                      });
-                    }}
-                    className="hoverBtn"
-                  >
-                    view
-                  </a>
-                </div>
-              </div>
+              <CardInfo
+                titleParts={["Professional", "Corner"]}
+                description="Upgrade your treatments with the latest tech"
+                link="/professionals/all?page=1"
+                Class="cardInfo"
+              />
             </div>
-            <div className="homeCard">
-              <div className="cardInfo">
-                <h1>Beauty Business Boost</h1>
-                <p>Take your beauty business to the next level</p>
-                <div className="homeBtn">
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push("/centers/all?page=1", {
-                        onTransitionReady: slideInOut,
-                      });
-                    }}
-                    className="mainBtn"
-                  >
-                    view
-                  </a>
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push("/centers/all?page=1", {
-                        onTransitionReady: slideInOut,
-                      });
-                    }}
-                    className="hoverBtn"
-                  >
-                    view
-                  </a>
-                </div>
-              </div>
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push("/centers/all?page=1", {
-                    onTransitionReady: slideInOut,
-                  });
-                }}
-              >
-                <Image
-                  src={card3}
-                  alt="Beauty Business Boost"
-                  priority
-                  className="categoriesImage rightImage"
-                />
-              </a>
+
+            <div className="homeCard reverse">
+              <CardInfo
+                titleParts={["Beauty", "Business"]}
+                description="Take your beauty business to the next level"
+                link="/centers/all?page=1"
+                Class="cardInfo leftCard"
+              />
+              <Link href="/centers/all?page=1">
+                <motion.div {...homeAnimations.image("right")}>
+                  <Image
+                    src={card3}
+                    alt="Beauty Business Boost"
+                    className="categoriesImage"
+                    priority
+                  />
+                </motion.div>
+              </Link>
             </div>
+
             <div className="homeCard">
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push("/personal/all?page=1", {
-                    onTransitionReady: slideInOut,
-                  });
-                }}
-              >
-                <Image
-                  src={card1}
-                  alt="Beauty Routine"
-                  className="categoriesImage"
-                  priority
-                />
-              </a>
-              <div className="cardInfo">
-                <h1>Your Beauty Routine</h1>
-                <p>Achieve your beauty goals with ease</p>
-                <div className="homeBtn">
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push("/personal/all?page=1", {
-                        onTransitionReady: slideInOut,
-                      });
-                    }}
-                    className="mainBtn"
-                  >
-                    view
-                  </a>
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push("/personal/all?page=1", {
-                        onTransitionReady: slideInOut,
-                      });
-                    }}
-                    className="hoverBtn"
-                  >
-                    view
-                  </a>
-                </div>
-              </div>
+              <Link href="/personal/all?page=1">
+                <motion.div {...homeAnimations.image("left")}>
+                  <Image
+                    src={card1}
+                    alt="Beauty Routine"
+                    className="categoriesImage"
+                    priority
+                  />
+                </motion.div>
+              </Link>
+              <CardInfo
+                titleParts={["Beauty", "Routine"]}
+                description="Achieve your beauty goals with ease"
+                link="/personal/all?page=1"
+                Class="cardInfo"
+              />
             </div>
           </div>
         </div>
         <div className="categorieInfo">
-          <h1 className="headerText">
-            <span>who</span>
-            <span>we are</span>
-          </h1>
+          <motion.h1 className="headerText">
+            {["who we", "are"].map((word, index) => (
+              <span key={index}>
+                <motion.div {...homeAnimations.text}>{word}</motion.div>
+              </span>
+            ))}
+          </motion.h1>
           <div className="categorieInfoBox">
             <h2>
               We work creatively, staying up to date with the latest
@@ -197,9 +138,7 @@ function CategoriesSection() {
               className="contactBtn"
               onClick={(e) => {
                 e.preventDefault();
-                router.push("/products/all?page=1", {
-                  onTransitionReady: slideInOut,
-                });
+                router.push("/products/all?page=1", {});
               }}
             >
               <span className="buttonIcon">
@@ -232,8 +171,6 @@ function CategoriesSection() {
             </a>
           </div>
           <Swiper
-            slidesPerView={3}
-            spaceBetween={40}
             loop={true}
             easing="ease-in-out"
             speed={2000}
@@ -244,6 +181,24 @@ function CategoriesSection() {
               pauseOnMouseEnter: true,
             }}
             modules={[Navigation, Autoplay]}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              480: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+            }}
             className="homeSwiper"
           >
             {categories
@@ -253,9 +208,7 @@ function CategoriesSection() {
                   <a
                     onClick={(e) => {
                       e.preventDefault();
-                      router.push(`/products/${item}?page=${1}`, {
-                        onTransitionReady: slideInOut,
-                      });
+                      router.push(`/products/${item}?page=${1}`, {});
                     }}
                   >
                     <Image src={cover} alt="categories" priority />
@@ -283,7 +236,9 @@ function CategoriesSection() {
                     <span className="spanPlus">+</span>
                   </span>
                 </h1>
-                <h2>brand products</h2>
+                <h2>
+                  brand <br /> products
+                </h2>
               </div>
               <div className="bottom infoBox">
                 <h1 className="numberBox">
@@ -298,7 +253,10 @@ function CategoriesSection() {
                     <span className="spanPlus">+</span>
                   </span>
                 </h1>
-                <h2>governorate delivery</h2>
+                <h2>
+                  governorate
+                  <br /> delivery
+                </h2>
               </div>
             </div>
             <div className="right">
@@ -313,7 +271,9 @@ function CategoriesSection() {
                     <span className="spanPlus">+</span>
                   </span>
                 </h1>
-                <h2>years of experience</h2>
+                <h2>
+                  years of <br /> experience
+                </h2>
               </div>
               <div className="bottom infoBox">
                 <h1 className="numberBox">
@@ -332,7 +292,10 @@ function CategoriesSection() {
                     <span className="spanPlus">+</span>
                   </span>
                 </h1>
-                <h2>cooperative client</h2>
+                <h2>
+                  cooperative
+                  <br /> client
+                </h2>
               </div>
             </div>
           </div>

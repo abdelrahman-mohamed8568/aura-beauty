@@ -7,7 +7,7 @@ import { Provider } from "@/components/ui/provider";
 import StoreProvider from "./StoreProvider";
 import ReactLenis from "lenis/react";
 import { ViewTransitions } from "next-view-transitions";
-// import Preloader from "./components/preloader";
+import Preloader from "./components/preloader";
 export const metadata = {
   title: "Aura Beauty",
   description: "Beauty store advanced products and devices",
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           <StoreProvider>
             <Provider>
               <ReactLenis root />
-              {/* <Preloader /> */}
+              <Preloader />
               <Navbar />
               {children}
               <Footer />

@@ -24,7 +24,39 @@
   align-items: center;
   gap: 40px;
 }
-
+@media (max-width: 768) {
+  .checkoutContainer {
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 425) {
+  .checkoutContainer .bagInfo {
+    position: static;
+  }
+  .infoSwiper,
+  .bagTotal,
+  .formInfo {
+    width: 90vw !important;
+  }
+  .bagProduct {
+    font-size: 12px;
+  }
+  .formInfo {
+    margin-top: -120px;
+    padding-top: 20px;
+    border-top: 1px solid var(--dc);
+  }
+  .formFlex {
+    flex-direction: column;
+  }
+  .formInfo form,
+  .formFlex {
+    gap: 35px !important;
+  }
+  .formInfo .field input {
+    font-size: 14px;
+  }
+}
 .formInfo {
   display: flex;
   flex-direction: column;
@@ -55,8 +87,6 @@
   position: relative;
   width: 100%;
 }
-
-/* .formInfo form  */
 
 .formInfo input:focus {
   border: 1px solid var(--gc);

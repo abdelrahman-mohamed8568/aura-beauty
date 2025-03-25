@@ -11,6 +11,8 @@ import { slideInOut } from "../animations";
 import { usePathname } from "next/navigation";
 import Search from "../search";
 import Link from "next/link";
+import SocialIcons from "../socialIcons";
+import { motion } from "framer-motion";
 
 function Navbar() {
   const router = useTransitionRouter();
@@ -22,6 +24,7 @@ function Navbar() {
     (state) => state.wishlist?.items || [],
     shallowEqual
   );
+
   useEffect(() => {
     const handleScroll = () => {
       const scroll = window.scrollY;
@@ -33,15 +36,106 @@ function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const [navToggle, setNavToggle] = useState(false);
+  const openNavbar = () => {
+    setNavToggle(!navToggle);
+  };
+  const itemVariants = {
+    visible: (i) => ({
+      opacity: 1,
+      transition: { delay: i * 0.2, duration: 1, ease: "easeInOut" },
+    }),
+    exit: (i) => ({
+      opacity: 0,
+      transition: { delay: i * 0.1, duration: 0.1, ease: "easeInOut" },
+    }),
+  };
+
   return (
-    <nav className={`${montserratFont.className} container`}>
-      <div className={`user ${isScrolled ? "hide" : ""}`}>
+    <nav
+      className={`${montserratFont.className} container ${
+        navToggle && "navOpen"
+      }`}
+    >
+      <div className={`navScroll ${isScrolled ? "hide" : ""} `}>
         <h4>{`Your new world for your clinic's needs...`}</h4>
+        <div className="navContact">
+          <a
+            className={
+              pathname === "/contact-us" ? "navLink disabledLink" : "navLink"
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/", {
+                // onTransitionReady: slideInOut,
+              });
+            }}
+          >
+            <span className="span-mother">
+              <span>c</span>
+              <span>o</span>
+              <span>n</span>
+              <span>t</span>
+              <span>a</span>
+              <span>c</span>
+              <span>t</span>
+              <span>-</span>
+              <span>u</span>
+              <span>s</span>
+            </span>
+            <span className="span-mother2">
+              <span>c</span>
+              <span>o</span>
+              <span>n</span>
+              <span>t</span>
+              <span>a</span>
+              <span>c</span>
+              <span>t</span>
+              <span>-</span>
+              <span>u</span>
+              <span>s</span>
+            </span>
+          </a>
+          <span> / </span>
+          <a
+            className={
+              pathname === "/about-us" ? "navLink disabledLink" : "navLink"
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/", {
+                // onTransitionReady: slideInOut,
+              });
+            }}
+          >
+            <span className="span-mother">
+              <span>a</span>
+              <span>b</span>
+              <span>o</span>
+              <span>u</span>
+              <span>t</span>
+              <span>-</span>
+              <span>u</span>
+              <span>s</span>
+            </span>
+            <span className="span-mother2">
+              <span>a</span>
+              <span>b</span>
+              <span>o</span>
+              <span>u</span>
+              <span>t</span>
+              <span>-</span>
+              <span>u</span>
+              <span>s</span>
+            </span>
+          </a>
+        </div>
       </div>
-      <ul>
+      <ul className={`navCategory ${navToggle && "navOpenOptionsAll"}`}>
         <li>
           <a
-            className={pathname === "/" ? "navLink disabledLink" : "navLink"}
+            className={pathname === "/" ? "navLogo disabledLink" : "navLogo"}
             onClick={(e) => {
               e.preventDefault();
               router.push("/", {
@@ -52,257 +146,53 @@ function Navbar() {
             <Image src={icon} alt="icon" height={50} priority />
           </a>
         </li>
-        <li>
-          <a
-            className={pathname === "/" ? "navLink disabledLink" : "navLink"}
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            <span className="span-mother">
-              <span>H</span>
-              <span>o</span>
-              <span>m</span>
-              <span>e</span>
-            </span>
-            <span className="span-mother2">
-              <span>H</span>
-              <span>o</span>
-              <span>m</span>
-              <span>e</span>
-            </span>
-          </a>
-
-          <Link
-            href={"/products/all?page=1"}
-            prefetch={true}
-            className={
-              pathname.startsWith("/products")
-                ? "navLink disabledLink"
-                : "navLink"
-            }
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   router.push("/products/all?page=1", {
-            //   });
-            // }}
-            // onTransitionReady: slideInOut,
-          >
-            <span className="span-mother">
-              <span>P</span>
-              <span>r</span>
-              <span>o</span>
-              <span>d</span>
-              <span>u</span>
-              <span>c</span>
-              <span>t</span>
-              <span>s</span>
-            </span>
-            <span className="span-mother2">
-              <span>P</span>
-              <span>r</span>
-              <span>o</span>
-              <span>d</span>
-              <span>u</span>
-              <span>c</span>
-              <span>t</span>
-              <span>s</span>
-            </span>
-          </Link>
-          <a
-            className={
-              pathname.startsWith("/professionals")
-                ? "navLink disabledLink"
-                : "navLink"
-            }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/professionals/all?page=1", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            <span className="span-mother">
-              <span>P</span>
-              <span>r</span>
-              <span>o</span>
-              <span>f</span>
-              <span>e</span>
-              <span>s</span>
-              <span>s</span>
-              <span>i</span>
-              <span>o</span>
-              <span>n</span>
-              <span>a</span>
-              <span>l</span>
-              <span>s</span>
-            </span>
-            <span className="span-mother2">
-              <span>P</span>
-              <span>r</span>
-              <span>o</span>
-              <span>f</span>
-              <span>e</span>
-              <span>s</span>
-              <span>s</span>
-              <span>i</span>
-              <span>o</span>
-              <span>n</span>
-              <span>a</span>
-              <span>l</span>
-              <span>s</span>
-            </span>
-          </a>
-          <a
-            className={
-              pathname.startsWith("/centers")
-                ? "navLink disabledLink"
-                : "navLink"
-            }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/centers/all?page=1", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            <span className="span-mother">
-              <span>c</span>
-              <span>e</span>
-              <span>n</span>
-              <span>t</span>
-              <span>e</span>
-              <span>r</span>
-              <span>s</span>
-            </span>
-            <span className="span-mother2">
-              <span>c</span>
-              <span>e</span>
-              <span>n</span>
-              <span>t</span>
-              <span>e</span>
-              <span>r</span>
-              <span>s</span>
-            </span>
-          </a>
-          <a
-            className={
-              pathname.startsWith("/personal")
-                ? "navLink disabledLink"
-                : "navLink"
-            }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/personal/all?page=1", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            <span className="span-mother">
-              <span>P</span>
-              <span>e</span>
-              <span>r</span>
-              <span>s</span>
-              <span>o</span>
-              <span>n</span>
-              <span>a</span>
-              <span>l</span>
-            </span>
-            <span className="span-mother2">
-              <span>P</span>
-              <span>e</span>
-              <span>r</span>
-              <span>s</span>
-              <span>o</span>
-              <span>n</span>
-              <span>a</span>
-              <span>l</span>
-            </span>
-          </a>
-        </li>
-        {/*  <a
-            className={
-              pathname === "/contact" ? "navLink disabledLink" : "navLink"
-            }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/contact", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            <span className="span-mother">
-              <span>c</span>
-              <span>o</span>
-              <span>n</span>
-              <span>t</span>
-              <span>a</span>
-              <span>c</span>
-              <span>t</span>
-            </span>
-            <span className="span-mother2">
-              <span>c</span>
-              <span>o</span>
-              <span>n</span>
-              <span>t</span>
-              <span>a</span>
-              <span>c</span>
-              <span>t</span>
-            </span>
-          </a>
-          <a
-            className={
-              pathname === "/about" ? "navLink disabledLink" : "navLink"
-            }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/about", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            <span className="span-mother">
-              <span>a</span>
-              <span>b</span>
-              <span>o</span>
-              <span>u</span>
-              <span>t</span>
-            </span>
-            <span className="span-mother2">
-              <span>a</span>
-              <span>b</span>
-              <span>o</span>
-              <span>u</span>
-              <span>t</span>
-            </span>
-          </a> */}
-        <li className="settings">
-          <a
-            className={
-              pathname === "/shopping-cart" ? "navLink disabledLink" : "navLink"
-            }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/shopping-cart", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              className="bi bi-bag"
-              viewBox="0 0 16 16"
+        <li className="navCategoryBox">
+          {[
+            { href: "/", text: "home" },
+            { href: "/products/all?page=1", text: "products" },
+            { href: "/professionals/all?page=1", text: "professionals" },
+            { href: "/centers/all?page=1", text: "centers" },
+            { href: "/personal/all?page=1", text: "personal" },
+            { href: "/contact-us", text: "contact-us" },
+            { href: "/about-us", text: "about-us" },
+          ].map((link, index) => (
+            <motion.a
+              key={index}
+              className={`navLink
+                 ${navToggle && "navOpenOptions"} 
+                 ${
+                   pathname.split("?")[0] === link.href.split("?")[0]
+                     ? "disabledLink"
+                     : ""
+                 } ${
+                link.href === "/contact-us" || link.href === "/about-us"
+                  ? "navContact"
+                  : ""
+              }`}
+              href={link.href}
+              custom={index}
+              animate={navToggle ? "visible" : "exit"}
+              variants={itemVariants}
             >
-              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
-            </svg>
-            {cartItems > 0 && <span id="Basket"> {cartItems}</span>}
-          </a>
+              <span className="span-mother">
+                {link.text.split("").map((char, i) => (
+                  <span key={i}>{char}</span>
+                ))}
+              </span>
+              <span className="span-mother2">
+                {link.text.split("").map((char, i) => (
+                  <span key={i}>{char}</span>
+                ))}
+              </span>
+            </motion.a>
+          ))}
+          <div className={`navHidden ${navToggle && "navOpenOptions"}`}>
+            <SocialIcons />
+            <h6>Copyright © 2025 Aura-Beauty.com</h6>
+          </div>
+        </li>
+        <li className="settings">
+          <Search />
           <a
             className={
               pathname === "/wishlist" ? "navLink disabledLink" : "navLink"
@@ -314,7 +204,7 @@ function Navbar() {
               });
             }}
           >
-            {wishlistItems.length == 0 ? (
+            {wishlistItems.length === 0 ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -341,8 +231,60 @@ function Navbar() {
               </svg>
             )}
           </a>
-          <Search />
+          <a
+            className={
+              pathname === "/shopping-cart" ? "navLink disabledLink" : "navLink"
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/shopping-cart", {
+                // onTransitionReady: slideInOut,
+              });
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              className="bi bi-bag"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+            </svg>
+            {cartItems > 0 && <span id="Basket"> {cartItems}</span>}
+          </a>
         </li>
+        <div className="toggle" onClick={openNavbar}>
+          <input className="checkbox" type="checkbox" />
+          <svg fill="none" viewBox="0 0 50 50" height="30" width="30">
+            <path
+              className="lineTop line"
+              strokeLinecap="round"
+              strokeWidth="4"
+              stroke="black"
+              d="M6 11L44 11"
+            ></path>
+            <path
+              strokeLinecap="round"
+              strokeWidth="4"
+              stroke="black"
+              d="M6 24H43"
+              className="lineMid line"
+            ></path>
+            <path
+              strokeLinecap="round"
+              strokeWidth="4"
+              stroke="black"
+              d="M6 37H43"
+              className="lineBottom line"
+            ></path>
+          </svg>
+        </div>
+        <div
+          className={` ${navToggle && "navOverlay"}`}
+          data-lenis-prevent
+        ></div>
       </ul>
     </nav>
   );
