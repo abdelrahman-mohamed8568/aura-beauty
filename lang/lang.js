@@ -10,15 +10,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-const dancing = Dancing_Script({
-  variable: "--font-dancing",
-  subsets: ["latin"],
-});
-const greatVibes = Great_Vibes({
-  variable: "--great-vibes",
-  subsets: ["latin"],
-  weight: "400",
-});
+
 const montserratFont = Montserrat({
   variable: "--montserrat",
   subsets: ["latin"],
@@ -29,4 +21,4 @@ const fatfaceFont = Abril_Fatface({
   weight: "400",
 });
 
-export { geistMono, dancing, greatVibes, montserratFont, fatfaceFont };
+export { geistMono, montserratFont, fatfaceFont };

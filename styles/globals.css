@@ -124,8 +124,7 @@ html {
 #activeHeart {
   opacity: 1;
 }
-@media (max-width: 1024) {
-}
+
 @media (max-width: 768) {
   .wishlistHeader h1,
   .shoppingCartHeader h1,

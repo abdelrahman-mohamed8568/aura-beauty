@@ -315,7 +315,7 @@ li {
   width: 30px;
   transform: 0.2s;
   position: absolute;
-  top: 10;
+  top: 1.5vh;
   right: 20px;
 }
 .toggle .checkbox {
@@ -341,9 +341,9 @@ li {
 .lineMid {
   stroke-dasharray: 40 40;
 }
-.toggle .checkbox:checked + svg .line {
-  stroke: var(--yc);
-}
+/* .toggle .checkbox:checked + svg .line {
+  stroke: var(--rc);
+} */
 .toggle .checkbox:checked + svg .lineTop {
   stroke-dashoffset: 0;
   transform-origin: left;
@@ -433,9 +433,9 @@ li {
     position: static;
   }
   .navLogo {
-    width: 45px;
+    width: 40px;
     position: absolute;
-    top: 10px;
+    top: 1.5vh;
     left: 20px;
     z-index: 999;
   }

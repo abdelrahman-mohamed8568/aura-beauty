@@ -44,7 +44,7 @@ function Navbar() {
   const itemVariants = {
     visible: (i) => ({
       opacity: 1,
-      transition: { delay: i * 0.2, duration: 1, ease: "easeInOut" },
+      transition: { delay: i * 0.2, duration: 2, ease: "easeInOut" },
     }),
     exit: (i) => ({
       opacity: 0,
@@ -67,7 +67,7 @@ function Navbar() {
             }
             onClick={(e) => {
               e.preventDefault();
-              router.push("/", {
+              router.push("/contact-us", {
                 // onTransitionReady: slideInOut,
               });
             }}
@@ -104,7 +104,7 @@ function Navbar() {
             }
             onClick={(e) => {
               e.preventDefault();
-              router.push("/", {
+              router.push("/about-us", {
                 // onTransitionReady: slideInOut,
               });
             }}

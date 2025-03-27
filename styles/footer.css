@@ -58,7 +58,7 @@
 @media (max-width: 425) {
   .hoverFooter,
   .footerMain {
-    height: 80vh;
+    height: 75vh;
   }
   .footerBox {
     flex-direction: column-reverse;
@@ -81,12 +81,6 @@
   .footerText {
     width: 95% !important;
   }
-}
-.footerPrivacy {
-  display: flex;
-  gap: 10px;
-  font-size: 10px;
-  color: var(--gc);
 }
 
 /* ------------------------------------------------ */

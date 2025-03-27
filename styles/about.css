@@ -1,0 +1,41 @@
+.aboutBox {
+  width: 100%;
+  background: rgb(213, 171, 66);
+  background: linear-gradient(
+    0deg,
+    rgba(213, 171, 66, 1) 0%,
+    rgba(250, 249, 247, 1) 100%
+  );
+  border-radius: 0 0 45px 45px;
+  display: flex;
+  align-items: center;
+  padding: 20vh;
+  flex-direction: column;
+  color: var(--dc);
+}
+.aboutBox h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 4px double var(--gc);
+  margin-bottom: 5vh;
+}
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 70vw;
+}
+.aboutText h3 {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.aboutText p {
+  font-size: 1.3rem;
+}
+@media (max-width: 768px) {
+  .aboutText {
+    width: 90vw !important;
+  }
+}

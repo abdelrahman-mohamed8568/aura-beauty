@@ -1,0 +1,79 @@
+.contactBox {
+  width: 100%;
+  background: rgb(213, 171, 66);
+  background: linear-gradient(
+    0deg,
+    rgba(213, 171, 66, 1) 0%,
+    rgba(250, 249, 247, 1) 100%
+  );
+  color: var(--dc);
+  display: flex;
+  align-items: center;
+  padding: 20vh;
+  flex-direction: column;
+  border-radius: 0 0 45px 45px;
+}
+.contactBox h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 4px double var(--gc);
+  margin-bottom: 5vh;
+}
+.contactContainer {
+  display: flex;
+  width: 70vw;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+.contactContainer form,
+.contactContainer .formFlex {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.contactContainer .field {
+  position: relative;
+}
+.contactContainer h3 {
+  font-weight: 300;
+  text-transform: capitalize;
+  padding-bottom: 30px;
+  color: var(--gc);
+  justify-self: center;
+}
+.contactContainer .socialIcons {
+  display: flex;
+  flex-direction: row;
+}
+.contactContainer .socialIcons svg {
+  width: 40px;
+  height: 40px;
+}
+.contactContainer .socialIcons .icon:hover svg {
+  scale: 1.2;
+  fill: var(--dc);
+}
+@media (max-width: 768) {
+  .contactContainer {
+    flex-direction: column;
+  }
+  .contactContainer .socialIcons svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+@media (max-width: 425) {
+  .contactContainer form,
+  .contactContainer .formFlex {
+    width: 95vw;
+  }
+  .contactContainer .socialIcons {
+    flex-direction: column;
+    justify-self: center;
+  }
+  .contactContainer h3 {
+    text-align: center;
+  }
+}
