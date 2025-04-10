@@ -14,14 +14,14 @@ import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { supabase } from "@/lib/supabase";
-import { useTransitionRouter } from "next-view-transitions";
+
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 function Checkout() {
-  const router = useTransitionRouter();
   const dispatch = useDispatch();
   const cardItems = useSelector((state) => state.card.items);
   const total = useSelector(getTotalPrice);
-  const cashDelivery = cardItems.some((item) => item.delivery === false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -280,7 +280,6 @@ function Checkout() {
                   {...register("note")}
                 />
               </div>
-
               <h2>Payment Method</h2>
               <div className="cashBox">
                 <div>
@@ -346,20 +345,11 @@ function Checkout() {
           </Swiper>
           <div className="bagTotal">
             <div className="totalBox">
-              <p>Subtotal:</p>
-              <h6>{total}</h6>
-            </div>
-            {!cashDelivery && (
-              <div className="totalBox">
-                <p>Delivery:</p>
-                <h6>Free</h6>
-              </div>
-            )}
-            <div className="totalBox bold">
-              <p>Total:</p>
+              <h6>Total:</h6>
               <h6>EGP: {total}</h6>
             </div>
           </div>
+          <p>Free delivery for purchases over 2,000 EGP.</p>
           <p>*All prices are after 14% VAT.</p>
         </div>
       </div>

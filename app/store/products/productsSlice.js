@@ -19,7 +19,7 @@ export const fetchProducts = createAsyncThunk(
       return data.map((product) => ({
         ...product,
         category: product.category || [],
-        subCategory: product.subCategory?.toString().trim() || "",
+        subCategory: product.subCategory || [],
       }));
     } catch (error) {
       return rejectWithValue(error.message);
@@ -111,7 +111,7 @@ export const selectFilteredProducts = createSelector(
         );
       const subCategoryMatch =
         currentFromPath === "products" ||
-        product.subCategory.toLowerCase() === currentFromPath.toLowerCase();
+        product.subCategory.find((sub) => sub === currentFromPath);
       const stockMatch =
         stockFilter === "1"
           ? true
@@ -169,7 +169,7 @@ export const selectCategories = createSelector(
       .filter(
         (product) =>
           currentFromPath === "products" ||
-          product.subCategory.toLowerCase() === currentFromPath.toLowerCase()
+          product.subCategory.find((sub) => sub === currentFromPath)
       )
       .flatMap((product) => product.category)
       .map((c) => c.toLowerCase());

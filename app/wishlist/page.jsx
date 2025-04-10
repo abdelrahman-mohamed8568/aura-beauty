@@ -3,15 +3,12 @@ import { removeHeart } from "../store/wishlist/wishlistSlice";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
-import { slideInOut } from "../components/animations";
-import { useTransitionRouter } from "next-view-transitions";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 function Wishlist() {
-  const router = useTransitionRouter();
-
   const items = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch();
-
   const removeItem = (id) => {
     dispatch(removeHeart(id));
     toast.error("This product has been removed from the wishlist !");
@@ -170,95 +167,78 @@ function Wishlist() {
         ) : (
           items.map((item, index) => (
             <div key={item.id || index}>
-              <div className="shoppingCart">
-                <div className="shoppingCartDetails">
-                  <div className="shoppingCartOption">
-                    <a
-                      onClick={(e) => {
-                        e.preventDefault();
-                        router.push(
-                          `/${item.fromPath}/${item.category[0]
-                            .toString()
-                            .replace(" ", "-")}/${item.id}`,
-                          {
-                            onTransitionReady: slideInOut,
-                          }
-                        );
-                      }}
-                    >
-                      <Image
-                        src={item.cover}
-                        alt={"product image"}
-                        className="shoppingCartImg"
-                        width={150}
-                        height={150}
-                        priority
-                      />
-                    </a>
-                  </div>
-                  <div className="shoppingCartInfo">
-                    <h3>
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                          router.push(
-                            `/${item.fromPath}/${item.category[0]
-                              .toString()
-                              .replace(" ", "-")}/${item.id}`,
-                            {
-                              onTransitionReady: slideInOut,
-                            }
-                          );
-                        }}
-                        className="hoverText"
+              <motion.div
+                initial={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                exit={{ opacity: 0, translateY: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="shoppingCart">
+                  <div className="shoppingCartDetails">
+                    <div className="shoppingCartOption">
+                      <Link
+                        href={`/${item.fromPath}/${item.category[0]
+                          .toString()
+                          .replace(" ", "-")}/${item.id}`}
                       >
-                        {item.name}
-                      </a>
-                    </h3>
-                    {item.category.map((items, index) => {
-                      const category = items.toString();
-                      return (
-                        <p key={index}>
-                          <a
-                            className="hoverText"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              router.push(
-                                `/${item.fromPath}/${category.replace(
-                                  " ",
-                                  "-"
-                                )}?page=${1}`,
-                                {
-                                  onTransitionReady: slideInOut,
-                                }
-                              );
-                            }}
-                          >
-                            {category}
-                          </a>
-                        </p>
-                      );
-                    })}
-                    {item.price ? (
-                      <h3>EGP {item.price}</h3>
-                    ) : (
-                      <h4>indefinite</h4>
-                    )}
+                        <Image
+                          src={item.cover}
+                          alt={"product image"}
+                          className="shoppingCartImg"
+                          width={150}
+                          height={150}
+                          priority
+                        />
+                      </Link>
+                    </div>
+                    <div className="shoppingCartInfo">
+                      <h3>
+                        <Link
+                          href={`/${item.fromPath}/${item.category[0]
+                            .toString()
+                            .replace(" ", "-")}/${item.id}`}
+                          className="hoverText"
+                        >
+                          {item.name}
+                        </Link>
+                      </h3>
+                      {item.category.map((items, index) => {
+                        const category = items.toString();
+                        return (
+                          <p key={index}>
+                            <Link
+                              href={`/${item.fromPath}/${category.replace(
+                                " ",
+                                "-"
+                              )}?page=${1}`}
+                              className="hoverText"
+                            >
+                              {category}
+                            </Link>
+                          </p>
+                        );
+                      })}
+                      {item.price ? (
+                        <h3>EGP {item.price}</h3>
+                      ) : (
+                        <h4>indefinite</h4>
+                      )}
+                    </div>
                   </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="currentColor"
+                    className="bi bi-trash3"
+                    viewBox="0 0 16 16"
+                    onClick={() => removeItem(item.id)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                  </svg>
                 </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  fill="currentColor"
-                  className="bi bi-trash3"
-                  viewBox="0 0 16 16"
-                  onClick={() => removeItem(item.id)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                </svg>
-              </div>
+              </motion.div>
             </div>
           ))
         )}

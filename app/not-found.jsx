@@ -1,11 +1,8 @@
 "use client";
 import "@/styles/error.css";
-import { useTransitionRouter } from "next-view-transitions";
-import { slideInOut } from "./components/animations";
+import Link from "next/link";
 
 export default function NotFound() {
-  const router = useTransitionRouter();
-
   const reloadBtn = () => {
     window.location.reload();
   };
@@ -165,28 +162,12 @@ export default function NotFound() {
         <h2>Not Found !</h2>
         <div className="btnBox">
           <div className="homeBtn">
-            <a
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/", {
-                  onTransitionReady: slideInOut,
-                });
-              }}
-              className="mainBtn"
-            >
+            <Link href={"/"} className="mainBtn">
               Return Home
-            </a>
-            <a
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/", {
-                  onTransitionReady: slideInOut,
-                });
-              }}
-              className="hoverBtn"
-            >
+            </Link>
+            <Link href={"/"} className="hoverBtn">
               Return Home
-            </a>
+            </Link>
           </div>
           <div className="homeBtn">
             <button className="mainBtn" onClick={reloadBtn}>

@@ -17,12 +17,17 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  height: 60px;
-  width: 50%;
+  height: 50px;
+  width: 100%;
   font-size: 2rem;
   overflow: hidden;
   font-weight: 800;
   opacity: 0;
   color: var(--wc);
   text-transform: uppercase;
+}
+@media (max-width: 767) {
+  .preloader {
+    flex-direction: column;
+  }
 }

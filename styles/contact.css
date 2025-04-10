@@ -46,6 +46,12 @@
 .contactContainer .socialIcons {
   display: flex;
   flex-direction: row;
+  /* font-size: 30px !important;
+  background-color: brown; */
+}
+.contactContainer .socialIcons p {
+  font-size: 12px;
+  font-weight: bold;
 }
 .contactContainer .socialIcons svg {
   width: 40px;

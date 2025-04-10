@@ -1,31 +1,39 @@
 "use client";
 import "@/styles/navbar.css";
-import { useTransitionRouter } from "next-view-transitions";
 import { montserratFont } from "@/lang/lang";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import icon from "@/app/favicon.ico";
 import { getTotalItems } from "@/store/card/cardSlice";
 import { shallowEqual, useSelector } from "react-redux";
-import { slideInOut } from "../animations";
 import { usePathname } from "next/navigation";
 import Search from "../search";
 import Link from "next/link";
 import SocialIcons from "../socialIcons";
 import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 
 function Navbar() {
-  const router = useTransitionRouter();
   const pathname = usePathname();
-
   const [isScrolled, setIsScrolled] = useState(false);
   const cartItems = useSelector(getTotalItems);
   const wishlistItems = useSelector(
     (state) => state.wishlist?.items || [],
     shallowEqual
   );
-
+  const [navToggle, setNavToggle] = useState(false);
+  const openNavbar = () => {
+    setNavToggle(!navToggle);
+  };
+  const lenis = useLenis();
   useEffect(() => {
+    if (navToggle) {
+      lenis?.stop();
+      document.body.style.overflow = "hidden";
+    } else {
+      lenis?.start();
+      document.body.style.overflow = "auto";
+    }
     const handleScroll = () => {
       const scroll = window.scrollY;
       scroll >= 60 ? setIsScrolled(true) : null;
@@ -35,16 +43,11 @@ function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-
-  const [navToggle, setNavToggle] = useState(false);
-  const openNavbar = () => {
-    setNavToggle(!navToggle);
-  };
+  }, [navToggle, lenis]);
   const itemVariants = {
     visible: (i) => ({
       opacity: 1,
-      transition: { delay: i * 0.2, duration: 2, ease: "easeInOut" },
+      transition: { delay: i * 0.2, duration: 1, ease: "easeInOut" },
     }),
     exit: (i) => ({
       opacity: 0,
@@ -61,16 +64,11 @@ function Navbar() {
       <div className={`navScroll ${isScrolled ? "hide" : ""} `}>
         <h4>{`Your new world for your clinic's needs...`}</h4>
         <div className="navContact">
-          <a
+          <Link
             className={
               pathname === "/contact-us" ? "navLink disabledLink" : "navLink"
             }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/contact-us", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
+            href={"/contact-us"}
           >
             <span className="span-mother">
               <span>c</span>
@@ -96,18 +94,13 @@ function Navbar() {
               <span>u</span>
               <span>s</span>
             </span>
-          </a>
+          </Link>
           <span> / </span>
-          <a
+          <Link
             className={
               pathname === "/about-us" ? "navLink disabledLink" : "navLink"
             }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/about-us", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
+            href={"/about-us"}
           >
             <span className="span-mother">
               <span>a</span>
@@ -129,62 +122,80 @@ function Navbar() {
               <span>u</span>
               <span>s</span>
             </span>
-          </a>
+          </Link>
         </div>
       </div>
       <ul className={`navCategory ${navToggle && "navOpenOptionsAll"}`}>
         <li>
-          <a
+          <Link
             className={pathname === "/" ? "navLogo disabledLink" : "navLogo"}
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
+            href={"/"}
           >
             <Image src={icon} alt="icon" height={50} priority />
-          </a>
+          </Link>
         </li>
         <li className="navCategoryBox">
           {[
-            { href: "/", text: "home" },
-            { href: "/products/all?page=1", text: "products" },
-            { href: "/professionals/all?page=1", text: "professionals" },
-            { href: "/centers/all?page=1", text: "centers" },
-            { href: "/personal/all?page=1", text: "personal" },
-            { href: "/contact-us", text: "contact-us" },
-            { href: "/about-us", text: "about-us" },
+            { href: "/", text: "home", disabled: "" },
+            {
+              href: "/products/all?page=1",
+              text: "products",
+              disabled: "products",
+            },
+            {
+              href: "/professionals/all?page=1",
+              text: "professionals",
+              disabled: "professionals",
+            },
+            {
+              href: "/centers/all?page=1",
+              text: "centers",
+              disabled: "centers",
+            },
+            {
+              href: "/personal/all?page=1",
+              text: "personal",
+              disabled: "personal",
+            },
+            { href: "/contact-us", text: "contact-us", disabled: "contact-us" },
+            { href: "/about-us", text: "about-us", disabled: "about-us" },
           ].map((link, index) => (
-            <motion.a
+            <Link
+              href={link.href}
               key={index}
-              className={`navLink
+              className={
+                pathname.split("/")[1] === link.disabled ? "disabledLink" : ""
+              }
+              onClick={() => setNavToggle(false)}
+            >
+              <motion.div
+                className={`navLink
                  ${navToggle && "navOpenOptions"} 
                  ${
-                   pathname.split("?")[0] === link.href.split("?")[0]
+                   pathname.split("/")[1] === link.disabled
                      ? "disabledLink"
                      : ""
                  } ${
-                link.href === "/contact-us" || link.href === "/about-us"
-                  ? "navContact"
-                  : ""
-              }`}
-              href={link.href}
-              custom={index}
-              animate={navToggle ? "visible" : "exit"}
-              variants={itemVariants}
-            >
-              <span className="span-mother">
-                {link.text.split("").map((char, i) => (
-                  <span key={i}>{char}</span>
-                ))}
-              </span>
-              <span className="span-mother2">
-                {link.text.split("").map((char, i) => (
-                  <span key={i}>{char}</span>
-                ))}
-              </span>
-            </motion.a>
+                  link.href === "/contact-us" || link.href === "/about-us"
+                    ? "navContact"
+                    : ""
+                }`}
+                custom={index}
+                animate={navToggle ? "visible" : "exit"}
+                variants={itemVariants}
+              >
+                <span className="span-mother">
+                  {link.text.split("").map((char, i) => (
+                    <span key={i}>{char}</span>
+                  ))}
+                </span>
+                <span className="span-mother2">
+                  {link.text.split("").map((char, i) => (
+                    <span key={i}>{char}</span>
+                  ))}
+                </span>
+              </motion.div>
+            </Link>
           ))}
           <div className={`navHidden ${navToggle && "navOpenOptions"}`}>
             <SocialIcons />
@@ -193,16 +204,11 @@ function Navbar() {
         </li>
         <li className="settings">
           <Search />
-          <a
+          <Link
             className={
               pathname === "/wishlist" ? "navLink disabledLink" : "navLink"
             }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/wishlist", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
+            href={"/wishlist"}
           >
             {wishlistItems.length === 0 ? (
               <svg
@@ -230,17 +236,12 @@ function Navbar() {
                 />
               </svg>
             )}
-          </a>
-          <a
+          </Link>
+          <Link
             className={
               pathname === "/shopping-cart" ? "navLink disabledLink" : "navLink"
             }
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/shopping-cart", {
-                // onTransitionReady: slideInOut,
-              });
-            }}
+            href={"/shopping-cart"}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -253,10 +254,10 @@ function Navbar() {
               <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
             </svg>
             {cartItems > 0 && <span id="Basket"> {cartItems}</span>}
-          </a>
+          </Link>
         </li>
         <div className="toggle" onClick={openNavbar}>
-          <input className="checkbox" type="checkbox" />
+          <span className={`checkbox ${navToggle && "checked"}`} />
           <svg fill="none" viewBox="0 0 50 50" height="30" width="30">
             <path
               className="lineTop line"

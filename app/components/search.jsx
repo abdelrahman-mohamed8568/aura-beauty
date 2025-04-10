@@ -11,13 +11,11 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../store/products/productsSlice";
 import { CloseButton } from "@/components/ui/close-button";
-import { useTransitionRouter } from "next-view-transitions";
-import { slideInOut } from "./animations";
 import "swiper/css";
 import "swiper/css/scrollbar";
+import Link from "next/link";
 
 function Search() {
-  const router = useTransitionRouter();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const [value, setValue] = useState("");
@@ -57,7 +55,7 @@ function Search() {
       </DialogTrigger>
       <DialogContent data-lenis-prevent className="overlayBox">
         <DialogActionTrigger asChild>
-          <div className="searchOverlay"></div>
+          <div className="hiddenOverlay"></div>
         </DialogActionTrigger>
         <div className="searchBox">
           <div className="search">
@@ -90,18 +88,10 @@ function Search() {
                   <SwiperSlide key={item.id} className="resultsSlide">
                     <div className="resultsBox">
                       <DialogActionTrigger asChild>
-                        <a
-                          onClick={(e) => {
-                            e.preventDefault();
-                            router.push(
-                              `/products/${item.category[0]
-                                .toString()
-                                .replace(" ", "-")}/${item.id}`,
-                              {
-                                onTransitionReady: slideInOut,
-                              }
-                            );
-                          }}
+                        <Link
+                          href={`/products/${item.category[0]
+                            .toString()
+                            .replace(" ", "-")}/${item.id}`}
                         >
                           <Image
                             src={item.cover}
@@ -111,24 +101,16 @@ function Search() {
                             className="resultsImage"
                             priority
                           />
-                        </a>
+                        </Link>
                       </DialogActionTrigger>
                       <DialogActionTrigger asChild>
-                        <a
-                          onClick={(e) => {
-                            e.preventDefault();
-                            router.push(
-                              `/products/${item.category[0]
-                                .toString()
-                                .replace(" ", "-")}/${item.id}`,
-                              {
-                                onTransitionReady: slideInOut,
-                              }
-                            );
-                          }}
+                        <Link
+                          href={`/products/${item.category[0]
+                            .toString()
+                            .replace(" ", "-")}/${item.id}`}
                         >
                           <p>{item.name}</p>
-                        </a>
+                        </Link>
                       </DialogActionTrigger>
                     </div>
                   </SwiperSlide>

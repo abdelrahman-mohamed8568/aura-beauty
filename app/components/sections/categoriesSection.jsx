@@ -11,12 +11,10 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { fatfaceFont } from "@/lang/lang";
 import { useSelector } from "react-redux";
 import { selectAllCategories } from "@/app/store/products/productsSlice";
-import { useTransitionRouter } from "next-view-transitions";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { homeAnimations } from "@/appComponents/homeAnimations";
 function CategoriesSection() {
-  const router = useTransitionRouter();
   const categories = useSelector(selectAllCategories);
   const CardInfo = ({ titleParts, description, link, Class }) => (
     <div className={Class}>
@@ -35,15 +33,9 @@ function CategoriesSection() {
     </div>
   );
   const AnimatedLink = ({ href, className }) => (
-    <a
-      onClick={(e) => {
-        e.preventDefault();
-        router.push(href);
-      }}
-      className={className}
-    >
+    <Link href={href} className={className}>
       view
-    </a>
+    </Link>
   );
   return (
     <>
@@ -75,7 +67,6 @@ function CategoriesSection() {
                 Class="cardInfo"
               />
             </div>
-
             <div className="homeCard reverse">
               <CardInfo
                 titleParts={["Beauty", "Business"]}
@@ -94,7 +85,6 @@ function CategoriesSection() {
                 </motion.div>
               </Link>
             </div>
-
             <div className="homeCard">
               <Link href="/personal/all?page=1">
                 <motion.div {...homeAnimations.image("left")}>
@@ -134,13 +124,7 @@ function CategoriesSection() {
             <h1>
               our <span>categories</span>
             </h1>
-            <a
-              className="contactBtn"
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/products/all?page=1", {});
-              }}
-            >
+            <Link href={"/products/all?page=1"} className="contactBtn">
               <span className="buttonIcon">
                 <svg
                   width="10"
@@ -168,7 +152,7 @@ function CategoriesSection() {
                 </svg>
               </span>
               view all
-            </a>
+            </Link>
           </div>
           <Swiper
             loop={true}
@@ -205,17 +189,12 @@ function CategoriesSection() {
               .filter((item) => item.toLowerCase() !== "all")
               .map((item) => (
                 <SwiperSlide className="homeSwiperSlide" key={item}>
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push(`/products/${item}?page=${1}`, {});
-                    }}
-                  >
+                  <Link href={`/products/${item.replace(" ", "-")}?page=${1}`}>
                     <Image src={cover} alt="categories" priority />
                     <h2 className={fatfaceFont.className}>
                       {item.replace("-", " ")}
                     </h2>
-                  </a>
+                  </Link>
                 </SwiperSlide>
               ))}
           </Swiper>
@@ -263,11 +242,11 @@ function CategoriesSection() {
               <div className="top infoBox">
                 <h1 className="numberBox">
                   <span className="span-mother">
-                    <span>9</span>
+                    <span>7</span>
                     <span className="spanPlus">+</span>
                   </span>
                   <span className="span-mother2">
-                    <span>9</span>
+                    <span>7</span>
                     <span className="spanPlus">+</span>
                   </span>
                 </h1>
@@ -299,29 +278,6 @@ function CategoriesSection() {
               </div>
             </div>
           </div>
-          <Swiper
-            spaceBetween={10}
-            slidesPerView={6}
-            loop={true}
-            centeredSlides={true}
-            easing="ease-in-out"
-            speed={2000}
-            autoplay={{
-              delay: 10,
-            }}
-            modules={[Autoplay]}
-            className="homeSlider"
-          >
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
-            <SwiperSlide>Slide 5</SwiperSlide>
-            <SwiperSlide>Slide 6</SwiperSlide>
-            <SwiperSlide>Slide 7</SwiperSlide>
-            <SwiperSlide>Slide 8</SwiperSlide>
-            <SwiperSlide>Slide 9</SwiperSlide>
-          </Swiper>
         </div>
       </div>
     </>

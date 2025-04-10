@@ -1,46 +1,22 @@
-import { useTransitionRouter } from "next-view-transitions";
-import { slideInOut } from "./animations";
+import Link from "next/link";
 
 const Subtitle = ({ name, category, path }) => {
-  const router = useTransitionRouter();
-
   return (
     <div className="subtitle">
-      <a
-        onClick={(e) => {
-          e.preventDefault();
-          router.push("/", {
-            onTransitionReady: slideInOut,
-          });
-        }}
-        className="subtitleLink"
-      >
+      <Link href={"/"} className="subtitleLink">
         Home
-      </a>
+      </Link>
       ›
-      <a
-        onClick={(e) => {
-          e.preventDefault();
-          router.push(`/${path}/all?page=1`, {
-            onTransitionReady: slideInOut,
-          });
-        }}
-        className="subtitleLink"
-      >
+      <Link href={`/${path}/all?page=1`} className="subtitleLink">
         {path}
-      </a>
+      </Link>
       ›
-      <a
-        onClick={(e) => {
-          e.preventDefault();
-          router.push(`/${path}/${category.replace(" ", "-")}?page=1`, {
-            onTransitionReady: slideInOut,
-          });
-        }}
+      <Link
+        href={`/${path}/${category.replace(" ", "-")}?page=1`}
         className="subtitleLink"
       >
         {category}
-      </a>
+      </Link>
       ›<h4>{name}</h4>
     </div>
   );

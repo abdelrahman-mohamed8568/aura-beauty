@@ -9,6 +9,7 @@ body {
   max-width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
+  /* overflow-y: hidden; */
 }
 
 html {
@@ -134,7 +135,6 @@ html {
   .buyContainer {
     overflow: hidden;
   }
-
   .empty svg {
     max-width: 70vw;
   }
@@ -381,24 +381,24 @@ html {
   right: 20;
 }
 
-/* ----------------------------------------- */
-/* ::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none !important;
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
-::view-transition-group(root) {
-  z-index: auto !important;
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
-::view-transition-image-pair(root) {
-  isolation: isolate;
-  will-change: transform, opacity, clip-path;
-  z-index: 1;
-}
-::view-transition-new(root) {
-  z-index: 1000;
-  animation: none !important;
-} */
-/* -------------------------------------- */
+
 .formInfo label,
 .sendMessageContent label {
   padding-left: 10px;

@@ -33,10 +33,16 @@
   .checkoutContainer .bagInfo {
     position: static;
   }
+  .checkoutContainer .bagInfo p {
+    font-size: 0.8rem;
+  }
   .infoSwiper,
   .bagTotal,
   .formInfo {
     width: 90vw !important;
+  }
+  .deliveryText {
+    font-size: 0.6rem;
   }
   .bagProduct {
     font-size: 12px;
@@ -172,10 +178,7 @@
 .bagTotal .totalBox {
   display: flex;
   justify-content: space-between;
-}
-
-.bold,
-.bold p {
+  align-items: center;
   font-weight: 800;
   font-size: 20px;
 }

@@ -35,7 +35,7 @@ function Footer() {
                 href="https://abdelrahmanmohamed.netlify.app/"
                 target="_blank"
               >
-                <strong>abdelrahman</strong>
+                <strong> abdelrahman</strong>
               </Link>
               .
             </p>

@@ -20,6 +20,7 @@
   overflow: hidden;
   border-radius: 10px;
 }
+
 .cardImg {
   width: 230px;
   height: 230px;
@@ -47,12 +48,12 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 10px;
 }
+
 .productsCardInfo h3 {
-  font-size: 1rem;
+  max-width: 160px;
+  font-size: 0.8rem;
   text-transform: capitalize;
-  display: flex;
   color: var(--dc);
 }
 
@@ -60,22 +61,25 @@
   text-transform: uppercase;
   font-weight: 400;
   color: var(--gc);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
+
 .productsCardInfo h5 {
   font-weight: 800;
   color: var(--dc);
-  font-size: 0.8rem;
-  text-align: right;
-  width: 35%;
+  font-size: 0.7rem;
 }
+
 .cardCategory {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
+
 /* ---------------------------- */
+
 .view {
   position: absolute;
   bottom: 20;
@@ -83,6 +87,7 @@
   transform: scale(0);
   z-index: 0;
 }
+
 .imagCardBox:hover .view {
   transform: scale(1);
 }
@@ -94,9 +99,9 @@
   height: 30px;
   border-radius: 10px;
 }
+
 .view .hoverBtn {
   color: var(--wc);
   background-color: var(--dc);
   border: none;
 }
-/* ---------------------------- */

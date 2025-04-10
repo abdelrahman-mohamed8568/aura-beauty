@@ -9,26 +9,24 @@ import {
 } from "../store/card/cardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
-import { useTransitionRouter } from "next-view-transitions";
-import { slideInOut } from "../components/animations";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 function ShoppingCart() {
-  const router = useTransitionRouter();
   const dispatch = useDispatch();
   const items = useSelector((state) => state.card.items);
   const total = useSelector(getTotalPrice);
   const plus = (item) =>
     dispatch(plusQuantity({ id: item.id, size: item.size, color: item.color }));
-
   const minus = (item) =>
     dispatch(
       minusQuantity({ id: item.id, size: item.size, color: item.color })
     );
-
   const removeItem = (item) => {
     dispatch(removeCard({ id: item.id, size: item.size, color: item.color }));
     toast.error("This product has been removed from your bag !");
   };
+  console.log(items);
 
   return (
     <div className="buyContainer">
@@ -41,28 +39,12 @@ function ShoppingCart() {
             <div className="totalBox">
               <h2>Total: EGP {total}</h2>
               <div className="homeBtn">
-                <a
-                  className="mainBtn"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    router.push("/checkout", {
-                      onTransitionReady: slideInOut,
-                    });
-                  }}
-                >
+                <Link href={"/checkout"} className="mainBtn">
                   CHECKOUT
-                </a>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    router.push("/checkout", {
-                      onTransitionReady: slideInOut,
-                    });
-                  }}
-                  className="hoverBtn"
-                >
+                </Link>
+                <Link href={"/checkout"} className="hoverBtn">
                   CHECKOUT
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -332,107 +314,96 @@ function ShoppingCart() {
             </div>
           ) : (
             items.map((item, index) => (
-              <div className="shoppingCart" key={index}>
-                <div className="shoppingCartDetails">
-                  <div className="shoppingCartOption">
-                    <a
-                      onClick={(e) => {
-                        e.preventDefault();
-                        router.push(
-                          `/${item.fromPath}/${item.category[0]
+              <motion.div
+                initial={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                exit={{ opacity: 0, translateY: -20 }}
+                transition={{ duration: 0.3 }}
+                key={index}
+              >
+                <div className="shoppingCart">
+                  <div className="shoppingCartDetails">
+                    <div className="shoppingCartOption">
+                      <Link
+                        href={`/${item.fromPath}/${item.category[0]
+                          .toString()
+                          .replace(" ", "-")}/${item.id}`}
+                      >
+                        <Image
+                          src={item.cover}
+                          alt={"product image"}
+                          className="shoppingCartImg"
+                          width={150}
+                          height={150}
+                          priority
+                        />
+                      </Link>
+                    </div>
+                    <div className="shoppingCartInfo">
+                      <h3>
+                        <Link
+                          href={`/${item.fromPath}/${item.category[0]
                             .toString()
-                            .replace(" ", "-")}/${item.id}`,
-                          {
-                            onTransitionReady: slideInOut,
-                          }
+                            .replace(" ", "-")}/${item.id}`}
+                          className="hoverText"
+                        >
+                          {item.name}
+                          {item.size && <span> {item.size} </span>}
+                          {item.color && <span> {item.color}</span>}
+                        </Link>
+                      </h3>
+                      {item.category.map((items, index) => {
+                        const category = items.toString();
+                        return (
+                          <p key={index}>
+                            <Link
+                              href={`/${item.fromPath}/${category.replace(
+                                " ",
+                                "-"
+                              )}?page=${1}`}
+                              className="hoverText"
+                            >
+                              {category}
+                            </Link>
+                          </p>
                         );
-                      }}
-                    >
-                      <Image
-                        src={item.cover}
-                        alt={"product image"}
-                        className="shoppingCartImg"
-                        width={150}
-                        height={150}
-                        priority
-                      />
-                    </a>
-                  </div>
-                  <div className="shoppingCartInfo">
-                    <h3>
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                          router.push(
-                            `/${item.fromPath}/${item.category[0]
-                              .toString()
-                              .replace(" ", "-")}/${item.id}`,
-                            {
-                              onTransitionReady: slideInOut,
-                            }
-                          );
-                        }}
-                        className="hoverText"
-                      >
-                        {item.name}
-                        {item.size && <span> {item.size} </span>}
-                        {item.color && <span> {item.color}</span>}
-                      </a>
-                    </h3>
-                    {item.category.map((items, index) => {
-                      const category = items.toString();
-                      return (
-                        <p key={index}>
-                          <a
-                            className="hoverText"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              router.push(
-                                `/${item.fromPath}/${category.replace(
-                                  " ",
-                                  "-"
-                                )}?page=${1}`,
-                                {
-                                  onTransitionReady: slideInOut,
-                                }
-                              );
-                            }}
-                          >
-                            {category}
-                          </a>
-                        </p>
-                      );
-                    })}
-                    {item.price ? (
-                      <h3>EGP {item.price}</h3>
-                    ) : (
-                      <h4>indefinite</h4>
-                    )}
+                      })}
+                      {item.price ? (
+                        <h3>EGP {item.price}</h3>
+                      ) : (
+                        <h4>indefinite</h4>
+                      )}
 
-                    <div className="quantity">
-                      <button onClick={() => minus(item)}>-</button>
-                      <span>{item.quantity}</span>
-                      <button
-                        onClick={() => plus(item)}
-                        disabled={item.quantity >= item.maxQuantity}
-                      >
-                        +
-                      </button>
+                      <div className="quantity">
+                        <button
+                          onClick={() => minus(item)}
+                          disabled={item.quantity == item.minQuantity}
+                        >
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button
+                          onClick={() => plus(item)}
+                          disabled={item.quantity >= item.maxQuantity}
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
                   </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="currentColor"
+                    className="bi bi-trash3"
+                    viewBox="0 0 16 16"
+                    onClick={() => removeItem(item)}
+                  >
+                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                  </svg>
                 </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  fill="currentColor"
-                  className="bi bi-trash3"
-                  viewBox="0 0 16 16"
-                  onClick={() => removeItem(item)}
-                >
-                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                </svg>
-              </div>
+              </motion.div>
             ))
           )}
         </div>

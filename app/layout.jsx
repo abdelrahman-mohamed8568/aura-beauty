@@ -6,7 +6,6 @@ import Navbar from "@/appComponents/sections/navbar";
 import { Provider } from "@/components/ui/provider";
 import StoreProvider from "./StoreProvider";
 import ReactLenis from "lenis/react";
-import { ViewTransitions } from "next-view-transitions";
 import Preloader from "./components/preloader";
 export const metadata = {
   title: "Aura Beauty",
@@ -15,20 +14,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ViewTransitions>
-      <html lang="en" style={{ colorScheme: "dark" }} suppressHydrationWarning>
-        <body className={montserratFont.className}>
-          <StoreProvider>
-            <Provider>
-              <ReactLenis root />
-              <Preloader />
-              <Navbar />
-              {children}
-              <Footer />
-            </Provider>
-          </StoreProvider>
-        </body>
-      </html>
-    </ViewTransitions>
+    <html lang="en" style={{ colorScheme: "dark" }} suppressHydrationWarning>
+      <body className={montserratFont.className}>
+        <StoreProvider>
+          <Preloader />
+          <Provider>
+            <ReactLenis root />
+            <Navbar />
+            {children}
+            <Footer />
+          </Provider>
+        </StoreProvider>
+      </body>
+    </html>
   );
 }

@@ -67,8 +67,11 @@
   align-items: center;
   justify-content: center;
 }
-.quantity button:hover {
+.quantity button:not(:disabled):hover {
   font-weight: bold;
+}
+.quantity button:disabled {
+  cursor: not-allowed;
 }
 .quantity span {
   font-size: 20;

@@ -107,7 +107,11 @@
 }
 .categoriesDialog,
 .filterDialog {
-  background-color: #ffffff65;
+  background: linear-gradient(
+    0deg,
+    #5756569d 0%,
+    rgba(250, 249, 247, 0.89) 100%
+  );
   backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 20px;
@@ -116,11 +120,15 @@
   position: relative;
   align-self: center;
 }
-
+.categoriesDialog,
+.filterDialog svg {
+  color: var(--dc);
+}
 .closeButton {
   position: absolute;
   top: 10px;
   right: 10px;
+  color: var(--dc);
 }
 
 .categoriesList {
@@ -153,7 +161,7 @@
   }
   .filterBtn {
     display: block !important;
-    margin-top: 20vh !important;
+    margin-top: 10vh !important;
   }
   .menuButton {
     display: block;

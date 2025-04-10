@@ -109,7 +109,6 @@ li {
   text-transform: uppercase;
   font-weight: 600;
   color: var(--dc);
-  transition: 0.5s ease;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -225,7 +224,7 @@ li {
   justify-content: center;
   background-color: transparent !important;
 }
-.searchOverlay {
+.hiddenOverlay {
   backdrop-filter: blur(3px);
   position: absolute;
   height: 100vh !important;
@@ -341,18 +340,19 @@ li {
 .lineMid {
   stroke-dasharray: 40 40;
 }
-/* .toggle .checkbox:checked + svg .line {
+/* .toggle .checked + svg .line {
   stroke: var(--rc);
 } */
-.toggle .checkbox:checked + svg .lineTop {
+
+.toggle .checked + svg .lineTop {
   stroke-dashoffset: 0;
   transform-origin: left;
   transform: rotateZ(45deg) translate(-7px, -5px);
 }
-.toggle .checkbox:checked + svg .lineMid {
+.toggle .checked + svg .lineMid {
   stroke-dashoffset: 40;
 }
-.toggle .checkbox:checked + svg .lineBottom {
+.toggle .checked + svg .lineBottom {
   stroke-dashoffset: 0;
   transform-origin: left;
   transform: rotateZ(-45deg) translate(-5px, 5px);
@@ -384,7 +384,7 @@ li {
     width: 95vw;
     border-radius: 15px;
     box-shadow: inset 0px 0px 100px 1px #e2e2e2;
-    transition: all 0.9s ease-in-out;
+    transition: all 0.7s ease-in-out;
   }
   .navOpen {
     height: 100vh;
@@ -396,6 +396,7 @@ li {
   .navCategoryBox {
     flex-direction: column;
     position: absolute;
+    align-items: start;
     top: 15%;
   }
   .navOpenOptionsAll {
@@ -403,11 +404,11 @@ li {
     flex-direction: column;
   }
   .navOverlay {
-    animation: fadeIn 0.7s ease-in-out forwards;
     width: 200vw;
     height: 200vh;
     position: absolute;
     display: flex;
+    animation: fadeIn 0.7s ease-in-out forwards;
     background-color: var(--dc);
     z-index: -1;
     opacity: 0.3 !important;
@@ -427,7 +428,7 @@ li {
   }
   .span-mother2 span,
   .disabledLink {
-    color: var(--wc) !important;
+    color: var(--wc);
   }
   .navContact {
     position: static;

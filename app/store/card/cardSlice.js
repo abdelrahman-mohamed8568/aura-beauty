@@ -9,7 +9,8 @@ const cardSlice = createSlice({
   initialState,
   reducers: {
     addToCard: (state, action) => {
-      const { id, size, color, quantity, fromPath } = action.payload;
+      const { id, size, color, minQuantity, quantity, fromPath } =
+        action.payload;
       const existingItem = state.items.find(
         (item) => item.id === id && item.size === size && item.color === color
       );
@@ -18,9 +19,11 @@ const cardSlice = createSlice({
           existingItem.quantity += 1;
         }
       } else {
+        const initialQuantity =
+          minQuantity && minQuantity > 0 ? minQuantity : 1;
         state.items.push({
           ...action.payload,
-          quantity: 1,
+          quantity: initialQuantity,
           maxQuantity: quantity,
           fromPath: fromPath,
         });
@@ -47,7 +50,7 @@ const cardSlice = createSlice({
       const item = state.items.find(
         (item) => item.id === id && item.size === size && item.color === color
       );
-      if (item && item.quantity > 1) {
+      if (item && item.quantity > item.minQuantity) {
         item.quantity -= 1;
       }
     },
