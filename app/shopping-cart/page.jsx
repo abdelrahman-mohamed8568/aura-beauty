@@ -26,7 +26,6 @@ function ShoppingCart() {
     dispatch(removeCard({ id: item.id, size: item.size, color: item.color }));
     toast.error("This product has been removed from your bag !");
   };
-  console.log(items);
 
   return (
     <div className="buyContainer">
@@ -327,7 +326,7 @@ function ShoppingCart() {
                       <Link
                         href={`/${item.fromPath}/${item.category[0]
                           .toString()
-                          .replace(" ", "-")}/${item.id}`}
+                          .replace(/ /g, "-")}/${item.id}`}
                       >
                         <Image
                           src={item.cover}
@@ -344,7 +343,7 @@ function ShoppingCart() {
                         <Link
                           href={`/${item.fromPath}/${item.category[0]
                             .toString()
-                            .replace(" ", "-")}/${item.id}`}
+                            .replace(/ /g, "-")}/${item.id}`}
                           className="hoverText"
                         >
                           {item.name}
@@ -358,7 +357,7 @@ function ShoppingCart() {
                           <p key={index}>
                             <Link
                               href={`/${item.fromPath}/${category.replace(
-                                " ",
+                                / /g,
                                 "-"
                               )}?page=${1}`}
                               className="hoverText"

@@ -45,7 +45,7 @@ function Products() {
   const pageFromURL = searchParams.get("page");
   const pathSegments = pathname.split("/").filter(Boolean);
   const FromPath = pathSegments[0] || "products";
-  const currentCategory = pathSegments[1]?.replace("-", " ") || "all";
+  const currentCategory = pathSegments[1]?.replace(/\-/g, " ") || "all";
   const { products, totalPages, currentPage } = useSelector(
     (state) => ({
       products: selectPaginatedProducts(state),
@@ -54,7 +54,6 @@ function Products() {
     }),
     shallowEqual
   );
-  console.log(products);
   const [priceValue, setPriceValue] = useState("1");
   const [stockValue, setStockValue] = useState("1");
   const [dateValue, setDateValue] = useState("1");
@@ -75,7 +74,6 @@ function Products() {
         options={STOCK_OPTIONS}
         value={stockValue}
         onValueChange={(e) => {
-          console.log("Stock filter changed to:", e.value);
           setStockValue(e.value);
           dispatch(setStockFilter(e.value));
         }}
@@ -195,7 +193,7 @@ function Products() {
             <div className="tabList">
               {categories.map((item) => (
                 <Link
-                  href={`/${FromPath}/${item.replace(" ", "-")}?page=1`}
+                  href={`/${FromPath}/${item.replace(/ /g, "-")}?page=1`}
                   key={item}
                   className={
                     currentCategory === item ? "tabText disabledTab" : "tabText"

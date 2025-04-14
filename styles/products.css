@@ -52,12 +52,20 @@
   flex-direction: column;
 }
 
+.tabListContainer {
+  position: relative;
+}
+
 .tabList {
   font-size: 14px;
   display: flex;
   justify-content: space-around;
-  align-items: end;
-  height: 17vh;
+  align-items: center;
+  padding-top: 10vh;
+  /* align-items: end; */
+  height: auto;
+  flex-wrap: wrap;
+  gap: 4vh;
   width: 100%;
   border-radius: 0 0 0 25px;
   border-bottom: 1px solid var(--gc);
@@ -89,10 +97,6 @@
   min-height: 60vh;
   transition: all 0.3s ease;
 }
-.tabListContainer {
-  position: relative;
-  padding-left: 15%;
-}
 
 .menuButton,
 .filterBtn {
@@ -114,11 +118,20 @@
   );
   backdrop-filter: blur(10px);
   border-radius: 15px;
-  padding: 20px;
   width: 90%;
   max-width: 400px;
   position: relative;
   align-self: center;
+}
+.categoriesDialog .categoriesList {
+  gap: 3;
+}
+.categoriesDialog .categoriesList .categoryItem a {
+  padding: 7;
+  text-align: left;
+}
+.filterDialog {
+  padding: 20px;
 }
 .categoriesDialog,
 .filterDialog svg {
@@ -154,6 +167,9 @@
 }
 
 @media (max-width: 1024) {
+  .tabListContainer {
+    padding-left: 15%;
+  }
   .filterRadioCard {
     background-color: transparent;
     color: var(--dc);

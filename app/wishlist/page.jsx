@@ -179,7 +179,7 @@ function Wishlist() {
                       <Link
                         href={`/${item.fromPath}/${item.category[0]
                           .toString()
-                          .replace(" ", "-")}/${item.id}`}
+                          .replace(/ /g, "-")}/${item.id}`}
                       >
                         <Image
                           src={item.cover}
@@ -196,7 +196,7 @@ function Wishlist() {
                         <Link
                           href={`/${item.fromPath}/${item.category[0]
                             .toString()
-                            .replace(" ", "-")}/${item.id}`}
+                            .replace(/ /g, "-")}/${item.id}`}
                           className="hoverText"
                         >
                           {item.name}
@@ -208,7 +208,7 @@ function Wishlist() {
                           <p key={index}>
                             <Link
                               href={`/${item.fromPath}/${category.replace(
-                                " ",
+                                / /g,
                                 "-"
                               )}?page=${1}`}
                               className="hoverText"

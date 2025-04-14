@@ -189,7 +189,7 @@ function CategoriesSection() {
               .filter((item) => item.toLowerCase() !== "all")
               .map((item) => (
                 <SwiperSlide className="homeSwiperSlide" key={item}>
-                  <Link href={`/products/${item.replace(" ", "-")}?page=${1}`}>
+                  <Link href={`/products/${item.replace(/ /g, "-")}?page=${1}`}>
                     <Image src={cover} alt="categories" priority />
                     <h2 className={fatfaceFont.className}>
                       {item.replace("-", " ")}

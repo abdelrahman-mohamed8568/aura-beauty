@@ -367,7 +367,7 @@ function ProductsDetails() {
                         return (
                           <Link
                             href={`/${FromPath}/${category.replace(
-                              " ",
+                              / /g,
                               "-"
                             )}?page=1`}
                             key={index}

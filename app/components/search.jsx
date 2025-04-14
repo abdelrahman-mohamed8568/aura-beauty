@@ -91,7 +91,7 @@ function Search() {
                         <Link
                           href={`/products/${item.category[0]
                             .toString()
-                            .replace(" ", "-")}/${item.id}`}
+                            .replace(/ /g, "-")}/${item.id}`}
                         >
                           <Image
                             src={item.cover}
@@ -107,7 +107,7 @@ function Search() {
                         <Link
                           href={`/products/${item.category[0]
                             .toString()
-                            .replace(" ", "-")}/${item.id}`}
+                            .replace(/ /g, "-")}/${item.id}`}
                         >
                           <p>{item.name}</p>
                         </Link>

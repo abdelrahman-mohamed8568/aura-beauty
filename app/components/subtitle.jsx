@@ -12,7 +12,7 @@ const Subtitle = ({ name, category, path }) => {
       </Link>
       ›
       <Link
-        href={`/${path}/${category.replace(" ", "-")}?page=1`}
+        href={`/${path}/${category.replace(/ /g, "-")}?page=1`}
         className="subtitleLink"
       >
         {category}
