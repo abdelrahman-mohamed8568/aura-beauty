@@ -36,7 +36,8 @@
 .heroContent h1 {
   width: 50%;
   text-align: center;
-  font-weight: 400;
+  font-weight: 500;
+  color: var(--gc);
   border-bottom: var(--yc) 1px solid;
 }
 

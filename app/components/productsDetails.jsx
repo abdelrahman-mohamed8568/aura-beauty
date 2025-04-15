@@ -75,13 +75,14 @@ function ProductsDetails() {
   const relatedProducts = useMemo(() => {
     if (!selectedProduct || !selectedProduct.tag) return [];
     const tags = selectedProduct.tag;
-
     return products.filter((product) => {
       if (product.id === selectedProduct.id) return false;
       const productCategory = product.category;
       return tags.some((tag) => productCategory.includes(tag));
     });
   }, [products, selectedProduct]);
+
+  const shuffledProducts = [...relatedProducts].sort(() => Math.random() - 0.5);
 
   useEffect(() => {
     if (selectedProduct) {
@@ -374,6 +375,8 @@ function ProductsDetails() {
                             className="brandLink hoverText"
                           >
                             {category}
+                            {index < selectedProduct.category.length - 1 &&
+                              ", "}
                           </Link>
                         );
                       })}
@@ -569,8 +572,6 @@ function ProductsDetails() {
             <div className="related">
               <h2>You May Also Like</h2>
               <Swiper
-                spaceBetween={10}
-                slidesPerView={4}
                 loop={true}
                 easing="ease-in-out"
                 speed={2000}
@@ -598,10 +599,10 @@ function ProductsDetails() {
                     spaceBetween: 40,
                   },
                 }}
-                className="productsSwiper"
+                className="productSwiper"
               >
-                {relatedProducts.map((product) => (
-                  <SwiperSlide className="productsSwiperSlide" key={product.id}>
+                {shuffledProducts.map((product) => (
+                  <SwiperSlide className="productSwiperSlide" key={product.id}>
                     <ProductsCard {...product} />
                   </SwiperSlide>
                 ))}

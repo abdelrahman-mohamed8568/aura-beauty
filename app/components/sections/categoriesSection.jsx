@@ -1,21 +1,31 @@
 import "@/styles/categoriesSection.css";
 import Image from "next/image";
+import cover from "@/public/images/categorieCover.jpg";
 import card1 from "@/public/images/homeCard1.jpeg";
 import card2 from "@/public/images/homeCard2.jpg";
 import card3 from "@/public/images/homeCard3.webp";
-import cover from "@/public/images/categorieCover.jpg";
+import devices from "@/images/categories/devices.png";
+import hydraFacial from "@/images/categories/hydraFacial.png";
+import mesotherapy from "@/images/categories/mesotherapy.png";
+import co2 from "@/images/categories/co2.png";
+import hifu from "@/images/categories/hifu.png";
+import cryo from "@/images/categories/cryo.png";
+import fat from "@/images/categories/fat.png";
+import hair from "@/images/categories/hair.png";
+import tattoo from "@/images/categories/tattoo.png";
+import botox from "@/images/categories/botox.png";
+import skin from "@/images/categories/skin.png";
+import exosomes from "@/images/categories/exosomes.png";
+import bio from "@/images/categories/bio.png";
+import filler from "@/images/categories/filler.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
-import { fatfaceFont } from "@/lang/lang";
-import { useSelector } from "react-redux";
-import { selectAllCategories } from "@/app/store/products/productsSlice";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { homeAnimations } from "@/appComponents/homeAnimations";
 function CategoriesSection() {
-  const categories = useSelector(selectAllCategories);
   const CardInfo = ({ titleParts, description, link, Class }) => (
     <div className={Class}>
       {titleParts.map((word, index) => (
@@ -37,6 +47,22 @@ function CategoriesSection() {
       view
     </Link>
   );
+  const categories = [
+    { name: "devices", img: devices },
+    { name: "hydrafacial", img: hydraFacial },
+    { name: "mesotherapy", img: mesotherapy },
+    { name: "co2-fractional-lasers", img: co2 },
+    { name: "hifu", img: hifu },
+    { name: "cryolipolysis", img: cryo },
+    { name: "cavitation-fat-reduction", img: fat },
+    { name: "hair-removal-lasers", img: hair },
+    { name: "tattoo-removal-lasers", img: tattoo },
+    { name: "botox", img: botox },
+    { name: "skin-boosters", img: skin },
+    { name: "exosomes", img: exosomes },
+    { name: "bio-stimulators", img: bio },
+    { name: "fillers", img: filler },
+  ];
   return (
     <>
       <div className="mainContainer">
@@ -62,7 +88,7 @@ function CategoriesSection() {
               </Link>
               <CardInfo
                 titleParts={["Professional", "Corner"]}
-                description="Upgrade your treatments with the latest tech"
+                description="Update your clinic with the latest technology."
                 link="/professionals/all?page=1"
                 Class="cardInfo"
               />
@@ -106,20 +132,6 @@ function CategoriesSection() {
           </div>
         </div>
         <div className="categorieInfo">
-          <motion.h1 className="headerText">
-            {["who we", "are"].map((word, index) => (
-              <span key={index}>
-                <motion.div {...homeAnimations.text}>{word}</motion.div>
-              </span>
-            ))}
-          </motion.h1>
-          <div className="categorieInfoBox">
-            <h2>
-              We work creatively, staying up to date with the latest
-              technologies to make our brand a formidable force and deliver
-              exceptional products in the Egyptian market.
-            </h2>
-          </div>
           <div className="categorieText">
             <h1>
               our <span>categories</span>
@@ -156,6 +168,7 @@ function CategoriesSection() {
           </div>
           <Swiper
             loop={true}
+            loopAdditionalSlides={categories.length}
             easing="ease-in-out"
             speed={2000}
             navigation={true}
@@ -185,19 +198,44 @@ function CategoriesSection() {
             }}
             className="homeSwiper"
           >
-            {categories
-              .filter((item) => item.toLowerCase() !== "all")
-              .map((item) => (
-                <SwiperSlide className="homeSwiperSlide" key={item}>
-                  <Link href={`/products/${item.replace(/ /g, "-")}?page=${1}`}>
-                    <Image src={cover} alt="categories" priority />
-                    <h2 className={fatfaceFont.className}>
-                      {item.replace("-", " ")}
-                    </h2>
-                  </Link>
-                </SwiperSlide>
-              ))}
+            {categories.map((item, index) => (
+              <SwiperSlide className="homeSwiperSlide" key={index}>
+                <Link href={`/products/${item.name}?page=${1}`}>
+                  <Image src={item.img} alt="categories" priority />
+                </Link>
+              </SwiperSlide>
+            ))}
           </Swiper>
+          <motion.h1 className="headerText">
+            {["who we", "are"].map((word, index) => (
+              <span key={index}>
+                <motion.div {...homeAnimations.text}>{word}</motion.div>
+              </span>
+            ))}
+          </motion.h1>
+          <div className="categorieInfoBox">
+            <h2>
+              We work creatively, staying up to date with the latest
+              technologies to make our brand a formidable force and deliver
+              exceptional products in the Egyptian market.
+              <br />
+              <br />
+              ✔️ Original, MOH-approved products <br />
+              ✔️ Fast nationwide delivery across Egypt
+              <br />
+              ✔️ On-site training with every device <br />
+              ✔️ Expert support team for your clinic’s success
+              <br />
+              <br />
+              Whether you're a dermatologist or the owner of a beauty center,
+              Aura Beauty empowers your business with the tools to offer
+              professional, results-driven treatments.
+              <br />
+              <br />
+              📞 Contact us today for current offers or free consultation!
+            </h2>
+          </div>
+
           <div className="categorieInfoCards">
             <div className="left">
               <div className="top infoBox">

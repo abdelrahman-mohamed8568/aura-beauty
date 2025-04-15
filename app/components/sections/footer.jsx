@@ -28,7 +28,7 @@ function Footer() {
               className="footerLogo"
               priority
             />
-            <p>Copyright © 2025 Aura-Beauty.com</p>
+            <p>Copyright © 2025 aurabeautyeg.com</p>
             <p>
               Created by
               <Link
@@ -39,6 +39,7 @@ function Footer() {
               </Link>
               .
             </p>
+            <Link href="/privacy-policy">privacy policy</Link>
           </div>
           <div className="Sitemap">
             <div className="sitemapLinks">

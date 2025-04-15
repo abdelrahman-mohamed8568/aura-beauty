@@ -8,7 +8,7 @@
 }
 
 .productsContainer .filter {
-  width: 20%;
+  width: 18vw;
   height: 100vh;
   position: sticky;
   top: 0;
@@ -21,12 +21,14 @@
 
 .filterBox {
   padding-top: 3vh;
-  width: 90%;
+  width: 70%;
 }
 .filterText {
-  text-transform: capitalize;
+  text-transform: uppercase;
+  font-size: 0.8rem;
   font-weight: bolder;
   cursor: pointer;
+  color: var(--gc);
 }
 .filterRadioCard {
   text-transform: capitalize;
@@ -37,15 +39,9 @@
   cursor: pointer;
 }
 
-.filterBtn {
-  align-self: flex-end;
-  margin-right: 15%;
-  margin-bottom: -30px;
-  z-index: 9;
-}
 /* ---------------------------------------------------- */
 .productsContainer .productsCards {
-  width: 100%;
+  width: 82vw;
   height: 100%;
   scroll-behavior: smooth;
   display: flex;
@@ -59,26 +55,26 @@
 .tabList {
   font-size: 14px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
   padding-top: 10vh;
-  /* align-items: end; */
   height: auto;
   flex-wrap: wrap;
-  gap: 4vh;
+  gap: 1vh 5vh;
   width: 100%;
-  border-radius: 0 0 0 25px;
-  border-bottom: 1px solid var(--gc);
-  border-left: 1px solid var(--gc);
+  margin-bottom: 2vh;
   transition: all 0.3s ease;
 }
 
+.productsSwiperSlide {
+  text-align: center;
+}
 .tabText {
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: var(--dc);
-  font-weight: 500;
+  font-size: 1.025rem;
+  font-weight: 400;
   cursor: pointer;
-  padding-bottom: 2vh;
 }
 
 .disabledTab {
@@ -96,44 +92,36 @@
   max-width: 1200px;
   min-height: 60vh;
   transition: all 0.3s ease;
+  border-top: 1px dotted #5756561e;
 }
 
-.menuButton,
 .filterBtn {
   display: none;
-  min-width: 60px;
+  width: 160px;
   font-size: 12px;
   border: 1px solid var(--dc);
   color: var(--dc);
   padding: 5px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin-bottom: -40px;
+  z-index: 9;
 }
-.categoriesDialog,
 .filterDialog {
-  background: linear-gradient(
-    0deg,
-    #5756569d 0%,
-    rgba(250, 249, 247, 0.89) 100%
-  );
-  backdrop-filter: blur(10px);
+  background-color: var(--wc);
   border-radius: 15px;
   width: 90%;
   max-width: 400px;
   position: relative;
   align-self: center;
 }
-.categoriesDialog .categoriesList {
-  gap: 3;
-}
-.categoriesDialog .categoriesList .categoryItem a {
-  padding: 7;
-  text-align: left;
+
+.filterContent .filterBox {
+  justify-self: center;
 }
 .filterDialog {
-  padding: 20px;
+  padding: 25px;
 }
-.categoriesDialog,
 .filterDialog svg {
   color: var(--dc);
 }
@@ -144,52 +132,27 @@
   color: var(--dc);
 }
 
-.categoriesList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: 100%;
-}
-
-.categoryItem {
-  text-align: center;
-}
-
-.categoryItem a {
-  display: block;
-  padding: 10px;
-  width: 100%;
-  text-decoration: none;
-  color: var(--dc);
-}
-
 @media (max-width: 1024) {
-  .tabListContainer {
-    padding-left: 15%;
+  .productsContainer .productsCards {
+    width: 95vw;
   }
   .filterRadioCard {
-    background-color: transparent;
     color: var(--dc);
-    max-height: 30px;
   }
   .filterBtn {
     display: block !important;
     margin-top: 10vh !important;
   }
-  .menuButton {
-    display: block;
-  }
   .productsContainer {
     flex-direction: column;
     align-items: center;
   }
-
-  .tabList,
   .filter {
     display: none !important;
+  }
+  .tabText {
+    font-size: 0.7rem;
+    font-weight: 600;
   }
   .productsBox {
     display: flex;

@@ -30,18 +30,8 @@ const RadioGroup = ({ options, value, onValueChange }) => (
 );
 
 export const FilterSection = ({ title, options, value, onValueChange }) => (
-  <AccordionRoot collapsible variant="plain" className="filterBox">
-    <AccordionItem>
-      <AccordionItemTrigger className="filterText">
-        {title}
-      </AccordionItemTrigger>
-      <AccordionItemContent>
-        <RadioGroup
-          options={options}
-          value={value}
-          onValueChange={onValueChange}
-        />
-      </AccordionItemContent>
-    </AccordionItem>
-  </AccordionRoot>
+  <div className="filterBox">
+    <h3 className="filterText">{title}</h3>
+    <RadioGroup options={options} value={value} onValueChange={onValueChange} />
+  </div>
 );

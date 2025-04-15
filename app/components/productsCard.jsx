@@ -111,6 +111,7 @@ const ProductsCard = memo((product) => {
                       className="hoverText"
                     >
                       {category}
+                      {index < product.category.length - 1 && ", "}
                     </Link>
                   </p>
                 );

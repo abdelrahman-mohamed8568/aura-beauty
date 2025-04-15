@@ -62,7 +62,7 @@ function Navbar() {
       }`}
     >
       <div className={`navScroll ${isScrolled ? "hide" : ""} `}>
-        <h4>{`Your new world for your clinic's needs...`}</h4>
+        <h4>Everything Your Clinic Needs – All in One Place</h4>
         <div className="navContact">
           <Link
             className={

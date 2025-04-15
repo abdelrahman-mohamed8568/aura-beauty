@@ -11,9 +11,10 @@ function HeroSection() {
       <div className="heroContent">
         <div className="heroText">
           <h1>
-            We are thriving in the beauty industry, offering exclusive brands,
-            cutting-edge devices, and the latest technological advancements in
-            Egypt, delivering exceptional products and experiences.
+            Welcome to Aura Beauty, your trusted source for premium medical and
+            aesthetic supplies. We provide clinics, dermatologists, and beauty
+            centers with high-quality certified devices and injectables from
+            leading global brands.
           </h1>
         </div>
         <div className="heroEmpty"></div>

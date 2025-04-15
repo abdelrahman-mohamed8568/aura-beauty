@@ -1,6 +1,6 @@
 "use client";
 import "@/styles/products.css";
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import {
   fetchProducts,
@@ -33,6 +33,8 @@ import {
   DialogActionTrigger,
 } from "@/components/ui/dialog";
 import { CloseButton } from "@/components/ui/close-button";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 const ProductsCard = dynamic(() => import("@/app/components/productsCard"), {
   ssr: false,
 });
@@ -157,51 +159,48 @@ function Products() {
         </div>
         <div className="productsCards" id="1">
           <div className="tabListContainer">
-            <DialogRoot>
-              <DialogTrigger asChild>
-                <button className="menuButton">Category</button>
-              </DialogTrigger>
-              <DialogContent className="overlayBox" data-lenis-prevent>
-                <DialogActionTrigger asChild>
-                  <div className="hiddenOverlay"></div>
-                </DialogActionTrigger>
-                <div className="categoriesDialog">
-                  <DialogActionTrigger asChild>
-                    <CloseButton className="closeButton" />
-                  </DialogActionTrigger>
-                  <ul className="categoriesList">
-                    {categories.map((item) => (
-                      <li key={item} className="categoryItem">
-                        <DialogActionTrigger asChild>
-                          <Link
-                            href={`/${FromPath}/${item}?page=1`}
-                            className={
-                              currentCategory === item
-                                ? "tabText disabledTab"
-                                : "tabText"
-                            }
-                          >
-                            {item.replace("-", " ")}
-                          </Link>
-                        </DialogActionTrigger>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </DialogContent>
-            </DialogRoot>
             <div className="tabList">
-              {categories.map((item) => (
-                <Link
-                  href={`/${FromPath}/${item.replace(/ /g, "-")}?page=1`}
-                  key={item}
-                  className={
-                    currentCategory === item ? "tabText disabledTab" : "tabText"
-                  }
-                >
-                  {item.replace("-", " ")}
-                </Link>
-              ))}
+              <Swiper
+                loop={true}
+                easing="ease-in-out"
+                speed={2000}
+                autoplay={{
+                  delay: 1000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                modules={[Autoplay]}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 2,
+                    spaceBetween: 0,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                  },
+                  1024: {
+                    slidesPerView: 5,
+                  },
+                }}
+                className="productsSwiper"
+              >
+                {categories.map((item, index) => (
+                  <SwiperSlide className="productsSwiperSlide" key={index}>
+                    <Link
+                      href={`/${FromPath}/${item.replace(/ /g, "-")}?page=1`}
+                      key={item}
+                      className={
+                        currentCategory === item
+                          ? "tabText disabledTab"
+                          : "tabText"
+                      }
+                    >
+                      {item.replace("-", " ")}
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
           <div className="productsBox">

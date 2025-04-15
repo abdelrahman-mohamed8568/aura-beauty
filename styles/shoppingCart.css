@@ -4,7 +4,7 @@
   width: 100%;
   align-items: center;
   position: absolute;
-  top: 35vh;
+  top: 30vh;
 }
 
 .shoppingCartContainer .totalBox {
@@ -86,9 +86,6 @@
   .shoppingCartContainer .totalBox {
     flex-direction: column;
     gap: 15px;
-  }
-  .shoppingCartContainer {
-    padding-top: 50px;
   }
   .quantity span {
     font-size: 14px;

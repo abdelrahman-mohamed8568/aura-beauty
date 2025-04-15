@@ -9,7 +9,6 @@ body {
   max-width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
-  /* overflow-y: hidden; */
 }
 
 html {
@@ -56,7 +55,7 @@ html {
 .wishlistHeader h1,
 .shoppingCartHeader h1,
 .empty {
-  margin-top: 25vh;
+  margin-top: 20vh;
   font-size: 40px;
   font-weight: 800;
   color: var(--dc);
@@ -82,12 +81,12 @@ html {
 .wishlistContainer {
   width: 100%;
   height: 100%;
-  min-height: 60vh;
+  min-height: 65vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   align-items: center;
   justify-items: center;
-  margin: 10vh 0;
+  margin: 5vh 0;
   gap: 15px;
 }
 
@@ -140,6 +139,9 @@ html {
   }
 }
 @media (max-width: 425) {
+  .wishlistContainer {
+    padding-top: 15vh;
+  }
   .contactBtn {
     width: 120px !important;
     height: 40px !important;
@@ -193,7 +195,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 85%;
+  height: 95%;
   width: 50%;
   font-size: 14px;
   gap: 5%;
@@ -202,6 +204,7 @@ html {
 
 .shoppingCartDetails .shoppingCartInfo p {
   font-weight: 400;
+  font-size: 0.7rem;
   text-transform: uppercase;
 }
 
