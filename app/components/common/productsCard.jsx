@@ -3,7 +3,7 @@ import "@/styles/productsCard.css";
 import React, { useState, memo } from "react";
 import Image from "next/image";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { addHeart, removeHeart } from "../store/wishlist/wishlistSlice";
+import { addHeart, removeHeart } from "../../store/wishlist/wishlistSlice";
 import { Tooltip } from "@/components/ui/tooltip";
 import { toast } from "react-toastify";
 import { Badge } from "@chakra-ui/react";
@@ -18,27 +18,22 @@ const ProductsCard = memo((product) => {
     (state) => state.wishlist?.items || [],
     shallowEqual
   );
-
   const isProductInWishlist = wishlistItems.some(
     (item) => item.id === product.id
   );
-
   const [activeHeart, setActiveHeart] = useState(isProductInWishlist);
-
   const heartHandler = () => {
     isProductInWishlist == true
       ? (dispatch(removeHeart(product.id)),
         toast.error("This product has been removed from the wishlist !"))
       : (dispatch(addHeart({ ...product, fromPath: FromPath })),
         toast.success("This product has been added to your wishlist."));
-
     setActiveHeart(!isProductInWishlist);
   };
   const pathname = usePathname();
   const pathSegments = pathname.split("/");
   const FromPath = pathSegments[1];
   const categorys = product.category[0].toString();
-
   return (
     <motion.div
       initial={{ opacity: 0, translateY: 20 }}

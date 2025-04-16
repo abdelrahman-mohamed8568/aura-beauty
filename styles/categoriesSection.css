@@ -190,146 +190,6 @@
   opacity: 0.9;
 }
 
-@media (max-width: 1024) {
-  .categories {
-    top: -285% !important;
-  }
-  .headerText {
-    font-size: 3rem;
-    /* align-items: center;  */
-    padding: 5vh 0 0 5vh;
-  }
-  .headerText span {
-    margin-top: -20px;
-    /* justify-content: center; */
-    height: 90px !important;
-  }
-  .homeCard {
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    align-items: center;
-    gap: 10px;
-  }
-  .reverse {
-    flex-direction: column-reverse;
-  }
-  .cardInfo {
-    width: 100%;
-  }
-  .cardInfo span {
-    height: 80px;
-    margin-top: -50px;
-  }
-  .cardInfo h1 {
-    font-size: 2.5rem;
-  }
-  .cardInfo p {
-    font-size: 0.8rem;
-  }
-  .categoriesImage {
-    margin-bottom: 50px;
-  }
-  /* ------------------------ */
-
-  .categorieInfoBox h2 {
-    font-size: 1rem;
-    width: 100%;
-    padding: 0 2vh;
-  }
-  .categorieText {
-    /* font-size: 1.2rem; */
-    flex-direction: column;
-    /* background-color: blue; */
-    gap: 15px;
-    padding: 5vh 0;
-  }
-  .categorieText h1 {
-    /* font-size: 1.2rem; */
-    align-items: center;
-    display: flex;
-    /* background-color: blueviolet;
-    justify-content: center;
-    */
-    flex-direction: column;
-  }
-  .categorieInfoCards {
-    flex-direction: column;
-    align-items: center;
-    /* margin-top: -20vh !important; */
-  }
-  .categorieInfoCards .top,
-  .bottom {
-    max-width: 85vw !important;
-    max-height: 300px !important;
-  }
-  .left,
-  .right {
-    align-items: center !important;
-  }
-  .numberBox {
-    font-size: 3.5rem !important;
-  }
-  .numberBox .spanPlus {
-    font-size: 1.5rem !important;
-  }
-  .right h2,
-  .left h2 {
-    font-size: 1.5rem !important;
-  }
-  .left {
-    padding-top: 0 !important;
-  }
-}
-@media (max-width: 768) {
-  .categories {
-    top: -270% !important;
-  }
-  .categoriesImage {
-    height: 100%;
-  }
-  .cardInfo {
-    width: 100% !important;
-  }
-  .cardDescription {
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    width: 100% !important;
-  }
-  .leftCard .cardDescription {
-    flex-direction: row;
-  }
-}
-@media (max-width: 425) {
-  .categories {
-    top: -170% !important;
-  }
-}
-@media (max-width: 375) {
-  .categories {
-    top: -160% !important;
-  }
-}
-@media (max-width: 320) {
-  .categories {
-    top: -155% !important;
-  }
-  .categoriesImage {
-    height: 200px;
-  }
-  .cardInfo h1 {
-    font-size: 2.3rem;
-  }
-  .categorieText h1 {
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-  }
-  .categorieInfoCards .top,
-  .bottom {
-    max-height: 250px !important;
-  }
-}
 .categorieInfoCards {
   width: 100%;
   height: 100%;
@@ -470,7 +330,6 @@
   text-align: right;
   align-self: end;
 }
-/* ---------------------------------------------- */
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -497,5 +356,134 @@
   }
   to {
     scale: 1;
+  }
+}
+@media (max-width: 1024px) {
+  .categories {
+    top: -285% !important;
+  }
+  .headerText {
+    font-size: 3rem;
+    padding: 5vh 0 0 5vh;
+  }
+  .headerText span {
+    margin-top: -20px;
+    height: 90px !important;
+  }
+  .homeCard {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+  }
+  .reverse {
+    flex-direction: column-reverse;
+  }
+  .cardInfo {
+    width: 100%;
+  }
+  .cardInfo span {
+    height: 80px;
+    margin-top: -50px;
+  }
+  .cardInfo h1 {
+    font-size: 2.5rem;
+  }
+  .cardInfo p {
+    font-size: 0.8rem;
+  }
+  .categoriesImage {
+    margin-bottom: 50px;
+  }
+  .categorieInfoBox h2 {
+    font-size: 1rem;
+    width: 100%;
+    padding: 0 2vh;
+  }
+  .categorieText {
+    flex-direction: column;
+    gap: 15px;
+    padding: 5vh 0;
+  }
+  .categorieText h1 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .categorieInfoCards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .categorieInfoCards .top,
+  .bottom {
+    max-width: 85vw !important;
+    max-height: 300px !important;
+  }
+  .left,
+  .right {
+    align-items: center !important;
+  }
+  .numberBox {
+    font-size: 3.5rem !important;
+  }
+  .numberBox .spanPlus {
+    font-size: 1.5rem !important;
+  }
+  .right h2,
+  .left h2 {
+    font-size: 1.5rem !important;
+  }
+  .left {
+    padding-top: 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  .categories {
+    top: -270% !important;
+  }
+  .categoriesImage {
+    height: 100%;
+  }
+  .cardInfo {
+    width: 100% !important;
+  }
+  .cardDescription {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100% !important;
+  }
+  .leftCard .cardDescription {
+    flex-direction: row;
+  }
+}
+@media (max-width: 425px) {
+  .categories {
+    top: -170% !important;
+  }
+}
+@media (max-width: 375px) {
+  .categories {
+    top: -160% !important;
+  }
+}
+@media (max-width: 320px) {
+  .categories {
+    top: -155% !important;
+  }
+  .categoriesImage {
+    height: 200px;
+  }
+  .cardInfo h1 {
+    font-size: 2.3rem;
+  }
+  .categorieText h1 {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+  }
+  .categorieInfoCards .top,
+  .bottom {
+    max-height: 250px !important;
   }
 }

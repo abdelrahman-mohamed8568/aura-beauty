@@ -14,7 +14,6 @@ import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { supabase } from "@/lib/supabase";
-
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 function Checkout() {
@@ -271,7 +270,7 @@ function Checkout() {
                   </Badge>
                 </label>
                 <Textarea
-                  placeholder="Let us know if you have any comments or requests..."
+                  placeholder=" Let us know if you have any comments or requests..."
                   minH={"80px"}
                   borderRadius="15px"
                   _focus={{

@@ -11,7 +11,6 @@ function Preloader() {
       }, 10);
     }
   }, []);
-
   return (
     <div className="preloader" ref={preloaderRef}>
       <div className="texts-container">

@@ -1,19 +1,9 @@
 * {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   outline: none;
   list-style: none;
-}
-
-body {
-  background-color: var(--dc);
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-html {
-  scroll-behavior: auto !important;
-  scroll-snap-type: y mandatory;
 }
 
 :root {
@@ -26,11 +16,23 @@ html {
   --dc: #1f1f1f;
 }
 
+html {
+  scroll-behavior: auto !important;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  background-color: var(--dc);
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
 }
 
-.mainContainer {
+.mainContainer,
+.buyContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -38,23 +40,20 @@ html {
   z-index: 9;
   border-radius: 0 0 45px 45px;
 }
+
+.buyContainer {
+  background-color: var(--wc);
+}
+
 .shoppingCartHeader,
 .wishlistHeader {
   width: 85%;
   border-bottom: 1px solid var(--dc);
 }
-.buyContainer {
-  background-color: var(--wc);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 9;
-  border-radius: 0 0 45px 45px;
-}
+
 .wishlistHeader h1,
 .shoppingCartHeader h1,
-.empty {
+.empty h1 {
   margin-top: 20vh;
   font-size: 40px;
   font-weight: 800;
@@ -67,11 +66,13 @@ html {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
 .empty h1 {
   position: absolute;
-  top: 37vh;
+  top: -25vh;
+  font-size: 40px;
 }
 
 .empty svg {
@@ -80,7 +81,6 @@ html {
 
 .wishlistContainer {
   width: 100%;
-  height: 100%;
   min-height: 65vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -98,21 +98,22 @@ html {
   z-index: 3;
 }
 
-.wishlistCard svg {
+.wishlistCard svg,
+.shoppingCart svg {
   cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: var(--dc);
   transition: all 0.3s ease-in-out;
+  color: var(--dc);
 }
 
-.wishlistCard svg:nth-child(2) {
+.wishlistCard svg:nth-child(2),
+.shoppingCart svg {
   color: var(--rc);
 }
 
 #heartHover {
   opacity: 0;
+  top: 0;
+  position: absolute;
 }
 
 .wishlist svg:hover,
@@ -123,46 +124,10 @@ html {
 
 #activeHeart {
   opacity: 1;
+  top: 0;
+  position: absolute;
 }
 
-@media (max-width: 768) {
-  .wishlistHeader h1,
-  .shoppingCartHeader h1,
-  .empty {
-    font-size: 30px;
-  }
-  .buyContainer {
-    overflow: hidden;
-  }
-  .empty svg {
-    max-width: 70vw;
-  }
-}
-@media (max-width: 425) {
-  .wishlistContainer {
-    padding-top: 15vh;
-  }
-  .contactBtn {
-    width: 120px !important;
-    height: 40px !important;
-    font-size: 0.8rem;
-  }
-  .empty h1 {
-    font-size: 20px;
-  }
-  .hoverBtn {
-    width: 100% !important;
-  }
-}
-@media (max-width: 375) {
-  .wishlistContainer {
-    display: flex;
-    flex-direction: column;
-  }
-  .shoppingCart {
-    width: 95vw !important;
-  }
-}
 .shoppingCart {
   width: 350px;
   height: 200px;
@@ -191,7 +156,7 @@ html {
   gap: 30px;
 }
 
-.shoppingCartDetails .shoppingCartInfo {
+.shoppingCartInfo {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -202,33 +167,28 @@ html {
   color: var(--dc);
 }
 
-.shoppingCartDetails .shoppingCartInfo p {
+.shoppingCartInfo p,
+.shoppingCartInfo h3,
+.shoppingCartInfo h4 {
+  text-transform: uppercase;
+  font-size: 0.65rem;
+}
+
+.shoppingCartInfo p {
   font-weight: 400;
-  font-size: 0.7rem;
-  text-transform: uppercase;
 }
 
-.shoppingCartDetails .shoppingCartInfo h3 {
+.shoppingCartInfo h3 {
   font-weight: 800;
-  font-size: 0.8rem;
-  text-transform: uppercase;
 }
 
-.shoppingCartDetails .shoppingCartInfo h4 {
-  font-size: 0.8rem;
-  text-transform: uppercase;
+.shoppingCartInfo h4 {
   color: var(--gc);
 }
 
 .shoppingCartImg {
   border-radius: 10px;
   border: 1px solid var(--gc);
-  cursor: pointer;
-}
-
-.shoppingCart svg {
-  color: var(--rc);
-  transition: all 0.5s ease;
   cursor: pointer;
 }
 
@@ -264,12 +224,8 @@ html {
   font-size: 1.5rem;
   font-weight: 500;
   position: relative;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
   color: var(--dc);
+  overflow: hidden;
 }
 
 .mainBtn,
@@ -280,7 +236,7 @@ html {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   text-transform: capitalize;
-  border: var(--dc) 1px solid;
+  border: 1px solid var(--dc);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,7 +247,7 @@ html {
   border-color: var(--dc);
   color: var(--wc);
   position: absolute;
-  top: 50;
+  top: 50px;
 }
 
 .homeBtn:hover .mainBtn {
@@ -302,12 +258,10 @@ html {
   top: 0;
 }
 
-/* ----------------------- */
 .contactBtn {
   width: 180px;
   height: 55px;
   line-height: 1;
-  text-decoration: none;
   display: inline-flex;
   border: none;
   cursor: pointer;
@@ -367,21 +321,26 @@ html {
   width: 100%;
   text-transform: none;
 }
+
+.cashBox h3,
+.cashBox p {
+  font-size: 14px;
+}
+
 .cashBox h3 {
-  font-size: 14px !important;
-  padding-bottom: 5px;
   font-weight: bold;
+  padding-bottom: 5px;
 }
 
 .cashBox p {
   width: 80%;
-  color: var(--gc) !important;
-  font-size: 14px !important;
+  color: var(--gc);
 }
+
 .cashBox svg {
   position: absolute;
-  top: 30;
-  right: 20;
+  top: 30px;
+  right: 20px;
 }
 
 @keyframes slide-in {
@@ -411,8 +370,8 @@ html {
 }
 
 .myPhoneInput .PhoneInputCountrySelect {
-  background-color: var(--wc) !important;
-  color: var(--dc) !important;
+  background-color: var(--wc);
+  color: var(--dc);
 }
 
 input:-webkit-autofill {
@@ -433,9 +392,84 @@ select {
 
 .errorSpan {
   position: absolute;
-  bottom: -25;
-  left: 10;
+  bottom: -25px;
+  left: 10px;
   color: var(--rc);
   font-size: 12px;
   font-weight: bolder;
+}
+
+@media (max-width: 768px) {
+  .wishlistHeader h1,
+  .shoppingCartHeader h1,
+  .empty h1 {
+    font-size: 30px;
+  }
+  .buyContainer {
+    overflow: hidden;
+  }
+  .empty svg {
+    max-width: 70vw;
+  }
+  .footerBox,
+  .footerBox h6,
+  .footerText,
+  .footerBox strong {
+    font-size: 11px !important;
+  }
+  .socialIcons .icon svg {
+    height: 20px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .wishlistContainer {
+    padding-top: 15vh;
+  }
+  .contactBtn {
+    width: 120px !important;
+    height: 40px !important;
+    font-size: 0.8rem;
+  }
+  .empty h1 {
+    font-size: 24px;
+  }
+  .hoverBtn {
+    width: 100% !important;
+  }
+  .hoverFooter,
+  .footerMain {
+    height: 75vh;
+  }
+  .footerBox {
+    flex-direction: column-reverse;
+    height: 100%;
+    justify-content: end;
+  }
+  .Sitemap {
+    width: 95%;
+  }
+  .footerInfo {
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+  .footerLogo {
+    width: 100px;
+  }
+  .socialIcons .icon svg {
+    height: 15px !important;
+  }
+  .footerText {
+    width: 95% !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .wishlistContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .shoppingCart {
+    width: 95vw !important;
+  }
 }

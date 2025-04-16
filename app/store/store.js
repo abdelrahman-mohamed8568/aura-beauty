@@ -9,12 +9,12 @@ import wishlistSlice from "@/store/wishlist/wishlistSlice";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["card", "wishlist"], // حفظ بيانات `card` و `wishlist` فقط
+  whitelist: ["card", "wishlist"],
 };
 
 const rootReducer = combineReducers({
   products: productsReducer,
-  card: cardSlice, // ✅ تأكد من أن `card` تمت إضافته هنا
+  card: cardSlice,
   wishlist: wishlistSlice,
 });
 

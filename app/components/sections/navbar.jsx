@@ -7,9 +7,9 @@ import icon from "@/app/favicon.ico";
 import { getTotalItems } from "@/store/card/cardSlice";
 import { shallowEqual, useSelector } from "react-redux";
 import { usePathname } from "next/navigation";
-import Search from "../search";
+import Search from "../common/search";
 import Link from "next/link";
-import SocialIcons from "../socialIcons";
+import SocialIcons from "../common/socialIcons";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 
@@ -54,7 +54,6 @@ function Navbar() {
       transition: { delay: i * 0.1, duration: 0.1, ease: "easeInOut" },
     }),
   };
-
   return (
     <nav
       className={`${montserratFont.className} container ${

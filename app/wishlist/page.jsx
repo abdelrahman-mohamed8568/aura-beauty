@@ -13,7 +13,6 @@ function Wishlist() {
     dispatch(removeHeart(id));
     toast.error("This product has been removed from the wishlist !");
   };
-
   return (
     <div className="buyContainer">
       <div className="wishlistHeader">

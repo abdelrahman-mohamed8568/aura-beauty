@@ -13,6 +13,7 @@
   flex-direction: column;
   color: var(--dc);
 }
+
 .aboutBox h1 {
   font-size: 4rem;
   text-transform: uppercase;
@@ -27,23 +28,29 @@
   gap: 30px;
   width: 70vw;
 }
+
 .policy .aboutText {
   width: 60vw;
 }
+
 .aboutText h3 {
   font-size: 1.6rem;
   text-transform: uppercase;
   font-weight: 700;
 }
+
 .policy h3 {
   font-size: 1.2rem;
 }
+
 .aboutText p {
   font-size: 1.3rem;
 }
+
 .policy p {
   font-size: 1rem;
 }
+
 @media (max-width: 768px) {
   .aboutText {
     width: 90vw !important;

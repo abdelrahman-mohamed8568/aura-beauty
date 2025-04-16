@@ -25,7 +25,7 @@ import {
   STOCK_OPTIONS,
   DATE_OPTIONS,
 } from "@/appComponents/filter/filterOptions";
-import EmptySection from "@/app/components/emptySection";
+import EmptySection from "@/app/components/common/emptySection";
 import {
   DialogRoot,
   DialogTrigger,
@@ -35,9 +35,12 @@ import {
 import { CloseButton } from "@/components/ui/close-button";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-const ProductsCard = dynamic(() => import("@/app/components/productsCard"), {
-  ssr: false,
-});
+const ProductsCard = dynamic(
+  () => import("@/app/components/common/productsCard"),
+  {
+    ssr: false,
+  }
+);
 const MemoProductsCard = React.memo(ProductsCard);
 
 function Products() {
@@ -112,9 +115,24 @@ function Products() {
       dispatch(fetchProducts());
     }
     if (FromPath === "products") {
-      dispatch(setCategoryOrder(["filler", "hifu", "cryo", "botox"]));
-    } else if (FromPath === "centers") {
-      dispatch(setCategoryOrder(["filler", "hifu"]));
+      dispatch(
+        setCategoryOrder([
+          "bio-stimulators",
+          "exosomes",
+          "fillers",
+          "botox",
+          "skin-boosters",
+          "mesotherapy",
+          "hair-removal-lasers",
+          "tattoo-removal-lasers",
+          "co2-fractional-lasers",
+          "cryolipolysis",
+          "hifu",
+          "cavitation-fat-reduction",
+          "hydrafacial",
+          "devices",
+        ])
+      );
     } else {
       dispatch(setCategoryOrder([]));
     }

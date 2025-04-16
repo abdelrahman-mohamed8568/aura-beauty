@@ -1,9 +1,8 @@
 import "@/styles/categoriesSection.css";
 import Image from "next/image";
-import cover from "@/public/images/categorieCover.jpg";
-import card1 from "@/public/images/homeCard1.jpeg";
-import card2 from "@/public/images/homeCard2.jpg";
-import card3 from "@/public/images/homeCard3.webp";
+import card1 from "@/public/images/homeCard1.png";
+import card2 from "@/public/images/homeCard2.png";
+import card3 from "@/public/images/homeCard3.png";
 import devices from "@/images/categories/devices.png";
 import hydraFacial from "@/images/categories/hydraFacial.png";
 import mesotherapy from "@/images/categories/mesotherapy.png";
@@ -24,7 +23,7 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { homeAnimations } from "@/appComponents/homeAnimations";
+import { homeAnimations } from "@/app/components/animations/homeAnimations";
 function CategoriesSection() {
   const CardInfo = ({ titleParts, description, link, Class }) => (
     <div className={Class}>
@@ -48,20 +47,20 @@ function CategoriesSection() {
     </Link>
   );
   const categories = [
-    { name: "devices", img: devices },
-    { name: "hydrafacial", img: hydraFacial },
-    { name: "mesotherapy", img: mesotherapy },
-    { name: "co2-fractional-lasers", img: co2 },
-    { name: "hifu", img: hifu },
-    { name: "cryolipolysis", img: cryo },
-    { name: "cavitation-fat-reduction", img: fat },
-    { name: "hair-removal-lasers", img: hair },
-    { name: "tattoo-removal-lasers", img: tattoo },
+    { name: "bio-stimulators", img: bio },
+    { name: "exosomes", img: exosomes },
+    { name: "fillers", img: filler },
     { name: "botox", img: botox },
     { name: "skin-boosters", img: skin },
-    { name: "exosomes", img: exosomes },
-    { name: "bio-stimulators", img: bio },
-    { name: "fillers", img: filler },
+    { name: "mesotherapy", img: mesotherapy },
+    { name: "hair-removal-lasers", img: hair },
+    { name: "tattoo-removal-lasers", img: tattoo },
+    { name: "co2-fractional-lasers", img: co2 },
+    { name: "cryolipolysis", img: cryo },
+    { name: "hifu", img: hifu },
+    { name: "cavitation-fat-reduction", img: fat },
+    { name: "hydrafacial", img: hydraFacial },
+    { name: "devices", img: devices },
   ];
   return (
     <>
@@ -168,7 +167,6 @@ function CategoriesSection() {
           </div>
           <Swiper
             loop={true}
-            loopAdditionalSlides={categories.length}
             easing="ease-in-out"
             speed={2000}
             navigation={true}
@@ -235,7 +233,6 @@ function CategoriesSection() {
               📞 Contact us today for current offers or free consultation!
             </h2>
           </div>
-
           <div className="categorieInfoCards">
             <div className="left">
               <div className="top infoBox">

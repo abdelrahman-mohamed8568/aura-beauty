@@ -14,7 +14,6 @@ function ContactForm() {
     formState: { errors },
     reset,
   } = useForm();
-
   const onSubmit = async (data) => {
     try {
       const { name, phone, email, message } = data;
@@ -27,7 +26,6 @@ function ContactForm() {
           time: new Date().toISOString(),
         },
       ]);
-
       if (error) {
         toast.error("An error occurred while sending the message!");
       } else {
@@ -103,7 +101,7 @@ function ContactForm() {
       <div className="field">
         <label>Your inquiry</label>
         <Textarea
-          placeholder="Tell us your request or inquiry..."
+          placeholder="  Tell us your request or inquiry..."
           minH={"150px"}
           borderRadius="15px"
           _focus={{

@@ -24,45 +24,7 @@
   align-items: center;
   gap: 40px;
 }
-@media (max-width: 768) {
-  .checkoutContainer {
-    flex-direction: column-reverse;
-  }
-}
-@media (max-width: 425) {
-  .checkoutContainer .bagInfo {
-    position: static;
-  }
-  .checkoutContainer .bagInfo p {
-    font-size: 0.8rem;
-  }
-  .infoSwiper,
-  .bagTotal,
-  .formInfo {
-    width: 90vw !important;
-  }
-  .deliveryText {
-    font-size: 0.6rem;
-  }
-  .bagProduct {
-    font-size: 12px;
-  }
-  .formInfo {
-    margin-top: -120px;
-    padding-top: 20px;
-    border-top: 1px solid var(--dc);
-  }
-  .formFlex {
-    flex-direction: column;
-  }
-  .formInfo form,
-  .formFlex {
-    gap: 35px !important;
-  }
-  .formInfo .field input {
-    font-size: 14px;
-  }
-}
+
 .formInfo {
   display: flex;
   flex-direction: column;
@@ -152,8 +114,8 @@
 
 .bagProduct span {
   position: absolute;
-  top: -5;
-  right: -5;
+  top: -5px;
+  right: -5px;
   width: 20px;
   height: 20px;
   border-radius: 50px;
@@ -181,4 +143,53 @@
   align-items: center;
   font-weight: 800;
   font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .checkoutContainer {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 425px) {
+  .checkoutContainer .bagInfo {
+    position: static;
+  }
+
+  .checkoutContainer .bagInfo p {
+    font-size: 0.8rem;
+  }
+
+  .infoSwiper,
+  .bagTotal,
+  .formInfo {
+    width: 90vw !important;
+  }
+
+  .deliveryText {
+    font-size: 0.6rem;
+  }
+
+  .bagProduct {
+    font-size: 12px;
+  }
+
+  .formInfo {
+    margin-top: -120px;
+    padding-top: 20px;
+    border-top: 1px solid var(--dc);
+  }
+
+  .formFlex {
+    flex-direction: column;
+  }
+
+  .formInfo form,
+  .formFlex {
+    gap: 35px !important;
+  }
+
+  .formInfo .field input {
+    font-size: 14px;
+  }
 }

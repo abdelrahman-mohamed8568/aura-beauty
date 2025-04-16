@@ -26,10 +26,12 @@
   font-weight: 500;
   cursor: pointer;
 }
+
 .subtitle h4 {
   font-weight: 400;
   color: var(--yc);
 }
+
 .boxLink {
   color: var(--dc);
   width: 30%;
@@ -126,7 +128,15 @@
   object-fit: contain;
   z-index: 99999999999999999999 !important;
 }
-/* ---------------------------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .productInfo {
   width: 70%;
@@ -298,6 +308,7 @@
   font-size: 16px;
   font-weight: bolder;
 }
+
 #hidden {
   visibility: hidden;
 }
@@ -307,6 +318,7 @@
   border-top: 1px solid var(--dc);
   color: var(--dc);
 }
+
 .description h2 {
   color: var(--bc);
   margin: 5vh 0;
@@ -323,6 +335,7 @@
   align-items: center;
   gap: 5vh;
 }
+
 .related h2 {
   color: var(--dc);
   font-size: 2.5rem;
@@ -474,26 +487,18 @@
   border-radius: 5px 0 0 5px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* ----------------------------------------- */
-@media (max-width: 768) {
+@media (max-width: 768px) {
   .productBox {
     flex-direction: column;
     justify-content: center;
   }
+
   .subtitle {
     font-size: 12px !important;
     min-width: 80% !important;
     flex-wrap: wrap;
   }
+
   .productCover {
     flex-direction: column-reverse;
     gap: 10px;
@@ -502,18 +507,22 @@
     align-items: center;
     margin-top: -40px;
   }
+
   .mainImage {
     max-width: 100% !important;
     height: 100% !important;
   }
+
   .sideImages {
     width: 100%;
     flex-direction: row !important;
   }
+
   .sideImagesSwiperBox {
     display: flex;
     justify-content: center;
   }
+
   .sideImagesSwiper .swiper-button-prev,
   .sideImagesSwiper .swiper-button-next {
     rotate: 0deg !important;
@@ -521,30 +530,37 @@
     top: 60% !important;
     right: -10 !important;
   }
+
   .sideImagesSwiper .swiper-button-prev {
     left: -10 !important;
   }
+
   .productInfo {
     width: 100%;
     padding: 15px;
   }
+
   .productInfo h1 {
     font-size: 24px !important;
   }
+
   .sendMessageText {
     position: relative !important;
     top: 0 !important;
     justify-self: center;
   }
+
   .sendMessage {
     max-width: 100% !important;
     align-items: center;
   }
+
   .sendMessageContent form {
     align-items: center !important;
     font-size: 0.8rem;
     width: 70vw !important;
   }
+
   .sendMessageContent form .field {
     width: 95% !important;
   }
@@ -559,25 +575,30 @@
     width: 250px;
   }
 }
-@media (max-width: 425) {
+@media (max-width: 425px) {
   .attentionBox {
     flex-direction: column;
     gap: 10px;
   }
+
   .description,
   .inquiry {
     width: 85% !important;
   }
+
   .description h2 {
     font-size: 2rem !important;
   }
+
   .related h2 {
     font-size: 1.8rem !important;
   }
+
   .inquiryText {
     width: 100% !important;
   }
+
   .sendMessageContent form {
-    width: 95vw !important;
+    width: 98vw !important;
   }
 }

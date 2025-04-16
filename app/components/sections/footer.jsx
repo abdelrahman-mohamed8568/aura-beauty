@@ -2,7 +2,7 @@ import "@/styles/footer.css";
 import logo from "@/public/images/footer_logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import SocialIcons from "../socialIcons";
+import SocialIcons from "../common/socialIcons";
 
 function Footer() {
   const links = [
@@ -14,7 +14,6 @@ function Footer() {
     { text: "contact us", href: "/contact-us" },
     { text: "about us", href: "/about-us" },
   ];
-
   return (
     <>
       <div className="hoverFooter"></div>

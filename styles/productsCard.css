@@ -78,11 +78,9 @@
   width: 100%;
 }
 
-/* ---------------------------- */
-
 .view {
   position: absolute;
-  bottom: 20;
+  bottom: 20px;
   transition: all 0.3s ease-in-out;
   transform: scale(0);
   z-index: 0;

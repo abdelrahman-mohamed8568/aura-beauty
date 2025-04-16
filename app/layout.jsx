@@ -6,7 +6,7 @@ import Navbar from "@/appComponents/sections/navbar";
 import { Provider } from "@/components/ui/provider";
 import StoreProvider from "./StoreProvider";
 import ReactLenis from "lenis/react";
-import Preloader from "./components/preloader";
+import Preloader from "./components/animations/preloader";
 export const metadata = {
   title: "Aura Beauty",
   description: "Beauty store advanced products and devices",

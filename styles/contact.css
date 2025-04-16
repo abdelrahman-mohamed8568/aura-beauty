@@ -1,6 +1,5 @@
 .contactBox {
   width: 100%;
-  background: rgb(213, 171, 66);
   background: linear-gradient(
     0deg,
     rgba(213, 171, 66, 1) 0%,
@@ -13,6 +12,7 @@
   flex-direction: column;
   border-radius: 0 0 45px 45px;
 }
+
 .contactBox h1 {
   font-size: 4rem;
   text-transform: uppercase;
@@ -20,6 +20,7 @@
   border-bottom: 4px double var(--gc);
   margin-bottom: 5vh;
 }
+
 .contactContainer {
   display: flex;
   width: 70vw;
@@ -27,15 +28,18 @@
   align-items: center;
   gap: 100px;
 }
+
 .contactContainer form,
 .contactContainer .formFlex {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
+
 .contactContainer .field {
   position: relative;
 }
+
 .contactContainer h3 {
   font-weight: 300;
   text-transform: capitalize;
@@ -43,25 +47,28 @@
   color: var(--gc);
   justify-self: center;
 }
+
 .contactContainer .socialIcons {
   display: flex;
   flex-direction: row;
-  /* font-size: 30px !important;
-  background-color: brown; */
 }
+
 .contactContainer .socialIcons p {
   font-size: 12px;
   font-weight: bold;
 }
+
 .contactContainer .socialIcons svg {
   width: 40px;
   height: 40px;
 }
+
 .contactContainer .socialIcons .icon:hover svg {
   scale: 1.2;
   fill: var(--dc);
 }
-@media (max-width: 768) {
+
+@media (max-width: 768px) {
   .contactContainer {
     flex-direction: column;
   }
@@ -70,7 +77,8 @@
     height: 40px !important;
   }
 }
-@media (max-width: 425) {
+
+@media (max-width: 425px) {
   .contactContainer form,
   .contactContainer .formFlex {
     width: 95vw;

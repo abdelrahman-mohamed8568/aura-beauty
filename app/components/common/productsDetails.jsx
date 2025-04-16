@@ -9,13 +9,12 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Image from "next/image";
 import { Badge, HStack } from "@chakra-ui/react";
 import { HiAtSymbol } from "react-icons/hi";
-import Subtitle from "@/app/components/subtitle";
+import Subtitle from "@/app/components/common/subtitle";
 import { addHeart, removeHeart } from "@/app/store/wishlist/wishlistSlice";
 import { ToastContainer, toast } from "react-toastify";
-import ProductsCard from "@/app/components/productsCard";
+import ProductsCard from "@/app/components/common/productsCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Zoom } from "swiper/modules";
-
 import { motion } from "framer-motion";
 import {
   DialogActionTrigger,
@@ -44,19 +43,16 @@ function ProductsDetails() {
   const pathSegments = pathname.split("/");
   const FromPath = pathSegments[1];
   const productId = params?.productDetails;
-
   const [isAdded, setIsAdded] = useState(false);
   const [activeHeart, setActiveHeart] = useState(false);
   const [images, setImages] = useState([]);
   const [mainImage, setMainImage] = useState("");
   const [sizes, setSizes] = useState(null);
   const [colors, setColors] = useState(null);
-
   const products = useSelector(
     (state) => state.products.products || [],
     shallowEqual
   );
-
   const cardItems = useSelector(
     (state) => state.card?.items || [],
     shallowEqual
@@ -65,13 +61,11 @@ function ProductsDetails() {
     (state) => state.wishlist?.items || [],
     shallowEqual
   );
-
   const selectedProduct = useMemo(() => {
     return (
       products.find((product) => product.id.toString() === productId) || null
     );
   }, [products, productId]);
-
   const relatedProducts = useMemo(() => {
     if (!selectedProduct || !selectedProduct.tag) return [];
     const tags = selectedProduct.tag;
@@ -81,9 +75,7 @@ function ProductsDetails() {
       return tags.some((tag) => productCategory.includes(tag));
     });
   }, [products, selectedProduct]);
-
   const shuffledProducts = [...relatedProducts].sort(() => Math.random() - 0.5);
-
   useEffect(() => {
     if (selectedProduct) {
       let productImages = [];
@@ -110,7 +102,6 @@ function ProductsDetails() {
       );
     }
   }, [selectedProduct]);
-
   const checkedProduct = useMemo(() => {
     if (!selectedProduct) return null;
     return {
@@ -129,43 +120,35 @@ function ProductsDetails() {
           : null,
     };
   }, [selectedProduct, sizes, colors]);
-
   const productMatches = (item, product, selectedSize, selectedColor) => {
     if (item.id !== product.id) return false;
-
     if (product.size) {
       const sizeToCompare =
         selectedSize ||
         (Array.isArray(product.size) ? product.size[0] : product.size);
       if (item.size !== sizeToCompare) return false;
     }
-
     if (product.color) {
       const colorToCompare =
         selectedColor ||
         (Array.isArray(product.color) ? product.color[0] : product.color);
       if (item.color !== colorToCompare) return false;
     }
-
     return true;
   };
-
   const isMatched = useMemo(() => {
     if (!selectedProduct) return false;
     return cardItems.some((item) =>
       productMatches(item, selectedProduct, sizes, colors)
     );
   }, [cardItems, selectedProduct, sizes, colors]);
-
   const isProductInWishlist = useMemo(() => {
     return wishlistItems.some((item) => item.id === selectedProduct?.id);
   }, [wishlistItems, selectedProduct]);
-
   useEffect(() => {
     setActiveHeart(isProductInWishlist);
     setIsAdded(isMatched);
   }, [isMatched, isProductInWishlist]);
-
   const heartHandler = () => {
     if (activeHeart) {
       dispatch(removeHeart(selectedProduct.id));
@@ -176,7 +159,6 @@ function ProductsDetails() {
     }
     setActiveHeart(!activeHeart);
   };
-
   const addToCardHandler = () => {
     dispatch(addToCard({ ...checkedProduct, fromPath: FromPath }));
     toast(
@@ -203,7 +185,6 @@ function ProductsDetails() {
       </div>
     );
   };
-
   return (
     <div className="mainContainer">
       <ToastContainer

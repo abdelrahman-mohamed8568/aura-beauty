@@ -1,8 +1,8 @@
 import { fatfaceFont } from "@/lang/lang";
 import "@/styles/contact.css";
-import ContactForm from "../components/contactForm";
+import ContactForm from "../components/common/contactForm";
 import { ToastContainer, toast } from "react-toastify";
-import SocialIcons from "../components/socialIcons";
+import SocialIcons from "../components/common/socialIcons";
 
 function ContactUs() {
   return (

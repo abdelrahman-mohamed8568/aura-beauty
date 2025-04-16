@@ -1,9 +1,3 @@
-import {
-  AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
-  AccordionRoot,
-} from "@/components/ui/accordion";
 import { RadioCardItem, RadioCardRoot } from "@/components/ui/radio-card";
 
 const RadioGroup = ({ options, value, onValueChange }) => (

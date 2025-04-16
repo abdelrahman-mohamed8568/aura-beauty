@@ -40,11 +40,10 @@
   color: var(--gc);
   border-bottom: var(--yc) 1px solid;
 }
-
 .coverOver {
   width: 35%;
-  right: 160;
-  bottom: 10;
+  right: 160px;
+  bottom: 10px;
   position: absolute;
   height: 100vh;
   border-radius: 350px 350px 0 0;
@@ -53,8 +52,7 @@
   background-color: var(--yc);
   width: 35%;
 }
-/* ---------------------- */
-@media (max-width: 1024) {
+@media (max-width: 1024px) {
   .hero {
     top: -55vh;
   }
@@ -85,12 +83,12 @@
     width: 80%;
   }
 }
-@media (max-width: 768) {
+@media (max-width: 768px) {
   .hero {
     top: -25vh;
   }
 }
-@media (max-width: 425) {
+@media (max-width: 425px) {
   .hero {
     top: 0;
   }

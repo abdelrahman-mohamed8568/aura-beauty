@@ -1,10 +1,4 @@
-import {
-  Geist_Mono,
-  Dancing_Script,
-  Great_Vibes,
-  Montserrat,
-  Abril_Fatface,
-} from "next/font/google";
+import { Geist_Mono, Montserrat, Abril_Fatface } from "next/font/google";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",

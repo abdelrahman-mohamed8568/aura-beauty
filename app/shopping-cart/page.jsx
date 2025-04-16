@@ -26,7 +26,6 @@ function ShoppingCart() {
     dispatch(removeCard({ id: item.id, size: item.size, color: item.color }));
     toast.error("This product has been removed from your bag !");
   };
-
   return (
     <div className="buyContainer">
       <div className="shoppingCartHeader">
@@ -372,7 +371,6 @@ function ShoppingCart() {
                       ) : (
                         <h4>indefinite</h4>
                       )}
-
                       <div className="quantity">
                         <button
                           onClick={() => minus(item)}

@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["yzqvipgjhmieuxxskspv.supabase.co", "drive.google.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "drive.google.com",
+        pathname: "/uc**",
+      },
+    ],
   },
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
