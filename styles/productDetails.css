@@ -515,6 +515,7 @@
 
   .sideImages {
     width: 100%;
+    overflow-y: hidden;
     flex-direction: row !important;
   }
 
