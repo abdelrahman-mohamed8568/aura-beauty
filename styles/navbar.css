@@ -332,19 +332,15 @@ li {
 }
 
 .toggle {
-  height: 30px;
-  width: 30px;
   transition: 0.2s;
   position: absolute;
-  top: 1.5vh;
+  top: 10px;
   right: 20px;
 }
 
 .toggle .checkbox {
   position: absolute;
   opacity: 0;
-  height: 100%;
-  width: 100%;
   cursor: pointer;
 }
 
@@ -388,16 +384,18 @@ li {
   .navScroll {
     display: none;
   }
+
   .container {
     top: 2vh;
     left: 2.5vw;
     border: none;
-    height: 8vh;
+    height: 50px;
     width: 95vw;
     border-radius: 15px;
     box-shadow: inset 0px 0px 100px 1px #e2e2e2;
     transition: all 0.7s ease-in-out;
   }
+
   .navOpen {
     height: 100vh;
     width: 100vw;
@@ -405,16 +403,19 @@ li {
     left: 0;
     border-radius: 0;
   }
+
   .navCategoryBox {
     flex-direction: column;
     position: absolute;
     align-items: start;
     top: 15%;
   }
+
   .navOpenOptionsAll {
     height: 100%;
     flex-direction: column;
   }
+
   .navOverlay {
     width: 200vw;
     height: 200vh;
@@ -426,45 +427,50 @@ li {
     opacity: 0.3 !important;
     transition: all 1s ease-in-out;
   }
+
   .navOpenOptionsAll .settings {
     opacity: 0;
   }
+
   .navLink:not(.settings .navLink) {
     align-self: start;
     border-bottom: 1px dotted var(--dc);
     padding: 0 15px;
   }
+
   .container .span-mother span,
   .container .span-mother2 span {
     font-size: 26px !important;
   }
+
   .span-mother2 span,
   .disabledLink {
     color: var(--wc);
   }
+
   .navContact {
     position: static;
   }
+
   .navLogo {
     width: 30px;
-    height: 4vh;
+    height: 30px;
     position: absolute;
-    top: 2vh;
+    top: 10px;
     left: 20px;
     z-index: 999;
   }
+
   .settings {
+    height: 30px;
     position: absolute;
-    top: 2vh;
+    top: 10px;
     flex-direction: row !important;
-    transition: all 1s ease-in-out;
-    height: 4vh;
+    transition: all 0.5s ease-in-out;
   }
+
   .settings .navLink {
     display: flex !important;
-  }
-  .settings svg {
-    height: 4vh;
   }
 
   .navHidden {
@@ -477,18 +483,23 @@ li {
     padding-top: 10px;
     font-size: 10px;
   }
+
   .navOpen .navHidden {
     animation: fadeInIcon 2s ease-in-out;
   }
+
   .searchBox {
     width: 70% !important;
   }
+
   .emptyResults {
     font-size: 1.4rem !important;
   }
+
   .resultsBox {
     width: 90% !important;
   }
+
   .resultsBox p {
     font-size: 0.7rem;
   }

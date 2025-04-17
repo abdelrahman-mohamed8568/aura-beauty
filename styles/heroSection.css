@@ -1,6 +1,6 @@
 .hero {
   position: sticky;
-  top: -18vh;
+  top: -20vh;
   background-color: var(--wc);
   border-radius: 45px;
   padding-bottom: 5vh;
