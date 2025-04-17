@@ -488,15 +488,16 @@
 }
 
 @media (max-width: 768px) {
+  .subtitle {
+    font-size: 12px !important;
+    min-width: 95% !important;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
   .productBox {
     flex-direction: column;
     justify-content: center;
-  }
-
-  .subtitle {
-    font-size: 12px !important;
-    min-width: 80% !important;
-    flex-wrap: wrap;
   }
 
   .productCover {
@@ -545,6 +546,14 @@
     font-size: 24px !important;
   }
 
+  .inquiry {
+    width: 90%;
+  }
+
+  .inquiryText {
+    width: 100%;
+  }
+
   .sendMessageText {
     position: relative !important;
     top: 0 !important;
@@ -577,13 +586,16 @@
   }
 }
 @media (max-width: 425px) {
+  .subtitle {
+    font-size: 10px !important;
+  }
+
   .attentionBox {
     flex-direction: column;
     gap: 10px;
   }
 
-  .description,
-  .inquiry {
+  .description {
     width: 85% !important;
   }
 
@@ -593,10 +605,6 @@
 
   .related h2 {
     font-size: 1.8rem !important;
-  }
-
-  .inquiryText {
-    width: 100% !important;
   }
 
   .sendMessageContent form {

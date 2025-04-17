@@ -78,7 +78,7 @@ function CategoriesSection() {
               <Link href="/professionals/all?page=1">
                 <motion.div {...homeAnimations.image("left")}>
                   <Image
-                    src={card2}
+                    src={card3}
                     alt="Image description"
                     className="categoriesImage"
                     priority
@@ -102,7 +102,7 @@ function CategoriesSection() {
               <Link href="/centers/all?page=1">
                 <motion.div {...homeAnimations.image("right")}>
                   <Image
-                    src={card3}
+                    src={card2}
                     alt="Beauty Business Boost"
                     className="categoriesImage"
                     priority

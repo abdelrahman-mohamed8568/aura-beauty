@@ -446,28 +446,27 @@ li {
     position: static;
   }
   .navLogo {
-    width: 40px;
+    width: 30px;
+    height: 4vh;
     position: absolute;
-    top: 1.5vh;
+    top: 2vh;
     left: 20px;
     z-index: 999;
   }
   .settings {
     position: absolute;
-    top: 2.5vh;
+    top: 2vh;
     flex-direction: row !important;
     transition: all 1s ease-in-out;
+    height: 4vh;
   }
   .settings .navLink {
     display: flex !important;
   }
   .settings svg {
-    width: 20px;
-    height: 20px;
+    height: 4vh;
   }
-  #Basket {
-    top: 5px !important;
-  }
+
   .navHidden {
     display: flex;
     flex-direction: column;

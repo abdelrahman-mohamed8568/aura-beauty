@@ -149,7 +149,6 @@
   height: 70%;
 }
 
-/* Pagination */
 .paginationContainer {
   display: flex;
   align-items: center;
@@ -222,6 +221,7 @@
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 25px;
   }
 
   .filterBtn {
