@@ -105,7 +105,6 @@
   padding: 5px;
   cursor: pointer;
   border-radius: 5px;
-  margin-bottom: -40px;
   z-index: 9;
 }
 
@@ -211,7 +210,9 @@
   .productsContainer .productsCards {
     width: 95vw;
   }
-
+  .tabList {
+    padding-top: 5vh;
+  }
   .tabText {
     font-size: 0.7rem;
     font-weight: 600;
@@ -228,7 +229,6 @@
   .filterBtn {
     display: flex !important;
     margin-top: 10vh !important;
-    margin-bottom: 10px;
   }
 }
 
@@ -244,7 +244,6 @@
   .filterBtn {
     display: flex !important;
     margin-top: 10vh !important;
-    margin-bottom: 10px;
   }
 
   .productsContainer {

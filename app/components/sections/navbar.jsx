@@ -165,7 +165,11 @@ function Navbar() {
               className={
                 pathname.split("/")[1] === link.disabled ? "disabledLink" : ""
               }
-              onClick={() => setNavToggle(false)}
+              onClick={() => {
+                setTimeout(() => {
+                  setNavToggle(false);
+                }, 500);
+              }}
             >
               <motion.div
                 className={`navLink

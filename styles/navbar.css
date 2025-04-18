@@ -411,7 +411,7 @@ li {
     width: 95vw;
     border-radius: 15px;
     box-shadow: inset 0px 0px 100px 1px #e2e2e2;
-    transition: all 1.5s ease-in-out;
+    transition: all 1s ease-in-out;
   }
 
   .navOpen {
