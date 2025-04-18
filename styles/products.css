@@ -97,7 +97,8 @@
 
 .filterBtn {
   display: none;
-  width: 160px;
+  justify-content: space-evenly;
+  width: 130px;
   font-size: 12px;
   border: 1px solid var(--dc);
   color: var(--dc);
@@ -225,7 +226,7 @@
   }
 
   .filterBtn {
-    display: block !important;
+    display: flex !important;
     margin-top: 10vh !important;
     margin-bottom: 10px;
   }
@@ -241,7 +242,7 @@
   }
 
   .filterBtn {
-    display: block !important;
+    display: flex !important;
     margin-top: 10vh !important;
     margin-bottom: 10px;
   }
