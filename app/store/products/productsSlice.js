@@ -33,7 +33,7 @@ const initialState = {
   status: "idle",
   error: null,
   currentPage: 1,
-  itemsPerPage: 12,
+  itemsPerPage: 16,
   currentCategory: "all",
   currentFromPath: "products",
   categoryOrder: [],

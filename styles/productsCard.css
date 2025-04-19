@@ -109,13 +109,9 @@
 }
 
 @media (max-width: 425px) {
-  .productCard {
-    width: 95vw;
-    height: 100%;
-  }
-
+  .productCard,
   .cardImg {
-    width: 95vw;
+    width: 90vw;
     height: 100%;
   }
 }
