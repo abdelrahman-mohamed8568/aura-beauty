@@ -548,7 +548,11 @@ function ProductsDetails() {
             </div>
             <div className="description">
               <h2>description</h2>
-              <p>{selectedProduct.description}</p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: selectedProduct.description,
+                }}
+              />
             </div>
             <div className="related">
               <h2>You May Also Like</h2>
