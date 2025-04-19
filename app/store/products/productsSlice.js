@@ -181,7 +181,7 @@ export const selectCategories = createSelector(
     } else {
       uniqueCategories.sort();
     }
-    return ["all", ...uniqueCategories];
+    return [...uniqueCategories];
   }
 );
 

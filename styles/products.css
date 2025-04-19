@@ -58,11 +58,8 @@
   justify-content: center;
   padding-top: 10vh;
   height: auto;
-  flex-wrap: wrap;
-  gap: 1vh 5vh;
   width: 100%;
   margin-bottom: 2vh;
-  transition: all 0.3s ease;
 }
 
 .tabText {
@@ -88,7 +85,7 @@
   max-width: 1200px;
   min-height: 60vh;
   transition: all 0.3s ease;
-  border-top: 1px dotted #5756561e;
+  border-top: 1px dotted #57565611;
 }
 
 .productsSwiperSlide {
@@ -100,9 +97,10 @@
   justify-content: space-evenly;
   width: 130px;
   font-size: 12px;
-  border: 1px solid var(--dc);
-  color: var(--dc);
-  padding: 5px;
+  /* border: 1px solid var(--dc); */
+  background-color: var(--dc);
+  color: var(--wc);
+  padding: 10px;
   cursor: pointer;
   border-radius: 5px;
   z-index: 9;
@@ -211,9 +209,12 @@
     width: 95vw;
   }
   .tabList {
-    padding-top: 5vh;
+    padding-top: 2vh;
+    width: 90%;
+    justify-self: center;
   }
   .tabText {
+    /* background-color: blueviolet; */
     font-size: 0.7rem;
     font-weight: 600;
   }

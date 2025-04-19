@@ -193,6 +193,14 @@ function Products() {
         <div className="productsCards" id="1">
           <div className="tabListContainer">
             <div className="tabList">
+              <Link
+                href={`/${FromPath}/all?page=1`}
+                className={
+                  currentCategory === "all" ? "tabText disabledTab" : "tabText"
+                }
+              >
+                all
+              </Link>
               <Swiper
                 loop={true}
                 easing="ease-in-out"
@@ -209,7 +217,7 @@ function Products() {
                     spaceBetween: 0,
                   },
                   768: {
-                    slidesPerView: 3,
+                    slidesPerView: 4,
                     spaceBetween: 10,
                   },
                   1024: {

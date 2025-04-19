@@ -43,6 +43,7 @@ function ContactForm() {
           <label>Your name</label>
           <input
             type="text"
+            autoFocus={true}
             {...register("name", {
               required: "The field is required!",
             })}
