@@ -122,7 +122,6 @@
   .footerBox {
     flex-direction: column;
     height: 100%;
-    justify-content: end;
   }
 
   .footerInfo {
