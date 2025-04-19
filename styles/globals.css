@@ -411,15 +411,6 @@ select {
   .empty svg {
     max-width: 70vw;
   }
-  .footerBox,
-  .footerBox h6,
-  .footerText,
-  .footerBox strong {
-    font-size: 11px !important;
-  }
-  .socialIcons .icon svg {
-    height: 20px !important;
-  }
 }
 
 @media (max-width: 425px) {
@@ -436,31 +427,6 @@ select {
   }
   .hoverBtn {
     width: 100% !important;
-  }
-  .hoverFooter,
-  .footerMain {
-    height: 75vh;
-  }
-  .footerBox {
-    flex-direction: column-reverse;
-    height: 100%;
-    justify-content: end;
-  }
-  .Sitemap {
-    width: 95%;
-  }
-  .footerInfo {
-    gap: 10px;
-    padding-bottom: 10px;
-  }
-  .footerLogo {
-    width: 100px;
-  }
-  .socialIcons .icon svg {
-    height: 15px !important;
-  }
-  .footerText {
-    width: 95% !important;
   }
 }
 

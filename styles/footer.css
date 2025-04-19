@@ -47,7 +47,7 @@
 .footerText {
   font-size: 0.8rem;
   width: 75%;
-  color: var(--wc);
+  color: var(--wc) !important;
   text-align: center;
   padding: 1vh;
 }
@@ -118,29 +118,31 @@
   }
 }
 
-@media (max-width: 425px) {
-  .hoverFooter,
-  .footerMain {
-    height: 75vh;
-  }
-
+@media (max-width: 545px) {
   .footerBox {
-    flex-direction: column-reverse;
+    flex-direction: column;
     height: 100%;
     justify-content: end;
   }
 
-  .Sitemap {
-    width: 95%;
-  }
-
   .footerInfo {
-    gap: 10px;
-    padding-bottom: 10px;
+    gap: 5px;
   }
 
   .footerLogo {
     width: 100px;
+  }
+
+  .Sitemap {
+    width: 95%;
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .hoverFooter,
+  .footerMain {
+    height: 75vh;
   }
 
   .socialIcons .icon svg {

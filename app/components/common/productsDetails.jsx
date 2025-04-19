@@ -567,10 +567,6 @@ function ProductsDetails() {
                     slidesPerView: 1,
                     spaceBetween: 20,
                   },
-                  480: {
-                    slidesPerView: 2,
-                    spaceBetween: 30,
-                  },
                   768: {
                     slidesPerView: 2,
                     spaceBetween: 40,

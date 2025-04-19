@@ -60,6 +60,7 @@
   height: auto;
   width: 100%;
   margin-bottom: 2vh;
+  gap: 5px;
 }
 
 .tabText {
@@ -97,7 +98,6 @@
   justify-content: space-evenly;
   width: 130px;
   font-size: 12px;
-  /* border: 1px solid var(--dc); */
   background-color: var(--dc);
   color: var(--wc);
   padding: 10px;
@@ -210,13 +210,13 @@
   }
   .tabList {
     padding-top: 2vh;
-    width: 90%;
+    width: 95%;
     justify-self: center;
   }
   .tabText {
-    /* background-color: blueviolet; */
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 600;
+    letter-spacing: -0.02rem;
   }
 
   .productsBox {
@@ -254,10 +254,6 @@
 
   .filter {
     display: none !important;
-  }
-
-  .tabText {
-    font-size: 0.85rem;
   }
 
   .productsBox {

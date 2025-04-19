@@ -345,7 +345,7 @@
 }
 
 .productSwiper {
-  width: 75%;
+  width: 85%;
   height: 100%;
   scroll-behavior: smooth;
 }
@@ -487,17 +487,18 @@
   border-radius: 5px 0 0 5px;
 }
 
+@media (max-width: 1024px) {
+  .productBox {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 @media (max-width: 768px) {
   .subtitle {
     font-size: 12px !important;
     min-width: 95% !important;
     flex-wrap: wrap;
     gap: 10px;
-  }
-
-  .productBox {
-    flex-direction: column;
-    justify-content: center;
   }
 
   .productCover {

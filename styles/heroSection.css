@@ -54,7 +54,7 @@
 }
 @media (max-width: 1024px) {
   .hero {
-    top: -55vh;
+    top: -50vh;
   }
   .heroImage {
     height: 100%;
@@ -88,10 +88,12 @@
     top: -25vh;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 545px) {
   .hero {
-    top: 0;
+    top: 0vh;
   }
+}
+@media (max-width: 425px) {
   .heroText {
     height: 50vh;
   }
