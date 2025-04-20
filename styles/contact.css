@@ -80,16 +80,21 @@
   }
 }
 
-@media (max-width: 425px) {
-  .contactContainer form,
-  .contactContainer .formFlex {
-    width: 95vw;
-  }
+@media (max-width: 525px) {
   .contactContainer .socialIcons {
     flex-direction: column;
     justify-self: center;
   }
   .contactContainer h3 {
     text-align: center;
+  }
+  .contactContainer form,
+  .contactContainer .formFlex {
+    width: 95vw;
+  }
+}
+@media (max-width: 425px) {
+  .contactBox h1 {
+    font-size: 3rem;
   }
 }

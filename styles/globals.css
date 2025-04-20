@@ -384,10 +384,6 @@ textarea {
   padding: 10px;
 }
 
-textarea::placeholder {
-  color: var(--wc);
-}
-
 .errorSpan {
   position: absolute;
   bottom: -25px;
