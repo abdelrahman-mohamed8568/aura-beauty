@@ -1,8 +1,9 @@
 .hoverFooter {
-  height: 70vh;
+  height: 80vh;
   width: 100%;
   position: absolute;
   z-index: -10;
+  /* opacity: 0; */
 }
 
 .footerMain {
@@ -10,13 +11,15 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 70vh;
+  height: 80vh !important;
   background-color: var(--dc);
+  color: var(--wc) !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: -1;
+  /* background-color: brown; */
 }
 
 .footerBox {
@@ -25,7 +28,7 @@
   border-bottom: 1px solid var(--wc);
   text-transform: uppercase;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -40,8 +43,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
-  font-size: 14px;
+  gap: 10px;
+  font-size: 12px;
 }
 
 .footerText {
@@ -120,8 +123,10 @@
 
 @media (max-width: 545px) {
   .footerBox {
-    flex-direction: column;
+    flex-direction: column-reverse;
     height: 100%;
+    justify-content: space-evenly;
+    margin-top: 15vh;
   }
 
   .footerInfo {
@@ -130,6 +135,8 @@
 
   .footerLogo {
     width: 100px;
+    position: absolute;
+    top: 0;
   }
 
   .Sitemap {
@@ -139,7 +146,6 @@
 }
 
 @media (max-width: 425px) {
-  .hoverFooter,
   .footerMain {
     height: 75vh;
   }

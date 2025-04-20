@@ -90,12 +90,11 @@
   width: 200px;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 525px) {
   .shoppingCartContainer .totalBox {
     flex-direction: column;
     gap: 15px;
   }
-
   .quantity span {
     font-size: 14px;
   }

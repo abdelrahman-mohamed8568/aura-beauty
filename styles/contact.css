@@ -39,7 +39,9 @@
 .contactContainer .field {
   position: relative;
 }
-
+.contactContainer label .css-kdw41t {
+  margin-left: 10px;
+}
 .contactContainer h3 {
   font-weight: 300;
   text-transform: capitalize;

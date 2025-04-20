@@ -202,7 +202,7 @@ function Navbar() {
           ))}
           <div className={`navHidden ${navToggle && "navOpenOptions"}`}>
             <SocialIcons />
-            <h6>Copyright © 2025 Aura-Beauty.com</h6>
+            <h6>Copyright © 2025 aurabeautyeg.com</h6>
           </div>
         </li>
         <li className="settings">

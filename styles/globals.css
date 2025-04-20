@@ -232,7 +232,7 @@ body {
 .hoverBtn {
   width: 100%;
   height: 50px;
-  border-radius: 15px;
+  border-radius: 15px !important;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   text-transform: capitalize;
@@ -343,30 +343,20 @@ body {
   right: 20px;
 }
 
-@keyframes slide-in {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-out {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
 .formInfo label,
 .sendMessageContent label {
   padding-left: 10px;
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.PhoneInputCountry {
+  width: 50px;
+  display: flex;
+  justify-content: center !important;
+  border-radius: 10px;
+  border: 1px solid var(--dc);
 }
 
 .myPhoneInput .PhoneInputCountrySelect {
@@ -390,6 +380,14 @@ select {
   font-size: 18px;
 }
 
+textarea {
+  padding: 10px;
+}
+
+textarea::placeholder {
+  color: var(--wc);
+}
+
 .errorSpan {
   position: absolute;
   bottom: -25px;
@@ -399,6 +397,29 @@ select {
   font-weight: bolder;
 }
 
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 1440px) {
+  .wishlistContainer {
+    padding-top: 10%;
+  }
+}
 @media (max-width: 768px) {
   .wishlistHeader h1,
   .shoppingCartHeader h1,
@@ -413,10 +434,13 @@ select {
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 1024px) {
   .wishlistContainer {
-    padding-top: 15vh;
+    padding-top: 25%;
   }
+}
+
+@media (max-width: 425px) {
   .contactBtn {
     width: 120px !important;
     height: 40px !important;
@@ -434,6 +458,7 @@ select {
   .wishlistContainer {
     display: flex;
     flex-direction: column;
+    padding-top: 30%;
   }
   .shoppingCart {
     width: 95vw !important;

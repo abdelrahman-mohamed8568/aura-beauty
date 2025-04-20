@@ -89,7 +89,11 @@
   height: 250px;
   scroll-behavior: smooth;
 }
-
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 .infoSwiperSlide {
   width: 95% !important;
   scroll-behavior: smooth;
@@ -100,7 +104,9 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-top: 5px;
+  padding: 5px;
+  border: 1px solid var(--dc);
+  border-radius: 5px;
   scroll-behavior: smooth;
 }
 
@@ -110,14 +116,15 @@
 
 .bagImage .image {
   border-radius: 5px;
+  border: 1px solid #1f1f1f1e;
 }
 
 .bagProduct span {
   position: absolute;
-  top: -5px;
+  top: -3px;
   right: -5px;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50px;
   background-color: var(--gc);
   color: var(--wc);
@@ -149,21 +156,18 @@
   .checkoutContainer {
     flex-direction: column-reverse;
   }
-}
-
-@media (max-width: 425px) {
+  .infoSwiper,
+  .bagTotal,
+  .formInfo,
+  .formInfo form {
+    width: 95vw !important;
+  }
   .checkoutContainer .bagInfo {
     position: static;
   }
 
   .checkoutContainer .bagInfo p {
     font-size: 0.8rem;
-  }
-
-  .infoSwiper,
-  .bagTotal,
-  .formInfo {
-    width: 90vw !important;
   }
 
   .deliveryText {
@@ -179,7 +183,9 @@
     padding-top: 20px;
     border-top: 1px solid var(--dc);
   }
+}
 
+@media (max-width: 425px) {
   .formFlex {
     flex-direction: column;
   }
