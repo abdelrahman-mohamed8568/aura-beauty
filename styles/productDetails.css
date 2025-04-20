@@ -547,6 +547,14 @@
     font-size: 24px !important;
   }
 
+  .description {
+    width: 85% !important;
+  }
+
+  .description h2 {
+    font-size: 2rem !important;
+  }
+
   .inquiry {
     width: 90%;
   }
@@ -594,14 +602,6 @@
   .attentionBox {
     flex-direction: column;
     gap: 10px;
-  }
-
-  .description {
-    width: 85% !important;
-  }
-
-  .description h2 {
-    font-size: 2rem !important;
   }
 
   .related h2 {
