@@ -1,3 +1,8 @@
+.cardAnimate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .productCard {
   width: 250px;
   height: 100%;
@@ -99,7 +104,7 @@
   width: 100px;
   font-size: 14px;
   height: 30px;
-  border-radius: 10px;
+  border-radius: 10px !important;
 }
 
 .view .hoverBtn {

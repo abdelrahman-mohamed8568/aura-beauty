@@ -310,7 +310,7 @@ function Checkout() {
         <div className="bagInfo">
           <Swiper
             direction={"vertical"}
-            slidesPerView={"3.5"}
+            slidesPerView={"3"}
             freeMode={true}
             scrollbar={true}
             mousewheel={true}
@@ -337,7 +337,11 @@ function Checkout() {
                     <br /> {item.size && ` -  ${item.size}`}
                     {item.color && ` -  ${item.color}`}
                   </p>
-                  {item.price ? <h6>EGP: {item.price}</h6> : <h6></h6>}
+                  {item.price ? (
+                    <h6>EGP: {item.price}</h6>
+                  ) : (
+                    <h6>indefinite</h6>
+                  )}
                 </div>
               </SwiperSlide>
             ))}

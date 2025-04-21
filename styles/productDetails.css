@@ -78,6 +78,7 @@
   border-radius: 5px;
   border: 1px solid var(--gc);
   cursor: pointer;
+  z-index: 9;
 }
 
 .selectedImage {
@@ -460,14 +461,15 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 14px;
+  font-size: 10px;
+  max-width: 65%;
 }
 
 .toastInfo .mainBtn,
 .toastInfo .hoverBtn {
   font-size: 14px;
   height: 30px;
-  border-radius: 10px;
+  border-radius: 10px !important;
   width: 100px;
 }
 

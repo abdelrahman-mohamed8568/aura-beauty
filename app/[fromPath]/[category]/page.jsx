@@ -214,14 +214,12 @@ function Products() {
                 breakpoints={{
                   0: {
                     slidesPerView: 2,
-                    spaceBetween: 0,
                   },
                   768: {
-                    slidesPerView: 4,
-                    spaceBetween: 10,
+                    slidesPerView: 3,
                   },
                   1024: {
-                    slidesPerView: 5,
+                    slidesPerView: 4,
                   },
                 }}
                 className="productsSwiper"

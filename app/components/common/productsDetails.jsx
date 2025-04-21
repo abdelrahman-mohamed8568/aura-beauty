@@ -221,13 +221,6 @@ function ProductsDetails() {
                           direction: "horizontal",
                           slidesPerView: 3,
                         },
-                        375: {
-                          slidesPerView: 3,
-                        },
-                        768: {
-                          direction: "horizontal",
-                          slidesPerView: 4,
-                        },
                         1024: {
                           direction: "vertical",
                           slidesPerView: 4,

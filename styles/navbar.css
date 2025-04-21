@@ -533,9 +533,9 @@ li {
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .searchBox {
-    width: 90% !important;
+    width: 90vw !important;
   }
   .emptyResults {
     font-size: 1.1rem !important;

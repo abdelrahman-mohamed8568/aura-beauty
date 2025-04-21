@@ -78,25 +78,26 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   position: sticky;
   top: 0;
 }
 
 .infoSwiper {
   color: var(--dc);
-  width: 70%;
+  width: 75%;
   height: 250px;
   scroll-behavior: smooth;
 }
 .swiper-wrapper {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 2px;
 }
 .infoSwiperSlide {
   width: 95% !important;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 .bagProduct {
@@ -104,10 +105,11 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 5px;
   border: 1px solid #1f1f1fc5;
   border-radius: 5px;
   scroll-behavior: smooth;
+  padding: 5px;
+  font-size: 0.8rem;
 }
 
 .bagImage {
@@ -132,6 +134,14 @@
   display: flex;
   align-items: center;
   font-size: 10px;
+}
+
+.bagProduct p {
+  max-width: 50%;
+}
+
+.bagProduct h6 {
+  text-transform: uppercase;
 }
 
 .bagTotal {
@@ -198,5 +208,12 @@
 
   .formInfo .field input {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 375px) {
+  .bagProduct,
+  .bagProduct p {
+    font-size: 0.6rem !important;
   }
 }
