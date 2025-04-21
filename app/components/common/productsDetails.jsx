@@ -211,7 +211,7 @@ function ProductsDetails() {
             <div className="productBox">
               <div className="productCover">
                 <div className="sideImages">
-                  {images.length > 5 ? (
+                  {images.length > 3 ? (
                     <Swiper
                       spaceBetween={10}
                       navigation={true}

@@ -398,6 +398,9 @@ textarea {
   .hoverBtn {
     display: none !important;
   }
+  .homeBtn:hover .mainBtn {
+    scale: none;
+  }
   .hoverText:hover::after {
     transform: scaleX(0);
   }

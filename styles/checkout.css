@@ -89,7 +89,7 @@
   height: 250px;
   scroll-behavior: smooth;
 }
-.swiper-wrapper {
+.bagInfo .swiper-wrapper {
   display: flex;
   align-items: center;
   gap: 2px;

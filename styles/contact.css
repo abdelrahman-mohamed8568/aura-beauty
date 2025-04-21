@@ -84,7 +84,7 @@
   .contactContainer .socialIcons {
     flex-direction: column;
     justify-self: center !important;
-    max-height: 100px;
+    max-height: 150px;
     flex-wrap: wrap;
   }
   .contactContainer h3 {
