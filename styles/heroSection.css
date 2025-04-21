@@ -2,7 +2,7 @@
   position: sticky;
   border-radius: 0 0 45px 45px;
   top: -20vh;
-  background-color: var(--wc);
+  background-color: var(--yc);
   padding-bottom: 5vh;
   width: 100%;
 }
@@ -21,6 +21,7 @@
   position: relative;
 }
 .heroText {
+  background-color: var(--wc);
   width: 65%;
   margin-top: 70vh;
   height: 100%;
@@ -48,13 +49,11 @@
   height: 100vh;
   border-radius: 350px 350px 0 0;
 }
-.heroEmpty {
-  background-color: var(--yc);
-  width: 35%;
-}
+
 @media (max-width: 1024px) {
   .hero {
     top: 0px;
+    background-color: var(--wc);
   }
   .heroImage {
     height: 100%;
@@ -70,9 +69,6 @@
   }
   .heroContent {
     justify-content: center;
-  }
-  .heroEmpty {
-    display: none;
   }
   .coverOver {
     display: none;

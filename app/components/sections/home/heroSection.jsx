@@ -17,7 +17,6 @@ function HeroSection() {
             leading global brands.
           </h1>
         </div>
-        <div className="heroEmpty"></div>
         <Image src={over} alt="cover over" className="coverOver" priority />
       </div>
     </div>
