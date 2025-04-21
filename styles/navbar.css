@@ -294,8 +294,8 @@ li {
 
 .resultsSlide {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center !important;
+  align-items: center !important;
   scroll-behavior: smooth;
 }
 
@@ -329,6 +329,7 @@ li {
   border-radius: 5px;
   cursor: pointer;
   width: 70px;
+  border: 1px solid #1f1f1f1e;
 }
 
 .resultsLink {
