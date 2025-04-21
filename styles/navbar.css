@@ -221,6 +221,7 @@ li {
 .navLink:hover .span-mother2 span {
   transform: translateY(0);
 }
+
 .navLink:disabled .span-mother2 span {
   transform: translateY(1.2em);
 }
@@ -304,6 +305,17 @@ li {
   justify-content: space-between;
   scroll-behavior: smooth;
   width: 80%;
+}
+.resultsBox span {
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+  left: 0px;
+  width: 35%;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  border-bottom: 1px solid #1f1f1f52;
 }
 
 .resultsBox p {
@@ -398,11 +410,6 @@ li {
   }
 }
 
-/* @media (max-width: 1024px) {
-  .navScroll {
-    font-size: 12px;
-  }
-} */
 @media (max-width: 1024px) {
   .navScroll {
     display: none;
@@ -474,6 +481,14 @@ li {
   .span-mother2 span,
   .disabledLink {
     color: var(--wc);
+  }
+
+  .navLink:hover .span-mother span {
+    transform: translateY(0);
+  }
+
+  .navLink:hover .span-mother2 span {
+    transform: translateY(2rem);
   }
 
   .navContact {

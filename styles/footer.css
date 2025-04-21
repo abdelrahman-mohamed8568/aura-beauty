@@ -64,6 +64,8 @@
   width: 100%;
   border-right: 1px solid var(--wc);
   padding-right: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .sitemapLinks p {
@@ -125,8 +127,13 @@
   .footerBox {
     flex-direction: column-reverse;
     height: 100%;
-    justify-content: space-evenly;
-    margin-top: 25vh;
+    justify-content: center;
+  }
+
+  .sitemapLinks,
+  .socialBox {
+    align-items: center;
+    padding: 0;
   }
 
   .footerInfo {
@@ -135,13 +142,11 @@
 
   .footerLogo {
     width: 100px;
-    position: absolute;
-    top: 10vh;
   }
 
   .Sitemap {
     width: 95%;
-    padding-bottom: 20px;
+    padding-top: 60px;
   }
 }
 

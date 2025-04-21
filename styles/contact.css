@@ -83,7 +83,9 @@
 @media (max-width: 525px) {
   .contactContainer .socialIcons {
     flex-direction: column;
-    justify-self: center;
+    justify-self: center !important;
+    max-height: 100px;
+    flex-wrap: wrap;
   }
   .contactContainer h3 {
     text-align: center;

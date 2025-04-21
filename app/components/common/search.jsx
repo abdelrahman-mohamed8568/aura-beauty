@@ -110,6 +110,7 @@ function Search() {
                           <p>{item.name}</p>
                         </Link>
                       </DialogActionTrigger>
+                      <span></span>
                     </div>
                   </SwiperSlide>
                 ))

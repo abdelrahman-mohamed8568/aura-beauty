@@ -88,6 +88,7 @@ body {
   justify-items: center;
   margin: 5vh 0;
   gap: 15px;
+  /* background-color: #a52a2a; */
 }
 
 .wishlistCard {
@@ -393,30 +394,19 @@ textarea {
   font-weight: bolder;
 }
 
-@keyframes slide-in {
-  from {
-    transform: translateX(100%);
+@media (max-width: 1024px) {
+  .hoverBtn {
+    display: none !important;
   }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-out {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
+  .hoverText:hover::after {
+    transform: scaleX(0);
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 768px) {
   .wishlistContainer {
     padding-top: 10%;
   }
-}
-@media (max-width: 768px) {
   .wishlistHeader h1,
   .shoppingCartHeader h1,
   .empty h1 {
@@ -430,9 +420,9 @@ textarea {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 525px) {
   .wishlistContainer {
-    padding-top: 25%;
+    padding-top: 20%;
   }
 }
 
@@ -445,9 +435,9 @@ textarea {
   .empty h1 {
     font-size: 24px;
   }
-  .hoverBtn {
+  /* .hoverBtn {
     width: 100% !important;
-  }
+  } */
 }
 
 @media (max-width: 375px) {

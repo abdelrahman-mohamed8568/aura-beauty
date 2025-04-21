@@ -29,7 +29,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: var(--dc);
   font-size: 16px;
   text-transform: capitalize;
@@ -54,11 +53,14 @@
   .hero {
     top: 0px;
     background-color: var(--wc);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .heroImage {
     height: 100%;
     width: 70vw;
-    justify-self: center;
   }
   .homeCover {
     height: 100%;

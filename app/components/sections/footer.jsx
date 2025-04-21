@@ -43,13 +43,15 @@ function Footer() {
           <div className="Sitemap">
             <div className="sitemapLinks">
               <h3>Quick Links</h3>
-              {links.map((link, index) => (
-                <p key={index}>
-                  <Link className="hoverText" href={link.href}>
-                    {link.text}
-                  </Link>
-                </p>
-              ))}
+              <div>
+                {links.map((link, index) => (
+                  <p key={index}>
+                    <Link className="hoverText" href={link.href}>
+                      {link.text}
+                    </Link>
+                  </p>
+                ))}
+              </div>
             </div>
             <div className="socialBox">
               <h3>socials</h3>
