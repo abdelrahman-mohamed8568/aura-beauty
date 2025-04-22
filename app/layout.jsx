@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
             <ReactLenis root />
             <Navbar />
             {children}
-            <Footer />
             <SpeedInsights />
+            <Footer />
           </Provider>
         </StoreProvider>
       </body>
