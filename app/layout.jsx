@@ -7,7 +7,6 @@ import Footer from "@/appComponents/sections/footer";
 import { montserratFont } from "@/lang/lang";
 import StoreProvider from "./StoreProvider";
 import ReactLenis from "lenis/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata = {
   title: "Aura Beauty",
   description: "Beauty store advanced products and devices",
@@ -23,7 +22,6 @@ export default function RootLayout({ children }) {
             <ReactLenis root />
             <Navbar />
             {children}
-            <SpeedInsights />
             <Footer />
           </Provider>
         </StoreProvider>
