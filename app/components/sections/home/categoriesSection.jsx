@@ -25,6 +25,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { homeAnimations } from "@/app/components/animations/homeAnimations";
 function CategoriesSection() {
+  const options = {
+    initial: { scale: 0.6, opacity: 0.6 },
+    whileInView: { scale: 1, opacity: 1 },
+    viewport: { once: true, amount: 0.1 },
+    transition: { duration: 0.5, ease: "easeInOut" },
+  };
   const CardInfo = ({ titleParts, description, link, Class }) => (
     <div className={Class}>
       {titleParts.map((word, index) => (
@@ -235,7 +241,7 @@ function CategoriesSection() {
           </div>
           <div className="categorieInfoCards">
             <div className="left">
-              <div className="top infoBox">
+              <motion.div className="top infoBox" {...options}>
                 <h1 className="numberBox">
                   <span className="span-mother">
                     <span>5</span>
@@ -253,8 +259,8 @@ function CategoriesSection() {
                 <h2>
                   brand <br /> products
                 </h2>
-              </div>
-              <div className="bottom infoBox">
+              </motion.div>
+              <motion.div className="bottom infoBox" {...options}>
                 <h1 className="numberBox">
                   <span className="span-mother">
                     <span>2</span>
@@ -271,10 +277,10 @@ function CategoriesSection() {
                   governorate
                   <br /> delivery
                 </h2>
-              </div>
+              </motion.div>
             </div>
             <div className="right">
-              <div className="top infoBox">
+              <motion.div className="top infoBox" {...options}>
                 <h1 className="numberBox">
                   <span className="span-mother">
                     <span>7</span>
@@ -288,8 +294,8 @@ function CategoriesSection() {
                 <h2>
                   years of <br /> experience
                 </h2>
-              </div>
-              <div className="bottom infoBox">
+              </motion.div>
+              <motion.div className="bottom infoBox" {...options}>
                 <h1 className="numberBox">
                   <span className="span-mother">
                     <span>1</span>
@@ -310,7 +316,7 @@ function CategoriesSection() {
                   cooperative
                   <br /> client
                 </h2>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

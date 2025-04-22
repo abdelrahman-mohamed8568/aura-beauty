@@ -117,18 +117,18 @@ function Products() {
     if (FromPath === "products") {
       dispatch(
         setCategoryOrder([
-          "bio-stimulators",
+          "bio stimulators",
           "exosomes",
           "fillers",
           "botox",
-          "skin-boosters",
+          "skin boosters",
           "mesotherapy",
-          "hair-removal-lasers",
-          "tattoo-removal-lasers",
-          "co2-fractional-lasers",
+          "hair removal lasers",
+          "tattoo removal lasers",
+          "co2 fractional lasers",
           "cryolipolysis",
           "hifu",
-          "cavitation-fat-reduction",
+          "cavitation fat reduction",
           "hydrafacial",
           "devices",
         ])

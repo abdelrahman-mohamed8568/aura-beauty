@@ -12,7 +12,7 @@
 .checkoutContainer h2 {
   font-weight: 700;
   color: var(--yc);
-  align-self: start;
+  align-self: flex-start;
 }
 
 .checkoutContainer .info {

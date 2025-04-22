@@ -47,6 +47,14 @@
   font-size: 12px;
 }
 
+.footerInfo p:not(:nth-child(2)) {
+  font-size: 10px;
+}
+
+.footerInfo strong {
+  font-weight: 500;
+}
+
 .footerText {
   font-size: 0.8rem;
   width: 75%;
@@ -146,7 +154,7 @@
 
   .Sitemap {
     width: 95%;
-    padding-top: 60px;
+    padding-top: 70px;
   }
 }
 

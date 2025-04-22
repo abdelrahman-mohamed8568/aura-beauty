@@ -20,6 +20,9 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;

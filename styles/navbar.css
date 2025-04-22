@@ -438,7 +438,7 @@ li {
   .navCategoryBox {
     flex-direction: column;
     position: absolute;
-    align-items: start;
+    align-items: flex-start;
     top: 15%;
   }
 
@@ -469,7 +469,7 @@ li {
   }
 
   .navLink:not(.settings .navLink) {
-    align-self: start;
+    align-self: flex-start;
     border-bottom: 1px dotted var(--dc);
     padding: 0 15px;
   }

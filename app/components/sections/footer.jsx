@@ -38,7 +38,9 @@ function Footer() {
               </Link>
               .
             </p>
-            <Link href="/privacy-policy">privacy policy</Link>
+            <p>
+              <Link href="/privacy-policy">privacy policy</Link>
+            </p>
           </div>
           <div className="Sitemap">
             <div className="sitemapLinks">
