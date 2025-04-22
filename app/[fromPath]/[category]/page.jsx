@@ -188,7 +188,9 @@ function Products() {
           </DialogContent>
         </DialogRoot>
         <div className="filter">
-          <Filters />
+          <DialogRoot>
+            <Filters />
+          </DialogRoot>
         </div>
         <div className="productsCards" id="1">
           <div className="tabListContainer">
