@@ -88,7 +88,6 @@ body {
   justify-items: center;
   margin: 5vh 0;
   gap: 15px;
-  /* background-color: #a52a2a; */
 }
 
 .wishlistCard {
@@ -407,9 +406,9 @@ textarea {
 }
 
 @media (max-width: 768px) {
-  .wishlistContainer {
+  /* .wishlistContainer {
     padding-top: 10%;
-  }
+  } */
   .wishlistHeader h1,
   .shoppingCartHeader h1,
   .empty h1 {
@@ -424,9 +423,9 @@ textarea {
 }
 
 @media (max-width: 525px) {
-  .wishlistContainer {
+  /* .wishlistContainer {
     padding-top: 20%;
-  }
+  } */
 }
 
 @media (max-width: 425px) {
@@ -438,16 +437,12 @@ textarea {
   .empty h1 {
     font-size: 24px;
   }
-  /* .hoverBtn {
-    width: 100% !important;
-  } */
 }
 
 @media (max-width: 375px) {
   .wishlistContainer {
     display: flex;
     flex-direction: column;
-    padding-top: 30%;
   }
   .shoppingCart {
     width: 95vw !important;

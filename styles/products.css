@@ -116,8 +116,10 @@
   padding: 25px;
 }
 
-.filterContent .filterBox {
-  justify-self: center;
+.filterContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
 }
 
 .filterDialog svg {

@@ -30,13 +30,7 @@ function Footer() {
             <p>Copyright © 2025 aurabeautyeg.com</p>
             <p>
               Created by
-              <Link
-                href="https://abdelrahmanmohamed.netlify.app/"
-                target="_blank"
-              >
-                <strong> abdelrahman</strong>
-              </Link>
-              .
+              <strong> abdelrahman</strong>.
             </p>
             <p>
               <Link href="/privacy-policy">privacy policy</Link>

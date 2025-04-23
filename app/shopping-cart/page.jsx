@@ -47,7 +47,7 @@ function ShoppingCart() {
             </div>
           </div>
         )}
-        <div className="wishlistContainer">
+        <div className="shoppingContainer">
           {items.length === 0 ? (
             <div className="empty">
               <h1>The bag is empty!</h1>

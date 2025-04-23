@@ -6,12 +6,15 @@
   height: 100%;
 }
 
-.shoppingCartArea {
-  width: 80%;
-  max-width: 100%;
+.shoppingContainer {
+  width: 100%;
+  min-height: 65vh;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 5vh;
+  gap: 15px;
 }
 
 .quantity {
@@ -61,8 +64,7 @@
   justify-content: center;
   width: 100%;
   align-items: center;
-  position: absolute;
-  top: 30vh;
+  padding-top: 20px;
 }
 
 .shoppingCartContainer .totalBox {
@@ -97,5 +99,12 @@
   }
   .quantity span {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 375px) {
+  .shoppingContainer {
+    display: flex;
+    flex-direction: column;
   }
 }

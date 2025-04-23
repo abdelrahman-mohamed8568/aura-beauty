@@ -85,31 +85,34 @@ function Search() {
                 filtered.map((item) => (
                   <SwiperSlide key={item.id} className="resultsSlide">
                     <div className="resultsBox">
-                      <DialogActionTrigger asChild>
-                        <Link
-                          href={`/products/${item.category[0]
-                            .toString()
-                            .replace(/ /g, "-")}/${item.id}`}
-                        >
-                          <Image
-                            src={item.cover}
-                            alt={item.name}
-                            width={80}
-                            height={80}
-                            className="resultsImage"
-                            priority
-                          />
-                        </Link>
-                      </DialogActionTrigger>
-                      <DialogActionTrigger asChild>
-                        <Link
-                          href={`/products/${item.category[0]
-                            .toString()
-                            .replace(/ /g, "-")}/${item.id}`}
-                        >
-                          <p>{item.name}</p>
-                        </Link>
-                      </DialogActionTrigger>
+                      <div className="resultsContent">
+                        <DialogActionTrigger asChild>
+                          <Link
+                            href={`/products/${item.category[0]
+                              .toString()
+                              .replace(/ /g, "-")}/${item.id}`}
+                          >
+                            <Image
+                              src={item.cover}
+                              alt={item.name}
+                              width={80}
+                              height={80}
+                              className="resultsImage"
+                              priority
+                            />
+                          </Link>
+                        </DialogActionTrigger>
+                        <DialogActionTrigger asChild>
+                          <Link
+                            href={`/products/${item.category[0]
+                              .toString()
+                              .replace(/ /g, "-")}/${item.id}`}
+                          >
+                            <p>{item.name}</p>
+                          </Link>
+                        </DialogActionTrigger>
+                      </div>
+
                       <span></span>
                     </div>
                   </SwiperSlide>
