@@ -333,7 +333,7 @@ function ShoppingCart() {
                           className="shoppingCartImg"
                           width={150}
                           height={150}
-                          // unoptimized
+                          unoptimized
                           // priority
                         />
                       </Link>
