@@ -52,8 +52,7 @@ body {
 }
 
 .wishlistHeader h1,
-.shoppingCartHeader h1,
-.empty h1 {
+.shoppingCartHeader h1 {
   margin-top: 20vh;
   font-size: 40px;
   font-weight: 800;
@@ -70,9 +69,10 @@ body {
 }
 
 .empty h1 {
-  position: absolute;
-  top: -25vh;
   font-size: 40px;
+  margin-top: 5vh;
+  color: var(--dc);
+  font-weight: 800;
 }
 
 .empty svg {
@@ -86,7 +86,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   align-items: center;
   justify-items: center;
-  margin: 5vh 0;
+  margin-bottom: 5vh;
   gap: 15px;
 }
 
@@ -406,9 +406,6 @@ textarea {
 }
 
 @media (max-width: 768px) {
-  /* .wishlistContainer {
-    padding-top: 10%;
-  } */
   .wishlistHeader h1,
   .shoppingCartHeader h1,
   .empty h1 {
@@ -420,12 +417,6 @@ textarea {
   .empty svg {
     max-width: 70vw;
   }
-}
-
-@media (max-width: 525px) {
-  /* .wishlistContainer {
-    padding-top: 20%;
-  } */
 }
 
 @media (max-width: 425px) {
