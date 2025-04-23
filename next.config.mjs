@@ -10,7 +10,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "yzqvipgjhmieuxxskspv.supabase.co",
-        pathname: "/storage/v1/object/public/product_images/**",
+        pathname: "/storage/v1/object/public/**",
       },
     ],
   },
@@ -19,9 +19,6 @@ const nextConfig = {
   },
   compiler: {
     emotion: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 };
 

@@ -327,13 +327,13 @@ function ShoppingCart() {
                           .toString()
                           .replace(/ /g, "-")}/${item.id}`}
                       >
-                        <Image
+                        <img
                           src={item.cover}
                           alt={"product image"}
                           className="shoppingCartImg"
                           width={150}
                           height={150}
-                          priority
+                          // priority
                         />
                       </Link>
                     </div>
