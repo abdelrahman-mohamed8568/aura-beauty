@@ -121,7 +121,7 @@
   .footerBox h6,
   .footerText,
   .footerBox strong {
-    font-size: 11px !important;
+    font-size: 13px !important;
   }
 
   .socialIcons .icon svg {
@@ -154,6 +154,8 @@
   .Sitemap {
     width: 95%;
     padding-top: 70px;
+    background-color: blueviolet;
+    /* font-size: 30px; */
   }
 }
 
