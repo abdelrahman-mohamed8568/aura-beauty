@@ -85,7 +85,7 @@ function CategoriesSection() {
               <Link href="/injection/all?page=1">
                 <motion.div {...homeAnimations.image("right")}>
                   <Image
-                    src={card2}
+                    src={card4}
                     alt="Injection"
                     className="categoriesImage"
                     priority
