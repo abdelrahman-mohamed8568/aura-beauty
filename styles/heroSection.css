@@ -41,11 +41,11 @@
   border-bottom: var(--yc) 1px solid;
 }
 .coverOver {
+  height: 100vh;
   width: 35%;
   right: 160px;
   bottom: 10px;
   position: absolute;
-  height: 100vh;
   border-radius: 350px 350px 0 0;
 }
 

@@ -1,6 +1,5 @@
 "use client";
 import { removeHeart } from "../store/wishlist/wishlistSlice";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import Link from "next/link";
@@ -180,13 +179,14 @@ function Wishlist() {
                           .toString()
                           .replace(/ /g, "-")}/${item.id}`}
                       >
-                        <Image
+                        <img
                           src={item.cover}
                           alt={"product image"}
                           className="shoppingCartImg"
                           width={150}
                           height={150}
-                          priority
+                          loading="lazy"
+                          decoding="async"
                         />
                       </Link>
                     </div>

@@ -3,7 +3,6 @@ import "swiper/css";
 import "@/styles/checkout.css";
 import "swiper/css/scrollbar";
 import "react-phone-number-input/style.css";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Textarea } from "@chakra-ui/react";
 import { clearCart, getTotalPrice } from "../store/card/cardSlice";
@@ -322,13 +321,14 @@ function Checkout() {
               <SwiperSlide key={index} className="infoSwiperSlide">
                 <div className="bagProduct">
                   <div className="bagImage">
-                    <Image
+                    <img
                       src={item.cover}
                       alt={item.name}
                       width={60}
                       height={60}
+                      loading="lazy"
+                      decoding="async"
                       className="image"
-                      priority
                     />
                     <span>{item.quantity}</span>
                   </div>

@@ -83,7 +83,7 @@ const ProductsCard = memo((product) => {
               alt={product.name}
               width={230}
               height={230}
-              priority
+              // priority
             />
             <div className="view">
               <div className="homeBtn">
