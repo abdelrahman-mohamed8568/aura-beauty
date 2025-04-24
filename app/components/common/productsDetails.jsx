@@ -241,7 +241,6 @@ function ProductsDetails() {
                             className={
                               mainImage === img ? "selectedImage" : "sideImage"
                             }
-                            unoptimized={true}
                           />
                         </SwiperSlide>
                       ))}
@@ -259,7 +258,6 @@ function ProductsDetails() {
                           className={
                             mainImage === img ? "selectedImage" : "sideImage"
                           }
-                          unoptimized={true}
                         />
                       ))}
                     </div>
@@ -280,7 +278,6 @@ function ProductsDetails() {
                           alt={selectedProduct.name}
                           width={550}
                           height={550}
-                          unoptimized={true}
                           className="thumbnail"
                         />
                       </motion.div>
@@ -301,7 +298,6 @@ function ProductsDetails() {
                               alt={selectedProduct.name}
                               width={650}
                               height={650}
-                              unoptimized={true}
                             />
                           </div>
                         </SwiperSlide>
