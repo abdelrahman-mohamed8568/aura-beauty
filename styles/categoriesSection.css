@@ -75,7 +75,11 @@
   text-align: left;
   align-items: flex-start;
   gap: 5px;
-  width: 60% !important;
+  width: 60%;
+}
+
+.cardDescription {
+  width: 100%;
 }
 
 .cardInfo span {
