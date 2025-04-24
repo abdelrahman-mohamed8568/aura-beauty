@@ -47,7 +47,7 @@ function Navbar() {
   const itemVariants = {
     visible: (i) => ({
       opacity: 1,
-      transition: { delay: i * 0.2, duration: 1, ease: "easeInOut" },
+      transition: { delay: i * 0.1, duration: 2.5, ease: "easeInOut" },
     }),
     exit: (i) => ({
       opacity: 0,

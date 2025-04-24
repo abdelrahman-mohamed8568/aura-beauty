@@ -345,6 +345,9 @@ li {
 .emptyResults {
   color: var(--gc);
   font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .toggle {
@@ -506,6 +509,12 @@ li {
     top: 10px;
     left: 15px;
     z-index: 999;
+    transition: all 1s ease-in-out;
+  }
+
+  .navOpenOptionsAll .navLogo {
+    width: 60px;
+    height: 60px;
   }
 
   .settings {
