@@ -1,5 +1,6 @@
 "use client";
 import "@/styles/shoppingCart.css";
+import Image from "next/image";
 import {
   removeCard,
   plusQuantity,
@@ -326,14 +327,13 @@ function ShoppingCart() {
                           .toString()
                           .replace(/ /g, "-")}/${item.id}`}
                       >
-                        <img
+                        <Image
                           src={item.cover}
                           alt={"product image"}
                           className="shoppingCartImg"
                           width={150}
                           height={150}
-                          loading="lazy"
-                          decoding="async"
+                          priority
                         />
                       </Link>
                     </div>

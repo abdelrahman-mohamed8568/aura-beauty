@@ -163,12 +163,13 @@ function ProductsDetails() {
     dispatch(addToCard({ ...checkedProduct, fromPath: FromPath }));
     toast(
       <div className="toast">
-        <img
+        <Image
           src={selectedProduct?.cover}
           alt={selectedProduct.name}
           width={98}
           height={98}
           className="toastImg"
+          priority
         />
         <div className="toastInfo">
           <p>{selectedProduct.name}</p>
@@ -241,6 +242,7 @@ function ProductsDetails() {
                             className={
                               mainImage === img ? "selectedImage" : "sideImage"
                             }
+                            priority
                           />
                         </SwiperSlide>
                       ))}
@@ -258,6 +260,7 @@ function ProductsDetails() {
                           className={
                             mainImage === img ? "selectedImage" : "sideImage"
                           }
+                          priority
                         />
                       ))}
                     </div>
@@ -278,6 +281,7 @@ function ProductsDetails() {
                           alt={selectedProduct.name}
                           width={550}
                           height={550}
+                          priority
                           className="thumbnail"
                         />
                       </motion.div>
@@ -298,6 +302,7 @@ function ProductsDetails() {
                               alt={selectedProduct.name}
                               width={650}
                               height={650}
+                              priority
                             />
                           </div>
                         </SwiperSlide>
