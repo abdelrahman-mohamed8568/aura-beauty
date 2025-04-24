@@ -88,13 +88,14 @@ function CategoriesSection() {
                     src={card4}
                     alt="Injection"
                     className="categoriesImage"
-                    priority
+                    // priority
                   />
                 </motion.div>
               </Link>
               <CardInfo
                 titleParts={["Injection ", "Products"]}
-                description="Update your clinic with the latest technology."
+                description="fillers, boosters, and botox for professional skin treatments.
+"
                 link="/injection/all?page=1"
                 Class="cardInfo leftCard"
               />
@@ -102,7 +103,8 @@ function CategoriesSection() {
             <div className="homeCard reverse">
               <CardInfo
                 titleParts={["Laser &", "Professional", "Devices"]}
-                description="Update your clinic with the latest technology."
+                description="hair removal, tattoo removal, and body contouring machines.
+"
                 link="/professionals/all?page=1"
                 Class="cardInfo"
               />
@@ -112,7 +114,7 @@ function CategoriesSection() {
                     src={card3}
                     alt="professionals"
                     className="categoriesImage"
-                    priority
+                    // priority
                   />
                 </motion.div>
               </Link>
@@ -124,13 +126,14 @@ function CategoriesSection() {
                     src={card2}
                     alt="machines"
                     className="categoriesImage"
-                    priority
+                    // priority
                   />
                 </motion.div>
               </Link>
               <CardInfo
                 titleParts={["HydraFacial", "Machines"]}
-                description="Take your beauty business to the next level"
+                description="hydraFacial and oxygen therapy devices for clear, glowing skin.
+"
                 link="/machines/all?page=1"
                 Class="cardInfo leftCard"
               />
@@ -138,7 +141,7 @@ function CategoriesSection() {
             <div className="homeCard reverse">
               <CardInfo
                 titleParts={["Beauty &", "Wellness", "Essentials"]}
-                description="Achieve your beauty goals with ease"
+                description="derma pens, mesotherapy tools, and clinic consumables."
                 link="/beauty/all?page=1"
                 Class="cardInfo"
               />
@@ -148,7 +151,7 @@ function CategoriesSection() {
                     src={card1}
                     alt="Beauty"
                     className="categoriesImage"
-                    priority
+                    // priority
                   />
                 </motion.div>
               </Link>
