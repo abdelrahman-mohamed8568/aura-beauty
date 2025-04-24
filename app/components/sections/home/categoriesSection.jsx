@@ -1,9 +1,9 @@
 import "@/styles/categoriesSection.css";
 import Image from "next/image";
-import card1 from "@/public/images/homeCard1.png";
-import card2 from "@/public/images/homeCard2.png";
-import card3 from "@/public/images/homeCard3.png";
-import card4 from "@/public/images/homeCard4.png";
+import card1 from "@/images/homeCard1.png";
+import card2 from "@/images/homeCard2.png";
+import card3 from "@/images/homeCard3.png";
+import card4 from "@/images/homeCard4.png";
 import devices from "@/images/categories/devices.png";
 import hydraFacial from "@/images/categories/hydraFacial.png";
 import mesotherapy from "@/images/categories/mesotherapy.png";
@@ -88,7 +88,7 @@ function CategoriesSection() {
                     src={card4}
                     alt="Injection"
                     className="categoriesImage"
-                    // priority
+                    priority
                   />
                 </motion.div>
               </Link>
@@ -114,7 +114,7 @@ function CategoriesSection() {
                     src={card3}
                     alt="professionals"
                     className="categoriesImage"
-                    // priority
+                    priority
                   />
                 </motion.div>
               </Link>
@@ -126,7 +126,7 @@ function CategoriesSection() {
                     src={card2}
                     alt="machines"
                     className="categoriesImage"
-                    // priority
+                    priority
                   />
                 </motion.div>
               </Link>
@@ -151,7 +151,7 @@ function CategoriesSection() {
                     src={card1}
                     alt="Beauty"
                     className="categoriesImage"
-                    // priority
+                    priority
                   />
                 </motion.div>
               </Link>
