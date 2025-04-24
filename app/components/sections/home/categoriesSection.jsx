@@ -3,6 +3,7 @@ import Image from "next/image";
 import card1 from "@/public/images/homeCard1.png";
 import card2 from "@/public/images/homeCard2.png";
 import card3 from "@/public/images/homeCard3.png";
+import card4 from "@/public/images/homeCard4.png";
 import devices from "@/images/categories/devices.png";
 import hydraFacial from "@/images/categories/hydraFacial.png";
 import mesotherapy from "@/images/categories/mesotherapy.png";
@@ -81,6 +82,30 @@ function CategoriesSection() {
           </motion.h1>
           <div className="homeCards">
             <div className="homeCard">
+              <Link href="/injection/all?page=1">
+                <motion.div {...homeAnimations.image("right")}>
+                  <Image
+                    src={card4}
+                    alt="Image description"
+                    className="categoriesImage"
+                    priority
+                  />
+                </motion.div>
+              </Link>
+              <CardInfo
+                titleParts={["Injection ", "Products"]}
+                description="Update your clinic with the latest technology."
+                link="/injection/all?page=1"
+                Class="cardInfo leftCard"
+              />
+            </div>
+            <div className="homeCard reverse">
+              <CardInfo
+                titleParts={["Laser &", "Professional", "Devices"]}
+                description="Update your clinic with the latest technology."
+                link="/professionals/all?page=1"
+                Class="cardInfo"
+              />
               <Link href="/professionals/all?page=1">
                 <motion.div {...homeAnimations.image("left")}>
                   <Image
@@ -91,21 +116,9 @@ function CategoriesSection() {
                   />
                 </motion.div>
               </Link>
-              <CardInfo
-                titleParts={["Professional", "Corner"]}
-                description="Update your clinic with the latest technology."
-                link="/professionals/all?page=1"
-                Class="cardInfo"
-              />
             </div>
-            <div className="homeCard reverse">
-              <CardInfo
-                titleParts={["Beauty", "Business"]}
-                description="Take your beauty business to the next level"
-                link="/centers/all?page=1"
-                Class="cardInfo leftCard"
-              />
-              <Link href="/centers/all?page=1">
+            <div className="homeCard ">
+              <Link href="/machines/all?page=1">
                 <motion.div {...homeAnimations.image("right")}>
                   <Image
                     src={card2}
@@ -115,9 +128,21 @@ function CategoriesSection() {
                   />
                 </motion.div>
               </Link>
+              <CardInfo
+                titleParts={["HydraFacial", "Machines"]}
+                description="Take your beauty business to the next level"
+                link="/machines/all?page=1"
+                Class="cardInfo leftCard"
+              />
             </div>
-            <div className="homeCard">
-              <Link href="/personal/all?page=1">
+            <div className="homeCard reverse">
+              <CardInfo
+                titleParts={["Beauty &", "Wellness", "Essentials"]}
+                description="Achieve your beauty goals with ease"
+                link="/beauty/all?page=1"
+                Class="cardInfo"
+              />
+              <Link href="/beauty/all?page=1">
                 <motion.div {...homeAnimations.image("left")}>
                   <Image
                     src={card1}
@@ -127,12 +152,6 @@ function CategoriesSection() {
                   />
                 </motion.div>
               </Link>
-              <CardInfo
-                titleParts={["Beauty", "Routine"]}
-                description="Achieve your beauty goals with ease"
-                link="/personal/all?page=1"
-                Class="cardInfo"
-              />
             </div>
           </div>
         </div>

@@ -51,7 +51,7 @@
   width: 90%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between !important;
   overflow: hidden;
 }
 .categoriesImage {
@@ -72,8 +72,8 @@
 .cardDescription {
   display: flex;
   flex-direction: column;
-  text-align: right;
-  align-items: flex-end;
+  text-align: left;
+  align-items: flex-start;
   gap: 5px;
   width: 60% !important;
 }
@@ -88,8 +88,8 @@
 
 .leftCard,
 .leftCard .cardDescription {
-  text-align: left;
-  align-items: flex-start;
+  text-align: right;
+  align-items: flex-end;
 }
 
 .cardInfo h1 {
@@ -418,12 +418,12 @@
     width: 100% !important;
   }
   .cardDescription {
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
     width: 100% !important;
   }
   .leftCard .cardDescription {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 }
 

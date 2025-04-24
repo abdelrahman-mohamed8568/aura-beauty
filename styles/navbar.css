@@ -445,7 +445,9 @@ li {
     flex-direction: column;
     position: absolute;
     align-items: flex-start;
+    display: flex;
     top: 15%;
+    gap: 15px !important;
   }
 
   .navOpenOptions h6 {

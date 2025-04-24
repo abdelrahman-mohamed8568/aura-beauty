@@ -8,9 +8,10 @@ function Footer() {
   const links = [
     { text: "home", href: "/" },
     { text: "products", href: "/products/all?page=1" },
+    { text: "injection", href: "/injection/all?page=1" },
     { text: "professionals", href: "/professionals/all?page=1" },
-    { text: "centers", href: "/centers/all?page=1" },
-    { text: "personal", href: "/personal/all?page=1" },
+    { text: "machines", href: "/machines/all?page=1" },
+    { text: "beauty", href: "/beauty/all?page=1" },
     { text: "contact us", href: "/contact-us" },
     { text: "about us", href: "/about-us" },
   ];
