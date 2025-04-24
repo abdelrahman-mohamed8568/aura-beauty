@@ -86,7 +86,7 @@ function CategoriesSection() {
                 <motion.div {...homeAnimations.image("right")}>
                   <Image
                     src={card4}
-                    alt="Image description"
+                    alt="Injection"
                     className="categoriesImage"
                     priority
                   />
@@ -110,7 +110,7 @@ function CategoriesSection() {
                 <motion.div {...homeAnimations.image("left")}>
                   <Image
                     src={card3}
-                    alt="Image description"
+                    alt="professionals"
                     className="categoriesImage"
                     priority
                   />
@@ -122,7 +122,7 @@ function CategoriesSection() {
                 <motion.div {...homeAnimations.image("right")}>
                   <Image
                     src={card2}
-                    alt="Beauty Business Boost"
+                    alt="machines"
                     className="categoriesImage"
                     priority
                   />
@@ -146,7 +146,7 @@ function CategoriesSection() {
                 <motion.div {...homeAnimations.image("left")}>
                   <Image
                     src={card1}
-                    alt="Beauty Routine"
+                    alt="Beauty"
                     className="categoriesImage"
                     priority
                   />
