@@ -290,6 +290,8 @@ li {
   width: 90%;
   height: 80%;
   scroll-behavior: smooth;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .resultsSlide {
@@ -300,10 +302,11 @@ li {
 }
 
 .resultsBox {
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  gap: 5px;
   scroll-behavior: smooth;
 }
 .resultsContent {

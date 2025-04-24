@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products/productsSlice";
 import { CloseButton } from "@/components/ui/close-button";
@@ -91,12 +92,13 @@ function Search() {
                               .toString()
                               .replace(/ /g, "-")}/${item.id}`}
                           >
-                            <img
+                            <Image
                               src={item.cover}
                               alt={item.name}
-                              loading="lazy"
-                              decoding="async"
+                              width={80}
+                              height={80}
                               className="resultsImage"
+                              priority
                             />
                           </Link>
                         </DialogActionTrigger>
@@ -110,7 +112,6 @@ function Search() {
                           </Link>
                         </DialogActionTrigger>
                       </div>
-
                       <span></span>
                     </div>
                   </SwiperSlide>
