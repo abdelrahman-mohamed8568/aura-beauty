@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
+  color: var(--dc);
 }
 
 .productsContainer .productsCards {
@@ -205,7 +206,8 @@
     display: none !important;
   }
   .filterRadioCard {
-    color: var(--gc);
+    font-size: 16px;
+    padding: 7px;
   }
   .productsContainer .productsCards {
     width: 95vw;
@@ -238,10 +240,6 @@
 @media (min-width: 768px) and (max-width: 1023px) {
   .productsContainer .productsCards {
     width: 95vw;
-  }
-
-  .filterRadioCard {
-    color: var(--dc);
   }
 
   .filterBtn {
