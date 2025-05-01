@@ -450,7 +450,7 @@ li {
     gap: 15px !important;
   }
 
-  .navOpenOptions h6 {
+  .navHidden h6 {
     font-size: 12px;
     text-transform: uppercase;
   }
