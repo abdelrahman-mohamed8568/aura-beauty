@@ -56,6 +56,14 @@ function Footer() {
               <SocialIcons />
             </div>
           </div>
+          <Image
+            alt="logo"
+            src={logo}
+            width={120}
+            height={120}
+            className="footerLogoMob"
+            priority
+          />
         </div>
         <p className="footerText">
           Can't find what you're looking for? Our customer support team is here
