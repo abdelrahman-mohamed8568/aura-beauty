@@ -157,6 +157,7 @@
 
   .footerLogoMob {
     display: flex;
+    padding-top: 5vh;
   }
 
   .Sitemap {
