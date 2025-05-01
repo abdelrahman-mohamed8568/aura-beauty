@@ -1,5 +1,5 @@
 import "@/styles/footer.css";
-import logo from "@/public/images/footer_logo.png";
+import logo from "@/public/images/footer_logo.webp";
 import Image from "next/image";
 import Link from "next/link";
 import SocialIcons from "../common/socialIcons";
@@ -9,9 +9,9 @@ function Footer() {
     { text: "home", href: "/" },
     { text: "products", href: "/products/all?page=1" },
     { text: "injection", href: "/injection/all?page=1" },
-    { text: "professionals", href: "/professionals/all?page=1" },
-    { text: "machines", href: "/machines/all?page=1" },
-    { text: "beauty", href: "/beauty/all?page=1" },
+    { text: "laser", href: "/laser/all?page=1" },
+    { text: "hydrafacial", href: "/hydrafacial/all?page=1" },
+    { text: "consumables", href: "/consumables/all?page=1" },
     { text: "contact us", href: "/contact-us" },
     { text: "about us", href: "/about-us" },
   ];
@@ -25,6 +25,7 @@ function Footer() {
               alt="logo"
               src={logo}
               width={150}
+              height={150}
               className="footerLogo"
               priority
             />

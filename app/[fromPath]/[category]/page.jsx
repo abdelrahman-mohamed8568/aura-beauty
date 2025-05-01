@@ -19,12 +19,12 @@ import { usePathname, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { ToastContainer } from "react-toastify";
 import Link from "next/link";
-import { FilterSection } from "@/appComponents/filter/FilterSection";
 import {
   PRICE_OPTIONS,
   STOCK_OPTIONS,
   DATE_OPTIONS,
-} from "@/appComponents/filter/filterOptions";
+  FilterSection,
+} from "@/appComponents/common/productsFilter";
 import EmptySection from "@/app/components/common/emptySection";
 import {
   DialogRoot,
@@ -63,6 +63,47 @@ function Products() {
   const [stockValue, setStockValue] = useState("1");
   const [dateValue, setDateValue] = useState("1");
   const categories = useSelector(selectCategories);
+  useEffect(() => {
+    dispatch(setFromPath(FromPath));
+    dispatch(setCategory(currentCategory));
+    dispatch(setStockFilter("1"));
+    dispatch(setPriceFilter("1"));
+    dispatch(setDateFilter("1"));
+    setStockValue("1");
+    setPriceValue("1");
+    setDateValue("1");
+    if (FromPath === "products") {
+      dispatch(
+        setCategoryOrder([
+          "bio stimulators",
+          "exosomes",
+          "fillers",
+          "botox",
+          "skin boosters",
+          "mesotherapy",
+          "hair removal lasers",
+          "tattoo removal lasers",
+          "co2 fractional lasers",
+          "cryolipolysis",
+          "hifu",
+          "cavitation fat reduction",
+          "hydrafacial",
+          "devices",
+        ])
+      );
+    } else {
+      dispatch(setCategoryOrder([]));
+    }
+  }, [FromPath, currentCategory, dispatch]);
+  useEffect(() => {
+    const initialPage = pageFromURL ? parseInt(pageFromURL, 10) : 1;
+    dispatch(setPage(initialPage));
+  }, [pageFromURL, dispatch]);
+  useEffect(() => {
+    if (products.length === 0) {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch]);
   const Filters = () => (
     <>
       <FilterSection
@@ -103,40 +144,6 @@ function Products() {
   );
   const prevPage = currentPage - 1;
   const nextPage = currentPage + 1;
-  useEffect(() => {
-    const initialPage = pageFromURL ? parseInt(pageFromURL, 10) : 1;
-    dispatch(setFromPath(FromPath));
-    dispatch(setCategory(currentCategory));
-    dispatch(setPage(initialPage));
-    dispatch(setStockFilter("1"));
-    dispatch(setPriceFilter("1"));
-    dispatch(setDateFilter("1"));
-    if (products.length === 0) {
-      dispatch(fetchProducts());
-    }
-    if (FromPath === "products") {
-      dispatch(
-        setCategoryOrder([
-          "bio stimulators",
-          "exosomes",
-          "fillers",
-          "botox",
-          "skin boosters",
-          "mesotherapy",
-          "hair removal lasers",
-          "tattoo removal lasers",
-          "co2 fractional lasers",
-          "cryolipolysis",
-          "hifu",
-          "cavitation fat reduction",
-          "hydrafacial",
-          "devices",
-        ])
-      );
-    } else {
-      dispatch(setCategoryOrder([]));
-    }
-  }, [FromPath, currentCategory, pageFromURL, dispatch]);
 
   return (
     <div className="mainContainer">

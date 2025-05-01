@@ -130,7 +130,7 @@ function Navbar() {
             className={pathname === "/" ? "navLogo disabledLink" : "navLogo"}
             href={"/"}
           >
-            <Image src={icon} alt="icon" height={50} priority />
+            <Image src={icon} alt="icon" height={50} width={50} priority />
           </Link>
         </li>
         <li className="navCategoryBox">
@@ -147,19 +147,19 @@ function Navbar() {
               disabled: "injection",
             },
             {
-              href: "/professionals/all?page=1",
-              text: "professionals",
-              disabled: "professionals",
+              href: "/laser/all?page=1",
+              text: "laser",
+              disabled: "laser",
             },
             {
-              href: "/machines/all?page=1",
-              text: "machines",
-              disabled: "machines",
+              href: "/hydrafacial/all?page=1",
+              text: "hydrafacial",
+              disabled: "hydrafacial",
             },
             {
-              href: "/beauty/all?page=1",
-              text: "beauty",
-              disabled: "beauty",
+              href: "/consumables/all?page=1",
+              text: "consumables",
+              disabled: "consumables",
             },
             { href: "/contact-us", text: "contact-us", disabled: "contact-us" },
             { href: "/about-us", text: "about-us", disabled: "about-us" },

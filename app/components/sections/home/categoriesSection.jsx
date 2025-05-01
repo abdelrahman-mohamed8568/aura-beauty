@@ -1,23 +1,23 @@
 import "@/styles/categoriesSection.css";
 import Image from "next/image";
-import card1 from "@/images/homeCard1.png";
-import card2 from "@/images/homeCard2.png";
-import card3 from "@/images/homeCard3.png";
-import card4 from "@/images/homeCard4.png";
-import devices from "@/images/categories/devices.png";
-import hydraFacial from "@/images/categories/hydraFacial.png";
-import mesotherapy from "@/images/categories/mesotherapy.png";
-import co2 from "@/images/categories/co2.png";
-import hifu from "@/images/categories/hifu.png";
-import cryo from "@/images/categories/cryo.png";
-import fat from "@/images/categories/fat.png";
-import hair from "@/images/categories/hair.png";
-import tattoo from "@/images/categories/tattoo.png";
-import botox from "@/images/categories/botox.png";
-import skin from "@/images/categories/skin.png";
-import exosomes from "@/images/categories/exosomes.png";
-import bio from "@/images/categories/bio.png";
-import filler from "@/images/categories/filler.png";
+import card1 from "@/images/homeCard1.webp";
+import card2 from "@/images/homeCard2.webp";
+import card3 from "@/images/homeCard3.webp";
+import card4 from "@/images/homeCard4.webp";
+import devices from "@/images/categories/devices.webp";
+import hydraFacial from "@/images/categories/hydraFacial.webp";
+import mesotherapy from "@/images/categories/mesotherapy.webp";
+import co2 from "@/images/categories/co2.webp";
+import hifu from "@/images/categories/hifu.webp";
+import cryo from "@/images/categories/cryo.webp";
+import fat from "@/images/categories/fat.webp";
+import hair from "@/images/categories/hair.webp";
+import tattoo from "@/images/categories/tattoo.webp";
+import botox from "@/images/categories/botox.webp";
+import skin from "@/images/categories/skin.webp";
+import exosomes from "@/images/categories/exosomes.webp";
+import bio from "@/images/categories/bio.webp";
+import filler from "@/images/categories/filler.webp";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -87,6 +87,8 @@ function CategoriesSection() {
                     src={card4}
                     alt="Injection"
                     className="categoriesImage"
+                    width={720}
+                    height={475}
                     priority
                   />
                 </motion.div>
@@ -102,38 +104,42 @@ function CategoriesSection() {
             <div className="homeCard reverse">
               <CardInfo
                 titleParts={["Laser &", "Professional", "Devices"]}
-                description="hair removal, tattoo removal, and body contouring machines.
+                description="hair removal, tattoo removal, and body contouring hydraFacial.
 "
-                link="/professionals/all?page=1"
+                link="/laser/all?page=1"
                 Class="cardInfo"
               />
-              <Link href="/professionals/all?page=1">
+              <Link href="/laser/all?page=1">
                 <motion.div {...homeAnimations.image("left")}>
                   <Image
                     src={card3}
-                    alt="professionals"
+                    alt="laser"
                     className="categoriesImage"
+                    width={720}
+                    height={475}
                     priority
                   />
                 </motion.div>
               </Link>
             </div>
             <div className="homeCard ">
-              <Link href="/machines/all?page=1">
+              <Link href="/hydrafacial/all?page=1">
                 <motion.div {...homeAnimations.image("right")}>
                   <Image
                     src={card2}
-                    alt="machines"
+                    alt="hydrafacial"
                     className="categoriesImage"
+                    width={720}
+                    height={475}
                     priority
                   />
                 </motion.div>
               </Link>
               <CardInfo
-                titleParts={["HydraFacial", "Machines"]}
-                description="hydraFacial and oxygen therapy devices for clear, glowing skin.
+                titleParts={["Hydrafacial", "Machines"]}
+                description="hydrafacial and oxygen therapy devices for clear, glowing skin.
 "
-                link="/machines/all?page=1"
+                link="/hydrafacial/all?page=1"
                 Class="cardInfo leftCard"
               />
             </div>
@@ -141,15 +147,17 @@ function CategoriesSection() {
               <CardInfo
                 titleParts={["Beauty &", "Wellness", "Essentials"]}
                 description="derma pens, mesotherapy tools, and clinic consumables."
-                link="/beauty/all?page=1"
+                link="/consumables/all?page=1"
                 Class="cardInfo"
               />
-              <Link href="/beauty/all?page=1">
+              <Link href="/consumables/all?page=1">
                 <motion.div {...homeAnimations.image("left")}>
                   <Image
                     src={card1}
-                    alt="Beauty"
+                    alt="consumables"
                     className="categoriesImage"
+                    width={720}
+                    height={475}
                     priority
                   />
                 </motion.div>
@@ -226,7 +234,13 @@ function CategoriesSection() {
             {categories.map((item, index) => (
               <SwiperSlide className="homeSwiperSlide" key={index}>
                 <Link href={`/products/${item.name}?page=${1}`}>
-                  <Image src={item.img} alt="categories" priority />
+                  <Image
+                    src={item.img}
+                    alt="categories"
+                    width={1000}
+                    height={1000}
+                    priority
+                  />
                 </Link>
               </SwiperSlide>
             ))}

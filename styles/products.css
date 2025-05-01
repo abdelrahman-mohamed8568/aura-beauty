@@ -90,6 +90,10 @@
   border-top: 1px dotted #57565611;
 }
 
+.productsSwiper {
+  width: 100%;
+}
+
 .productsSwiperSlide {
   text-align: center;
 }
