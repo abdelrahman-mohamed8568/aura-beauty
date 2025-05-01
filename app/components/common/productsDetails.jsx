@@ -548,7 +548,7 @@ function ProductsDetails() {
               />
             </div>
             <div className="related">
-              <h2>You May Also Like</h2>
+              <h2>related products</h2>
               <Swiper
                 loop={true}
                 easing="ease-in-out"
