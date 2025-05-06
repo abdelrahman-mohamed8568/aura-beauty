@@ -59,8 +59,8 @@ function Footer() {
           <Image
             alt="logo"
             src={logo}
-            width={120}
-            height={120}
+            width={130}
+            height={130}
             className="footerLogoMob"
             priority
           />
