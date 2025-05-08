@@ -1,15 +1,12 @@
 import gsap from "gsap";
-const tl = gsap.timeline();
-export const preLoaderAnim = () => {
+export const preLoaderIntroAnim = () => {
+  const tl = gsap.timeline();
+
   tl.to("body", {
     duration: 0.1,
     css: { overflowY: "hidden" },
     ease: "power3.inOut",
   })
-    .to(".landing", {
-      duration: 0.05,
-      css: { overflowY: "hidden", height: "90vh" },
-    })
     .to(".texts-container", {
       duration: 0,
       opacity: 1,
@@ -30,40 +27,44 @@ export const preLoaderAnim = () => {
       stagger: 0.2,
       ease: "Power3.easeOut",
     })
-    .to(".landing", {
-      duration: 0.05,
-      css: { overflowY: "hidden", height: "unset" },
-    })
-    .to("body", {
-      duration: 0.1,
-      css: { overflowY: "scroll" },
-      ease: "power3.inOut",
-    })
-    .from(".landing__top .sub", {
-      duration: 1,
-      opacity: 0,
-      y: 80,
-      ease: "expo.easeOut",
-    })
     .to(
       ".preloader",
       {
         duration: 1,
-        height: "0vh",
+        opacity: 0,
+        pointerEvents: "none",
         ease: "Power3.easeOut",
-        onComplete: mobileLanding,
+        onComplete: () => {
+          console.log("Preloader animation finished!");
+          gsap.to("body", {
+            duration: 0.1,
+            css: { overflowY: "auto" },
+            ease: "power3.inOut",
+          });
+        },
       },
-      "-=2"
+      "-=0.5"
     );
 };
-
-export const mobileLanding = () => {
-  window.innerWidth < 763 &&
-    tl.from(".landing__main2", {
-      duration: 1,
-      delay: 0,
-      opacity: 0,
-      y: 80,
-      ease: "expo.easeOut",
-    });
+export const mainContentAnimations = () => {
+  const tl = gsap.timeline();
+  tl.from(".landing__top .sub", {
+    duration: 1,
+    opacity: 0,
+    y: 80,
+    ease: "expo.easeOut",
+  });
+  if (window.innerWidth < 763) {
+    tl.from(
+      ".landing__main2",
+      {
+        duration: 1,
+        delay: 0,
+        opacity: 0,
+        y: 80,
+        ease: "expo.easeOut",
+      },
+      "+=0.1"
+    );
+  }
 };

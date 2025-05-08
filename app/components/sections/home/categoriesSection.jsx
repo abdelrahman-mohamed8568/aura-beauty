@@ -87,7 +87,7 @@ function CategoriesSection() {
                     src={card4}
                     alt="Injection"
                     className="categoriesImage"
-                    width={720}
+                    width={1229}
                     height={475}
                     priority
                   />
@@ -115,7 +115,7 @@ function CategoriesSection() {
                     src={card3}
                     alt="laser"
                     className="categoriesImage"
-                    width={720}
+                    width={1229}
                     height={475}
                     priority
                   />
@@ -129,7 +129,7 @@ function CategoriesSection() {
                     src={card2}
                     alt="hydrafacial"
                     className="categoriesImage"
-                    width={720}
+                    width={1229}
                     height={475}
                     priority
                   />
@@ -156,7 +156,7 @@ function CategoriesSection() {
                     src={card1}
                     alt="consumables"
                     className="categoriesImage"
-                    width={720}
+                    width={1229}
                     height={475}
                     priority
                   />

@@ -27,7 +27,11 @@ const ProductsCard = memo((product) => {
       ? (dispatch(removeHeart(product.id)),
         toast.error("This product has been removed from the wishlist !"))
       : (dispatch(addHeart({ ...product, fromPath: FromPath })),
-        toast.success("This product has been added to your wishlist."));
+        toast.success("This product has been added to your wishlist.")),
+      fbq("track", "AddToWishlist", {
+        content_name: selectedProduct.name,
+        content_category: selectedProduct.category,
+      });
     setActiveHeart(!isProductInWishlist);
   };
   const pathname = usePathname();

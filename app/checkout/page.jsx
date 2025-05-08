@@ -72,6 +72,13 @@ function Checkout() {
           dispatch(clearCart());
         }, 3000);
         window.history.replaceState(null, "", "/products/all?page=1");
+        fbq("track", "Purchase", {
+          contents: cardItems.map((item) => ({
+            name: item.name,
+            category: item.category,
+            quantity: item.quantity,
+          })),
+        });
       }
     } catch (err) {
       toast.error("An unexpected error occurred!");

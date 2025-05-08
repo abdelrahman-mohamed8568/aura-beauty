@@ -1,16 +1,21 @@
 "use client";
 import { useLayoutEffect, useRef } from "react";
 import "@/styles/preloader.css";
-import { preLoaderAnim } from "./loader";
+import { preLoaderIntroAnim } from "./loader";
+
 function Preloader() {
   const preloaderRef = useRef(null);
   useLayoutEffect(() => {
-    if (preloaderRef.current) {
-      setTimeout(() => {
-        preLoaderAnim();
-      }, 10);
-    }
+    const timer = setTimeout(() => {
+      if (preloaderRef.current) {
+        preLoaderIntroAnim();
+      }
+    }, 10);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
+
   return (
     <div className="preloader" ref={preloaderRef}>
       <div className="texts-container">

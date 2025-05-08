@@ -15,8 +15,6 @@
   );
   background-size: 240% 240%;
   animation: gradient-animation 15s ease infinite;
-  /* position: sticky;
-  top: -185vh !important; */
   z-index: 2;
 }
 
@@ -59,9 +57,7 @@
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  width: 90vw;
   background-color: #fff;
-  height: 70vh;
 }
 
 .categoriesImage:hover {

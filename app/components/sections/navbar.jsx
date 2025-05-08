@@ -130,7 +130,7 @@ function Navbar() {
             className={pathname === "/" ? "navLogo disabledLink" : "navLogo"}
             href={"/"}
           >
-            <Image src={icon} alt="icon" height={50} width={50} priority />
+            <Image src={icon} alt="icon" height={50} width={50} />
           </Link>
         </li>
         <li className="navCategoryBox">

@@ -156,6 +156,10 @@ function ProductsDetails() {
     } else {
       dispatch(addHeart({ ...selectedProduct, fromPath: FromPath }));
       toast.success("This product has been added to your wishlist.");
+      fbq("track", "AddToWishlist", {
+        content_name: selectedProduct.name,
+        content_category: selectedProduct.category,
+      });
     }
     setActiveHeart(!activeHeart);
   };
@@ -184,6 +188,10 @@ function ProductsDetails() {
         </div>
       </div>
     );
+    fbq("track", "AddToCart", {
+      content_name: selectedProduct.name,
+      content_category: selectedProduct.category,
+    });
   };
   return (
     <div className="mainContainer">
