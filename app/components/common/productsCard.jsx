@@ -1,6 +1,6 @@
 "use client";
 import "@/styles/productsCard.css";
-import React, { useState, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import Image from "next/image";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { addHeart, removeHeart } from "../../store/wishlist/wishlistSlice";
@@ -18,26 +18,33 @@ const ProductsCard = memo((product) => {
     (state) => state.wishlist?.items || [],
     shallowEqual
   );
-  const isProductInWishlist = wishlistItems.some(
-    (item) => item.id === product.id
+  const [activeHeart, setActiveHeart] = useState(
+    wishlistItems.some((item) => item.id === product.id)
   );
-  const [activeHeart, setActiveHeart] = useState(isProductInWishlist);
+
+  useEffect(() => {
+    setActiveHeart(wishlistItems.some((item) => item.id === product.id));
+  }, [wishlistItems, product.id]);
+
   const heartHandler = () => {
-    isProductInWishlist == true
-      ? (dispatch(removeHeart(product.id)),
-        toast.error("This product has been removed from the wishlist !"))
-      : (dispatch(addHeart({ ...product, fromPath: FromPath })),
-        toast.success("This product has been added to your wishlist.")),
+    if (activeHeart) {
+      dispatch(removeHeart(product.id));
+      toast.error("This product has been removed from the wishlist!");
+    } else {
+      dispatch(addHeart({ ...product, fromPath: FromPath }));
+      toast.success("This product has been added to your wishlist.");
       fbq("track", "AddToWishlist", {
-        content_name: selectedProduct.name,
-        content_category: selectedProduct.category,
+        content_name: product.name,
+        content_category: product.category,
       });
-    setActiveHeart(!isProductInWishlist);
+    }
   };
+
   const pathname = usePathname();
   const pathSegments = pathname.split("/");
   const FromPath = pathSegments[1];
   const categorys = product.category[0].toString();
+
   return (
     <motion.div
       initial={{ opacity: 0, translateY: 20 }}
@@ -65,7 +72,7 @@ const ProductsCard = memo((product) => {
                 width="20"
                 height="20"
                 fill="currentColor"
-                className=" bi bi-heart-fill "
+                className="bi bi-heart-fill"
                 id={activeHeart ? "activeHeart" : "heartHover"}
                 viewBox="0 0 16 16"
                 onClick={heartHandler}
