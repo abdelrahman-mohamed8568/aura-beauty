@@ -35,7 +35,6 @@ export const preLoaderIntroAnim = () => {
         pointerEvents: "none",
         ease: "Power3.easeOut",
         onComplete: () => {
-          console.log("Preloader animation finished!");
           gsap.to("body", {
             duration: 0.1,
             css: { overflowY: "auto" },
