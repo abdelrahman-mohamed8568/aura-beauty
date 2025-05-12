@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://aurabeautyeg.com/sitemap.xml
+Sitemap: https://www.aurabeautyeg.com/sitemap.xml
