@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://www.aurabeautyeg.com",
+  siteUrl: "https://aurabeautyeg.com",
   generateRobotsTxt: true,
   sitemapSize: 7000,
   changefreq: "daily",
