@@ -10,14 +10,24 @@ import ReactLenis from "lenis/react";
 import Script from "next/script";
 export const metadata = {
   title: "Aura Beauty",
-  description: "Beauty store advanced products and devices",
+  description: "Everything Your Clinic Needs – All in One Place.",
+  openGraph: {
+    title: "Aura Beauty",
+    description: "Everything Your Clinic Needs – All in One Place.",
+    url: "https://aurabeautyeg.com",
+    siteName: "Aura Beauty",
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
   const facebookPixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
   return (
     <html lang="en" style={{ colorScheme: "dark" }} suppressHydrationWarning>
-      <head>
+      <body className={montserratFont.className}>
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -32,7 +42,6 @@ export default function RootLayout({ children }) {
             fbq('track', 'PageView');
           `}
         </Script>
-
         <noscript>
           <img
             height="1"
@@ -42,8 +51,6 @@ export default function RootLayout({ children }) {
             alt="fb-pixel"
           />
         </noscript>
-      </head>
-      <body className={montserratFont.className}>
         <StoreProvider>
           <Preloader />
           <Provider>
