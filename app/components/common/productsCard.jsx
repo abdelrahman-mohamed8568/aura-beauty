@@ -11,6 +11,7 @@ import { HiAtSymbol } from "react-icons/hi";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import slugify from "slugify";
 
 const ProductsCard = memo((product) => {
   const dispatch = useDispatch();
@@ -44,6 +45,11 @@ const ProductsCard = memo((product) => {
   const pathSegments = pathname.split("/");
   const FromPath = pathSegments[1];
   const categorys = product.category[0].toString();
+  const slug = slugify(product.name, {
+    lower: true,
+    strict: true,
+    remove: /[*+~.()'"!:@®™]/g,
+  });
 
   return (
     <motion.div
@@ -85,10 +91,7 @@ const ProductsCard = memo((product) => {
             </button>
           </Tooltip>
           <Link
-            href={`/${FromPath}/${categorys.replace(
-              / /g,
-              "-"
-            )}/${product.name.replace(/ /g, "-")}`}
+            href={`/${FromPath}/${categorys.replace(/ /g, "-")}/${slug}`}
             className="cardLink"
           >
             <Image
@@ -144,10 +147,7 @@ const ProductsCard = memo((product) => {
           <div className="productsCardInfo">
             <h3>
               <Link
-                href={`/${FromPath}/${categorys.replace(
-                  / /g,
-                  "-"
-                )}/${product.name.replace(/ /g, "-")}`}
+                href={`/${FromPath}/${categorys.replace(/ /g, "-")}/${slug}`}
                 className="hoverText"
               >
                 {product.name}

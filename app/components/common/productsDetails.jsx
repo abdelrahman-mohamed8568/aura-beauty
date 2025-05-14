@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/accordion";
 import ContactForm from "./contactForm";
 import Link from "next/link";
+import slugify from "slugify";
 
 function ProductsDetails() {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ function ProductsDetails() {
   const pathname = usePathname();
   const pathSegments = pathname.split("/");
   const FromPath = pathSegments[1];
-  const productId = params?.productDetails;
+  const productName = params?.productDetails;
   const [isAdded, setIsAdded] = useState(false);
   const [activeHeart, setActiveHeart] = useState(false);
   const [images, setImages] = useState([]);
@@ -62,17 +63,20 @@ function ProductsDetails() {
     shallowEqual
   );
   const selectedProduct = useMemo(() => {
-    if (!products || !productId) return null;
+    if (!productName) return null;
+    const cleanedProductName = decodeURIComponent(productName);
     return (
       products.find((product) => {
-        if (product.name && typeof product.name === "string") {
-          const productSlug = product.name.replace(/ /g, "-").toLowerCase();
-          return productSlug === productId.toLowerCase();
-        }
-        return false;
+        const slugifiedProductName = slugify(product.name, {
+          lower: true,
+          strict: true,
+          remove: /[*+~.()'"!:@®™]/g,
+        });
+        return slugifiedProductName === cleanedProductName;
       }) || null
     );
-  }, [products, productId]);
+  }, [products, productName]);
+
   const relatedProducts = useMemo(() => {
     if (!selectedProduct || !selectedProduct.tag) return [];
     const tags = selectedProduct.tag;

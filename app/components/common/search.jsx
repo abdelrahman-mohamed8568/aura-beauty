@@ -14,6 +14,7 @@ import { CloseButton } from "@/components/ui/close-button";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import Link from "next/link";
+import slugify from "slugify";
 
 function Search() {
   const dispatch = useDispatch();
@@ -90,7 +91,11 @@ function Search() {
                           <Link
                             href={`/products/${item.category[0]
                               .toString()
-                              .replace(/ /g, "-")}/${item.id}`}
+                              .replace(/ /g, "-")}/${slugify(item.name, {
+                              lower: true,
+                              strict: true,
+                              remove: /[*+~.()'"!:@®™]/g,
+                            })}`}
                           >
                             <Image
                               src={item.cover}
@@ -107,7 +112,11 @@ function Search() {
                           <Link
                             href={`/products/${item.category[0]
                               .toString()
-                              .replace(/ /g, "-")}/${item.id}`}
+                              .replace(/ /g, "-")}/${slugify(item.name, {
+                              lower: true,
+                              strict: true,
+                              remove: /[*+~.()'"!:@®™]/g,
+                            })}`}
                           >
                             <p>{item.name}</p>
                           </Link>

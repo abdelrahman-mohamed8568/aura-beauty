@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import slugify from "slugify";
 
 function ShoppingCart() {
   const dispatch = useDispatch();
@@ -325,7 +326,11 @@ function ShoppingCart() {
                       <Link
                         href={`/${item.fromPath}/${item.category[0]
                           .toString()
-                          .replace(/ /g, "-")}/${item.name.replace(/ /g, "-")}`}
+                          .replace(/ /g, "-")}/${slugify(item.name, {
+                          lower: true,
+                          strict: true,
+                          remove: /[*+~.()'"!:@®™]/g,
+                        })}`}
                       >
                         <Image
                           src={item.cover}
@@ -343,10 +348,11 @@ function ShoppingCart() {
                         <Link
                           href={`/${item.fromPath}/${item.category[0]
                             .toString()
-                            .replace(/ /g, "-")}/${item.name.replace(
-                            / /g,
-                            "-"
-                          )}`}
+                            .replace(/ /g, "-")}/${slugify(item.name, {
+                            lower: true,
+                            strict: true,
+                            remove: /[*+~.()'"!:@®™]/g,
+                          })}`}
                           className="hoverText"
                         >
                           {item.name}
