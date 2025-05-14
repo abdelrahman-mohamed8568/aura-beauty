@@ -325,7 +325,7 @@ function ShoppingCart() {
                       <Link
                         href={`/${item.fromPath}/${item.category[0]
                           .toString()
-                          .replace(/ /g, "-")}/${item.id}`}
+                          .replace(/ /g, "-")}/${item.name.replace(/ /g, "-")}`}
                       >
                         <Image
                           src={item.cover}
@@ -343,7 +343,10 @@ function ShoppingCart() {
                         <Link
                           href={`/${item.fromPath}/${item.category[0]
                             .toString()
-                            .replace(/ /g, "-")}/${item.id}`}
+                            .replace(/ /g, "-")}/${item.name.replace(
+                            / /g,
+                            "-"
+                          )}`}
                           className="hoverText"
                         >
                           {item.name}

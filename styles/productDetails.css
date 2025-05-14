@@ -79,7 +79,7 @@
   border-radius: 5px;
   border: 1px solid var(--gc);
   cursor: pointer;
-  z-index: 9;
+  z-index: 998 !important;
 }
 
 .selectedImage {

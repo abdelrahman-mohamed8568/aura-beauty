@@ -99,6 +99,7 @@ function Search() {
                               height={80}
                               className="resultsImage"
                               priority
+                              unoptimized
                             />
                           </Link>
                         </DialogActionTrigger>

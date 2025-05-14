@@ -62,8 +62,15 @@ function ProductsDetails() {
     shallowEqual
   );
   const selectedProduct = useMemo(() => {
+    if (!products || !productId) return null;
     return (
-      products.find((product) => product.id.toString() === productId) || null
+      products.find((product) => {
+        if (product.name && typeof product.name === "string") {
+          const productSlug = product.name.replace(/ /g, "-").toLowerCase();
+          return productSlug === productId.toLowerCase();
+        }
+        return false;
+      }) || null
     );
   }, [products, productId]);
   const relatedProducts = useMemo(() => {
@@ -150,6 +157,7 @@ function ProductsDetails() {
     setIsAdded(isMatched);
   }, [isMatched, isProductInWishlist]);
   const heartHandler = () => {
+    if (!selectedProduct) return;
     if (activeHeart) {
       dispatch(removeHeart(selectedProduct.id));
       toast.error("This product has been removed from the wishlist!");
@@ -164,6 +172,7 @@ function ProductsDetails() {
     setActiveHeart(!activeHeart);
   };
   const addToCardHandler = () => {
+    if (!selectedProduct || !checkedProduct) return;
     dispatch(addToCard({ ...checkedProduct, fromPath: FromPath }));
     toast(
       <div className="toast">

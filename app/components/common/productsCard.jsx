@@ -85,7 +85,10 @@ const ProductsCard = memo((product) => {
             </button>
           </Tooltip>
           <Link
-            href={`/${FromPath}/${categorys.replace(/ /g, "-")}/${product.id}`}
+            href={`/${FromPath}/${categorys.replace(
+              / /g,
+              "-"
+            )}/${product.name.replace(/ /g, "-")}`}
             className="cardLink"
           >
             <Image
@@ -141,9 +144,10 @@ const ProductsCard = memo((product) => {
           <div className="productsCardInfo">
             <h3>
               <Link
-                href={`/${FromPath}/${categorys.replace(/ /g, "-")}/${
-                  product.id
-                }`}
+                href={`/${FromPath}/${categorys.replace(
+                  / /g,
+                  "-"
+                )}/${product.name.replace(/ /g, "-")}`}
                 className="hoverText"
               >
                 {product.name}
