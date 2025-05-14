@@ -70,7 +70,6 @@ function ProductsDetails() {
         const slugifiedProductName = slugify(product.name, {
           lower: true,
           strict: true,
-          remove: /[*+~.()'"!:@®™]/g,
         });
         return slugifiedProductName === cleanedProductName;
       }) || null

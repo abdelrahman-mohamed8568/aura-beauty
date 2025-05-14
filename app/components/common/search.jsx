@@ -94,7 +94,6 @@ function Search() {
                               .replace(/ /g, "-")}/${slugify(item.name, {
                               lower: true,
                               strict: true,
-                              remove: /[*+~.()'"!:@®™]/g,
                             })}`}
                           >
                             <Image
@@ -115,7 +114,6 @@ function Search() {
                               .replace(/ /g, "-")}/${slugify(item.name, {
                               lower: true,
                               strict: true,
-                              remove: /[*+~.()'"!:@®™]/g,
                             })}`}
                           >
                             <p>{item.name}</p>

@@ -329,7 +329,6 @@ function ShoppingCart() {
                           .replace(/ /g, "-")}/${slugify(item.name, {
                           lower: true,
                           strict: true,
-                          remove: /[*+~.()'"!:@®™]/g,
                         })}`}
                       >
                         <Image
@@ -351,7 +350,6 @@ function ShoppingCart() {
                             .replace(/ /g, "-")}/${slugify(item.name, {
                             lower: true,
                             strict: true,
-                            remove: /[*+~.()'"!:@®™]/g,
                           })}`}
                           className="hoverText"
                         >

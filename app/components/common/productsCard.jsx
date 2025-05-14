@@ -48,7 +48,6 @@ const ProductsCard = memo((product) => {
   const slug = slugify(product.name, {
     lower: true,
     strict: true,
-    remove: /[*+~.()'"!:@®™]/g,
   });
 
   return (

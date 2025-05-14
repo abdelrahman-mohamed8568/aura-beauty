@@ -182,7 +182,6 @@ function Wishlist() {
                           .replace(/ /g, "-")}/${slugify(item.name, {
                           lower: true,
                           strict: true,
-                          remove: /[*+~.()'"!:@®™]/g,
                         })}`}
                       >
                         <Image
@@ -204,7 +203,6 @@ function Wishlist() {
                             .replace(/ /g, "-")}/${slugify(item.name, {
                             lower: true,
                             strict: true,
-                            remove: /[*+~.()'"!:@®™]/g,
                           })}`}
                           className="hoverText"
                         >
