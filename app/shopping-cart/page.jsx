@@ -334,6 +334,7 @@ function ShoppingCart() {
                           width={150}
                           height={150}
                           priority
+                          unoptimized
                         />
                       </Link>
                     </div>

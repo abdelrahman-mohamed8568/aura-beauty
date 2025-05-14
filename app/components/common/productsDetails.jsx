@@ -174,6 +174,7 @@ function ProductsDetails() {
           height={98}
           className="toastImg"
           priority
+          unoptimized
         />
         <div className="toastInfo">
           <p>{selectedProduct.name}</p>
@@ -251,6 +252,7 @@ function ProductsDetails() {
                               mainImage === img ? "selectedImage" : "sideImage"
                             }
                             priority
+                            unoptimized
                           />
                         </SwiperSlide>
                       ))}
@@ -269,6 +271,7 @@ function ProductsDetails() {
                             mainImage === img ? "selectedImage" : "sideImage"
                           }
                           priority
+                          unoptimized
                         />
                       ))}
                     </div>
@@ -290,6 +293,7 @@ function ProductsDetails() {
                           width={550}
                           height={550}
                           priority
+                          unoptimized
                           className="thumbnail"
                         />
                       </motion.div>
@@ -311,6 +315,7 @@ function ProductsDetails() {
                               width={650}
                               height={650}
                               priority
+                              unoptimized
                             />
                           </div>
                         </SwiperSlide>

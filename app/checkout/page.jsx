@@ -336,6 +336,7 @@ function Checkout() {
                       height={60}
                       className="image"
                       priority
+                      unoptimized
                     />
                     <span>{item.quantity}</span>
                   </div>
