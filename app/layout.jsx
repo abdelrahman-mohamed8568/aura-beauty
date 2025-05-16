@@ -17,10 +17,49 @@ export const metadata = {
     url: "https://aurabeautyeg.com",
     siteName: "Aura Beauty",
     type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://aurabeautyeg.com/favicon.ico",
+        width: 128,
+        height: 128,
+        alt: "Aura Beauty website preview image",
+      },
+    ],
   },
   icons: {
     icon: "/favicon.ico",
   },
+  geo: {
+    country: "EG",
+  },
+  script: [
+    {
+      type: "application/ld+json",
+      json: {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: "Aura Beauty",
+        image: "https://aurabeautyeg.com/favicon.ico",
+        url: "https://aurabeautyeg.com",
+        telephone: "+20-1050151808",
+        sameAs: [
+          "https://www.facebook.com/share/1XfZ3n5TkE/?mibextid=wwXIfr",
+          "https://www.instagram.com/aurabeautyeg",
+          "https://wa.me/+201050151808",
+          "https://www.tiktok.com/@aurabeautyeg",
+        ],
+      },
+    },
+    {
+      type: "application/ld+json",
+      json: {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        url: "https://aurabeautyeg.com",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({ children }) {
