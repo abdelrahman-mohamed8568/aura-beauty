@@ -101,6 +101,7 @@ li {
 
 .navHidden .socialIcons {
   flex-direction: row;
+  width: 80%;
 }
 
 .navHidden .socialIcons p {
