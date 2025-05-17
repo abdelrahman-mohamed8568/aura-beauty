@@ -83,14 +83,14 @@
   color: var(--wc);
   display: flex;
   flex-direction: column;
-  gap: 3vh;
   padding-left: 40px;
 }
 
 .socialIcons {
   display: flex;
   flex-direction: column;
-  gap: 3vh;
+  height: 100%;
+  justify-content: space-around;
 }
 
 .socialIcons .icon {
@@ -166,14 +166,13 @@
   .Sitemap {
     width: 95%;
   }
-}
-
-@media (max-width: 425px) {
-  .socialIcons .icon svg {
-    height: 15px !important;
-  }
-
   .footerText {
     width: 95% !important;
   }
 }
+
+/* @media (max-width: 425px) {
+  .socialIcons .icon svg {
+    height: 15px !important;
+  }
+} */

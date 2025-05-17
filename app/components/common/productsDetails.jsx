@@ -260,6 +260,7 @@ function ProductsDetails() {
                             width={90}
                             height={90}
                             onMouseEnter={() => setMainImage(img)}
+                            onClick={() => setMainImage(img)}
                             className={
                               mainImage === img ? "selectedImage" : "sideImage"
                             }

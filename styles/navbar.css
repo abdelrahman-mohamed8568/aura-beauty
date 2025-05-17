@@ -514,12 +514,17 @@ li {
     top: 10px;
     left: 15px;
     z-index: 999;
+  }
+
+  .navIcon {
+    width: 30px;
+    height: 30px;
     transition: all 1s ease-in-out;
   }
 
-  .navOpenOptionsAll .navLogo {
-    width: 60px;
-    height: 60px;
+  .navOpenOptionsAll .navIcon {
+    width: 40px;
+    height: 40px;
   }
 
   .settings {
