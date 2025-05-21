@@ -7,7 +7,7 @@ import { addToCard } from "@/store/card/cardSlice";
 import { useParams, usePathname } from "next/navigation";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Image from "next/image";
-import { Badge, HStack } from "@chakra-ui/react";
+import { Badge, HStack, Spinner, Text, VStack } from "@chakra-ui/react";
 import { HiAtSymbol } from "react-icons/hi";
 import Subtitle from "@/app/components/common/subtitle";
 import { addHeart, removeHeart } from "@/app/store/wishlist/wishlistSlice";
@@ -44,6 +44,7 @@ function ProductsDetails() {
   const pathSegments = pathname.split("/");
   const FromPath = pathSegments[1];
   const productName = params?.productDetails;
+  const [isLoading, setIsLoading] = useState(true);
   const [isAdded, setIsAdded] = useState(false);
   const [activeHeart, setActiveHeart] = useState(false);
   const [images, setImages] = useState([]);
@@ -75,6 +76,13 @@ function ProductsDetails() {
       }) || null
     );
   }, [products, productName]);
+  useEffect(() => {
+    if (selectedProduct) {
+      setIsLoading(false);
+    } else if (products.length > 0) {
+      setIsLoading(false);
+    }
+  }, [selectedProduct, products]);
 
   const relatedProducts = useMemo(() => {
     if (!selectedProduct || !selectedProduct.tag) return [];
@@ -222,7 +230,14 @@ function ProductsDetails() {
         theme="dark"
       />
       <div className="productContainer">
-        {selectedProduct && (
+        {isLoading ? (
+          <div className="loadingProduct">
+            <VStack colorPalette="teal">
+              <Spinner color="#707070" />
+              <Text color="#707070">Loading...</Text>
+            </VStack>
+          </div>
+        ) : (
           <>
             <Subtitle
               category={selectedProduct.category[0]}
