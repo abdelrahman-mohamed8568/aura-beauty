@@ -360,7 +360,7 @@ function Checkout() {
               <h6>EGP: {total}</h6>
             </div>
           </div>
-          <p>Free delivery for purchases over 2,000 EGP.</p>
+          <p>Free delivery for purchases over 5,000 EGP.</p>
           <p>*All prices are after 14% VAT.</p>
         </div>
       </div>

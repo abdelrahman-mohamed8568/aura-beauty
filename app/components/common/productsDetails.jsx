@@ -560,7 +560,7 @@ function ProductsDetails() {
                 <div className="cashBox">
                   <div>
                     <h3>Delivery Charges</h3>
-                    <p>Free delivery for purchases over 2,000 EGP.</p>
+                    <p>Free delivery for purchases over 5,000 EGP.</p>
                   </div>
                   <div>
                     <svg

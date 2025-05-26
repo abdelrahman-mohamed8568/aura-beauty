@@ -11,10 +11,13 @@ import Script from "next/script";
 export const metadata = {
   title: "Aura Beauty",
   description: "Everything Your Clinic Needs – All in One Place.",
+  alternates: {
+    canonical: "https://aurabeautyeg.com/",
+  },
   openGraph: {
     title: "Aura Beauty",
     description: "Everything Your Clinic Needs – All in One Place.",
-    url: "https://aurabeautyeg.com",
+    url: "https://aurabeautyeg.com/",
     siteName: "Aura Beauty",
     type: "website",
     locale: "en_US",
@@ -41,7 +44,7 @@ export const metadata = {
         "@type": "LocalBusiness",
         name: "Aura Beauty",
         image: "https://aurabeautyeg.com/favicon.ico",
-        url: "https://aurabeautyeg.com",
+        url: "https://aurabeautyeg.com/",
         telephone: "+20-1050151808",
         sameAs: [
           "https://www.facebook.com/share/1XfZ3n5TkE/?mibextid=wwXIfr",
@@ -55,8 +58,15 @@ export const metadata = {
       type: "application/ld+json",
       json: {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        url: "https://aurabeautyeg.com",
+        "@type": "WebPage",
+        url: "https://aurabeautyeg.com/",
+        name: "Aura Beauty - Home",
+        description: "Everything Your Clinic Needs – All in One Place.",
+        isPartOf: {
+          "@type": "WebSite",
+          url: "https://aurabeautyeg.com/",
+          name: "Aura Beauty",
+        },
       },
     },
   ],
